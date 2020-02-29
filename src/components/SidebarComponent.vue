@@ -361,7 +361,7 @@
                 <div class="storage__capacity">
                     <div class="sidebar__section__item__title">19.5GB used of 25GB</div>
                     <div class="sidebar__section__item__progress-bar__wrapper">
-                        <div class="sidebar__section__item__progress-bar"></div>
+                        <div class="sidebar__section__item__progress-bar critical"></div>
                     </div>
                 </div>
             </button>
@@ -417,7 +417,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    border-left: 2px solid #7fa7ee;
+                    border-left: 2px solid #5a8dee;
                     margin-left: 0;
                 }
 
@@ -440,8 +440,9 @@
                 .sidebar__section__item__title {
                     padding: .5rem 0;
                     border: none;
-                    font-weight: 500;
+                    font-weight: 400;
                     background-color: transparent;
+                    transition: all .3s ease-in-out;
                 }
 
                 .sidebar__section__item__count {
@@ -455,6 +456,11 @@
                 }
 
                 &.storage {
+                    &:hover {
+                        border-left: none;
+                        margin-left: 2px;
+                    }
+
                     .sidebar__section__item__icon {
                         width: 40px;
                         height: 35px;
@@ -484,17 +490,19 @@
 
                             .sidebar__section__item__progress-bar {
                                 height: .4rem;
-                                width: 80%;
+                                width: 90%;
                                 border-radius: 1.28rem;
                                 background-color: #5A8DEE;
                                 box-shadow: 0 2px 6px 0 rgba(90,141,238,.6);
+                                transition: all .5s ease-in-out;
+
+                                &.critical {
+                                    background-color: #ff7965;
+                                    box-shadow: 0 2px 6px 0 rgba(255,121,101,.85);
+                                }
                             }
                         }
                     }
-                }
-
-                .sidebar__section__item__progress-bar__wrapper {
-
                 }
             }
         }

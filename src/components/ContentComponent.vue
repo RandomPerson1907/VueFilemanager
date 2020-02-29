@@ -4,14 +4,14 @@
         <div class="section recently_accessed">
             <h3 class="section__header">Recently accessed files</h3>
             <div class="section__files">
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
+                <file-component>1</file-component>
+                <file-component>2</file-component>
+                <file-component>3</file-component>
+                <file-component>4</file-component>
+                <file-component>5</file-component>
+                <file-component>6</file-component>
+                <file-component>7</file-component>
+                <file-component>8</file-component>
             </div>
         </div>
         <div class="section">
@@ -65,20 +65,27 @@
 
 <style lang="scss" scoped>
     .content {
-        height: 95%;
-        width: 96.4%;
-        padding: 1.5rem;
+        height: 100%;
+        width: 100%;
+        padding: 0 1.5rem;
         overflow-x: hidden;
         overflow-y: auto;
 
         .content__title {
-
+            margin: 1.5rem 0 0;
+            font-size: 1.1rem;
+            font-weight: 400;
+            cursor: default;
+            user-select: none;
         }
 
         .section {
-            overflow-x: hidden;
-            overflow-y: auto;
-            height: max-content;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+
+            &:last-of-type {
+                padding-bottom: 1.8rem;
+            }
 
             .section__header {
                 color: #BAC0C7;
@@ -87,6 +94,8 @@
                 line-height: 1.4;
                 font-size: .7rem;
                 font-weight: 500;
+                cursor: default;
+                user-select: none;
             }
 
             .section__files {
@@ -103,20 +112,15 @@
             }
 
             &.recently_accessed {
-
                 .section__files {
-                    margin: .5rem 1rem;
-                    flex-wrap: nowrap;
                     overflow-x: auto;
+                    box-sizing: border-box;
+                    flex-wrap: nowrap;
+                    padding-right: 1rem;
 
-                    .file {
-                        &:first-of-type {
-                            margin-left: 0;
-                        }
-
-                        &:last-of-type {
-                            margin-right: 0;
-                        }
+                    &:after {
+                        content: "";
+                        min-width: .05rem;
                     }
                 }
             }

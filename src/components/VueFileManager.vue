@@ -7,9 +7,14 @@
                 </primary-button-component>
                 <sidebar-component></sidebar-component>
             </div>
-            <div class="file-manager__content">
-                <search-component></search-component>
-                <content-component></content-component>
+            <div class="file-manager__main">
+                <div class="file-manager__header">
+                    <search-component></search-component>
+                    <control-component></control-component>
+                </div>
+                <div class="file-manager__content">
+                    <content-component></content-component>
+                </div>
             </div>
         </div>
     </div>
@@ -62,15 +67,31 @@
                 flex-wrap: wrap;
                 align-items: start;
                 width: 260px;
+
+                .primary-button {
+                    margin: 1.5rem;
+                }
             }
 
-            .file-manager__content {
+            .file-manager__main {
                 width: calc(100% - 260px);
                 background: #fff;
-            }
 
-            .file-manager__sidebar .primary-button {
-                margin: 1.5rem;
+                .file-manager__header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    height: 3.5rem;
+                    padding: .6rem 1.5rem;
+                    border-bottom: 1px solid #DFE3E7;
+                }
+
+                .file-manager__content {
+                    position: relative;
+                    height: calc(100% - 3.5rem);
+                    overflow: hidden;
+                }
             }
         }
     }

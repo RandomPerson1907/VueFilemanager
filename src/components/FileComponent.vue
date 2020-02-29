@@ -26,6 +26,13 @@
         background-color: #F2F4F4;
         border: 1px solid #DFE3E7;
         overflow: hidden;
+        cursor: pointer;
+        transition: box-shadow .3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 6px 0 rgba(90,141,238,.6);
+        }
 
         * {
             box-sizing: border-box;
@@ -57,13 +64,13 @@
             }
 
             .file__info__name {
-                font-size: .8rem;
+                font-size: 12.8px;
                 font-weight: 500;
             }
 
             .file__info__size,
             .file__info__last-accessed {
-                font-size: .63rem;
+                font-size: 10px;
                 font-weight: 400;
                 color: #828D99;
             }

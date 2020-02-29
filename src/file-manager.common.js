@@ -1,5 +1,7 @@
 import Vue from "vue";
 
+import vueCustomScrollbar from 'vue-custom-scrollbar';
+import ControlComponent from "./components/ControlComponent";
 import ContentComponent from "./components/ContentComponent";
 import DirectoryComponent from "./components/DirectoryComponent";
 import FileComponent from "./components/FileComponent";
@@ -10,6 +12,8 @@ import VueFileManager from "./components/VueFileManager";
 import PrimaryButtonComponent from "./components/PrimaryButtonComponent";
 
 const Components = {
+  vueCustomScrollbar,
+  ControlComponent,
   PrimaryButtonComponent,
   ContentComponent,
   DirectoryComponent,
