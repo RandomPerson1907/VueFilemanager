@@ -1,7 +1,9 @@
 {
-  "name": "vue-file-manager",
+  "name": "@vladislav_prokhorenko/vue-file-manager",
+  "description": "Simple file manager for VueJS",
   "version": "0.1.0",
   "private": true,
+  "main": "index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
@@ -20,5 +22,21 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prokhorenko-vladyslav/VueFilemanager.git"
+  },
+  "keywords": [
+    "VueJS",
+    "Vue",
+    "file",
+    "manager"
+  ],
+  "author": "Vladislav Prokhorenko <prohorenko.vladyslav.98@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prokhorenko-vladyslav/VueFilemanager/issues"
+  },
+  "homepage": "https://github.com/prokhorenko-vladyslav/VueFilemanager#readme"
 }

@@ -1,0 +1,74 @@
+<template>
+    <div class="file-manager">
+        <div class="file-manager__wrapper">
+            <div class="file-manager__sidebar">
+                <primary-button-component>
+                    <span class="plus-icon">+</span> Add File
+                </primary-button-component>
+                <sidebar-component></sidebar-component>
+            </div>
+            <div class="file-manager__content">
+                <search-component></search-component>
+                <content-component></content-component>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "VueFilemanager",
+        props: {},
+        mounted() {
+            console.log("File manager has been mounted");
+        }
+    };
+</script>
+
+<style lang="scss" scoped>
+    @import url('https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap');
+
+    .file-manager {
+        margin: auto;
+        width: 1594px;
+        height: 487px;
+        border: 1px solid #DFE3E7;
+        border-radius: .267rem;
+        background-color: #F2F4F4;
+
+        * {
+            font-family: 'Rubik', 'sans-serif';
+            font-weight: 400;
+            line-height: 1.4;
+            letter-spacing: .01rem;
+        }
+
+        .file-manager__wrapper {
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+
+            .file-manager__sidebar,
+            .file-manager__content {
+                height: 100%;
+            }
+
+            .file-manager__sidebar {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 260px;
+            }
+
+            .file-manager__content {
+                width: calc(100% - 260px);
+                background: #fff;
+            }
+
+            .file-manager__sidebar .primary-button {
+                margin: 1.5rem;
+            }
+        }
+    }
+</style>
