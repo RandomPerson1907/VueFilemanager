@@ -381,8 +381,9 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: start;
-        height: 80%;
+        height: 87%;
         width: 100%;
+        margin-bottom: 2rem;
         overflow-x: hidden;
         overflow-y: auto;
         background: transparent;
@@ -405,13 +406,23 @@
                 display: flex;
                 align-items: center;
                 width: 100%;
+                margin-left: 2px;
                 padding: .6rem 1.5rem;
                 border: 0;
                 background-color: transparent;
                 text-align: left;
                 font-weight: 500;
+                border-left: 0 solid #F2F4F4;
+                transition: border-color .3s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    border-left: 2px solid #7fa7ee;
+                    margin-left: 0;
+                }
 
                 &.current {
+                    margin-left: 0;
                     border-left: 2px solid #5a8dee;
                 }
 

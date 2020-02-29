@@ -9,7 +9,7 @@
 </script>
 
 <style lang="scss" scoped>
-    button {
+    .primary-button {
         width: 100%;
         height: 38px;
         padding: .5rem 1.5rem;
@@ -23,6 +23,10 @@
         border-radius: .25rem;
         transition: all .3s ease;
         cursor: pointer;
+        
+        * {
+            color: #FFF;
+        }
 
         &:hover {
             background-color: #719DF0;

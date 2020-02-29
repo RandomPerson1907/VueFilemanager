@@ -29,18 +29,20 @@
     @import url('https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap');
 
     .file-manager {
-        margin: auto;
+        margin: 3% auto auto;
         width: 1594px;
-        height: 487px;
+        height: 822px;
         border: 1px solid #DFE3E7;
         border-radius: .267rem;
         background-color: #F2F4F4;
 
         * {
+            color: #475F7B;
             font-family: 'Rubik', 'sans-serif';
             font-weight: 400;
             line-height: 1.4;
             letter-spacing: .01rem;
+            box-sizing: border-box;
         }
 
         .file-manager__wrapper {
@@ -58,6 +60,7 @@
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
+                align-items: start;
                 width: 260px;
             }
 
