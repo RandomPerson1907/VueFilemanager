@@ -3,8 +3,21 @@
         <div class="additional-info__backdrop"></div>
         <div class="additional-info__content">
             <div class="additional-info__content__header">
-                <div class="title">Document.pdf</div>
+                <div class="title__text" v-show="!editing">Document.pdf</div>
+                <input class="title__input" value="Document.pdf" v-show="editing" ref="fileName">
                 <div class="actions">
+                    <div class="action action__start-edit" @click="startEdit" v-show="!editing">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                             width="32" height="32"
+                             viewBox="0 0 172 172"
+                             style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#475f7b"><path d="M128.49609,21.33203c-5.62695,0 -11.25391,2.18359 -15.62109,6.55078l-84.99219,84.99219l-0.33594,1.67969l-5.87891,29.5625l-1.67969,7.89453l7.89453,-1.67969l29.5625,-5.87891l1.67969,-0.33594l84.99219,-84.99219c8.73438,-8.73437 8.73438,-22.50781 0,-31.24219c-4.36719,-4.36719 -9.99414,-6.55078 -15.62109,-6.55078zM128.49609,31.57813c2.70849,0 5.43799,1.23877 8.0625,3.86328c5.22803,5.22803 5.22803,10.89697 0,16.125l-3.86328,3.69531l-15.95703,-15.95703l3.69531,-3.86328c2.62451,-2.62451 5.35401,-3.86328 8.0625,-3.86328zM109.17969,46.86328l15.95703,15.95703l-65.00391,65.00391c-3.52734,-6.88672 -9.07031,-12.42969 -15.95703,-15.95703zM37.28906,120.60156c6.4458,2.60352 11.50586,7.66357 14.10938,14.10938l-17.63672,3.52734z"></path></g></g></svg>
+                    </div>
+                    <div class="action action__stop-edit" @click="stopEdit" v-show="editing">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                             width="50" height="50"
+                             viewBox="0 0 172 172"
+                             style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#475f7b"><path d="M44.72,144.48c-1.81406,0 -3.57437,-0.72562 -4.86437,-2.01562l-37.84,-37.84c-2.6875,-2.6875 -2.6875,-7.04125 0,-9.72875c2.6875,-2.6875 7.04125,-2.6875 9.72875,0l32.49187,32.49187l77.74938,-93.92812c2.41875,-2.94281 6.75906,-3.34594 9.675,-0.91375c2.92937,2.41875 3.34594,6.75906 0.91375,9.675l-82.56,99.76c-1.22281,1.505 -3.03688,2.40531 -4.97188,2.48594c-0.1075,0.01344 -0.215,0.01344 -0.3225,0.01344zM82.8825,144.46656c1.935,-0.08063 3.73563,-0.98094 4.97188,-2.48594l82.56,-99.76c2.43219,-2.91594 2.01562,-7.25625 -0.91375,-9.675c-2.91594,-2.43219 -7.25625,-2.01563 -9.675,0.91375l-77.74938,93.92812l-1.53187,-1.53187c-2.6875,-2.6875 -7.04125,-2.6875 -9.72875,0c-2.6875,2.6875 -2.6875,7.04125 0,9.72875l6.88,6.88c1.29,1.29 3.05031,2.01562 4.86437,2.01562c0.1075,0 0.215,0 0.3225,-0.01344z"></path></g></g></svg>
+                    </div>
                     <div class="action action__delete">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve" data-shift="x" data-animoptions="{'duration':'1.4', 'repeat':'0', 'repeatDelay':'0.5'}" preserveAspectRatio="xMinYMin meet" style="left: 0.333374px; top: -0.150002px;"><g class="lievo-setrotation"><g class="lievo-setsharp" style="transform-origin: 0px 0px 0px;" data-svg-origin="31.25 30" transform="matrix(1,0,0,1,-1.2500002980232194,-0.25000029802321944)"><g class="lievo-setflip"><g class="lievo-main">
 		<g class="lievo-common">
@@ -43,7 +56,7 @@
             </div>
             <div class="additional-info__content__tabs">
                 <div class="tabs__headers">
-                    <div class="tab__header">
+                    <div class="tab__header" :class="{ active : activeTab === 'details'}" @click="changeTab('details')">
                         <div class="header-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                  width="32" height="32"
@@ -52,7 +65,7 @@
                         </div>
                         Details
                     </div>
-                    <div class="tab__header">
+                    <div class="tab__header" :class="{ active : activeTab === 'activity'}" @click="changeTab('activity')">
                         <div class="header-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                  width="30" height="30"
@@ -63,7 +76,8 @@
                     </div>
                 </div>
                 <div class="tabs__contents">
-                    <div class="tab__content tab__content_details">
+                    <transition name="fade">
+                        <div class="tab__content tab__content_details" v-show="activeTab === 'details'" :class="{ active : activeTab === 'details'}">
                         <div class="details__main">
                             <div class="details__preview">
                                 <img src="../assets/file-types/pdf.png" alt="">
@@ -130,55 +144,58 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab__content tab__content_activity active">
-                        <div class="activity__wrapper">
-                            <div class="activity__section adding">
-                                <div class="activity__section__title">
-                                    <div class="title__text">You added an item to</div>
-                                    <div class="title__datetime">Today</div>
+                    </transition>
+                    <transition name="fade">
+                        <div class="tab__content tab__content_activity" v-show="activeTab === 'activity'" :class="{ active : activeTab === 'activity'}">
+                            <div class="activity__wrapper">
+                                <div class="activity__section adding">
+                                    <div class="activity__section__title">
+                                        <div class="title__text">You added an item to</div>
+                                        <div class="title__datetime">Today</div>
+                                    </div>
+                                    <div class="activity__section__description">
+                                        You added an item
+                                    </div>
                                 </div>
-                                <div class="activity__section__description">
-                                    You added an item
+                                <div class="activity__section editing">
+                                    <div class="activity__section__title">
+                                        <div class="title__text">You added an item to</div>
+                                        <div class="title__datetime">Today</div>
+                                    </div>
+                                    <div class="activity__section__description">
+                                        You added an item
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="activity__section editing">
-                                <div class="activity__section__title">
-                                    <div class="title__text">You added an item to</div>
-                                    <div class="title__datetime">Today</div>
+                                <div class="activity__section deleting">
+                                    <div class="activity__section__title">
+                                        <div class="title__text">You added an item to</div>
+                                        <div class="title__datetime">Today</div>
+                                    </div>
+                                    <div class="activity__section__description">
+                                        You added an item
+                                    </div>
                                 </div>
-                                <div class="activity__section__description">
-                                    You added an item
+                                <div class="activity__section sharing">
+                                    <div class="activity__section__title">
+                                        <div class="title__text">You added an item to</div>
+                                        <div class="title__datetime">Today</div>
+                                    </div>
+                                    <div class="activity__section__description">
+                                        You added an item
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="activity__section deleting">
-                                <div class="activity__section__title">
-                                    <div class="title__text">You added an item to</div>
-                                    <div class="title__datetime">Today</div>
-                                </div>
-                                <div class="activity__section__description">
-                                    You added an item
-                                </div>
-                            </div>
-                            <div class="activity__section sharing">
-                                <div class="activity__section__title">
-                                    <div class="title__text">You added an item to</div>
-                                    <div class="title__datetime">Today</div>
-                                </div>
-                                <div class="activity__section__description">
-                                    You added an item
-                                </div>
-                            </div>
-                            <div class="activity__section editing">
-                                <div class="activity__section__title">
-                                    <div class="title__text">You added an item to</div>
-                                    <div class="title__datetime">Today</div>
-                                </div>
-                                <div class="activity__section__description">
-                                    You added an item
+                                <div class="activity__section editing">
+                                    <div class="activity__section__title">
+                                        <div class="title__text">You added an item to</div>
+                                        <div class="title__datetime">Today</div>
+                                    </div>
+                                    <div class="activity__section__description">
+                                        You added an item
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </transition>
                 </div>
             </div>
         </div>
@@ -187,11 +204,39 @@
 
 <script>
     export default {
-        name: "AdditionalInfoComponent"
+        name: "AdditionalInfoComponent",
+        data() {
+            return {
+                activeTab: "details",
+                editing : false
+            }
+        },
+        methods: {
+            changeTab(tabName) {
+                this.activeTab = tabName;
+            },
+            startEdit() {
+                this.editing = true;
+                this.$nextTick(function () {
+                    this.$refs.fileName.focus()
+                })
+
+            },
+            stopEdit() {
+                this.editing = false;
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+    .fade-enter {
+        opacity: 0;
+    }
+
     .additional-info {
         width: 100%;
         height: 100%;
@@ -210,8 +255,21 @@
                 border-bottom: 1px solid #EDEDED;
                 padding: 1rem 1.5rem;
 
-                .title {
+                .title__text,
+                .title__input {
                     font-size: .95rem;
+                }
+
+                .title__input {
+                    padding: 0;
+                    border: none;
+                    color: #475F7B;
+                    font-family: 'Rubik', 'sans-serif';
+                    font-weight: 400;
+                    line-height: 1.4;
+                    letter-spacing: .01rem;
+                    box-sizing: border-box;
+                    max-width: 60%;
                 }
 
                 .actions {
@@ -244,6 +302,46 @@
                             }
                         }
 
+                        &.action__start-edit {
+                            border: none;
+
+                            svg {
+                                g > path {
+                                    stroke: #fff;
+                                }
+                                g > g > path {
+                                    fill: #719DF0;
+                                }
+                            }
+                        }
+
+                        &.action__stop-edit {
+                            width: 22px;
+                            height: 22px;
+
+                            svg {
+                                g > g > path {
+                                    animation-name: pulse;
+                                    animation-duration: 2s;
+                                    animation-iteration-count: infinite;
+                                }
+                            }
+                        }
+
+                        @keyframes pulse {
+                            0% {
+                                fill: #475F7B;
+                            }
+
+                            50% {
+                                fill: #719DF0;
+                            }
+
+                            100% {
+                                fill: #475F7B;
+                            }
+                        }
+
                         &.action__close {
                             height: 16px;
 
@@ -265,6 +363,7 @@
                     border-bottom: 1px solid #EDEDED;
 
                     .tab__header {
+                        box-sizing: border-box;
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -275,7 +374,11 @@
                         font-size: .85rem;
                         font-weight: 400;
                         cursor: pointer;
-                        transition: all .3s ease-in-out;
+                        transition:
+                                color .3s ease-in-out,
+                                box-shadow .3s ease-in-out,
+                                border-color .3s ease-in-out;
+                        user-select: none;
 
                         &:hover {
                             color: #5A8DEE;
@@ -293,6 +396,22 @@
 
                         &.active {
                             color: #5A8DEE;
+                            border: 1px solid #5A8DEE;
+                            box-shadow: 0 0 6px 0 rgba(90,141,238,.6);
+
+                            &:first-of-type {
+                                border-left: none;
+                            }
+
+                            &:last-of-type {
+                                border-right: none;
+                            }
+
+                            svg {
+                                g > g > path {
+                                    fill: #719DF0;
+                                }
+                            }
                         }
 
                         .header-icon {
@@ -313,9 +432,11 @@
                 }
 
                 .tabs__contents {
+                    overflow: hidden;
 
                     .tab__content {
                         display: none;
+                        overflow: auto;
 
                         &.active {
                             display: block;
@@ -360,7 +481,6 @@
                                     line-height: 1.4;
                                     font-size: .65rem;
                                     font-weight: 500;
-                                    cursor: pointer;
                                     user-select: none;
                                 }
 
@@ -373,12 +493,12 @@
 
                                         .details__info__row__label {
                                             font-size: .85rem;
-                                            cursor: pointer;
                                             user-select: none;
                                             transition: all .3s ease-in-out;
 
                                             &.changeable:hover {
                                                 color: #5A8DEE;
+                                                cursor: pointer;
                                             }
                                         }
 
