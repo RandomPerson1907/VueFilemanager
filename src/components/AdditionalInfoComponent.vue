@@ -1,6 +1,6 @@
 <template>
-    <div class="additional-info">
-        <div class="additional-info__backdrop"></div>
+    <div class="additional-info" :class="{active}">
+        <div class="additional-info__backdrop" @click="hideAdditionalInfoSidebar"></div>
         <div class="additional-info__content">
             <div class="additional-info__content__header">
                 <div class="title__text" v-show="!editing">Document.pdf</div>
@@ -46,7 +46,7 @@
 
                             <desc>LivIcons Evolution</desc><defs></defs></svg>
                     </div>
-                    <div class="action action__close">
+                    <div class="action action__close" @click="hideAdditionalInfoSidebar">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                              width="16" height="16"
                              viewBox="0 0 172 172"
@@ -203,6 +203,8 @@
 </template>
 
 <script>
+    import {mapActions, mapGetters} from "vuex";
+
     export default {
         name: "AdditionalInfoComponent",
         data() {
@@ -211,7 +213,14 @@
                 editing : false
             }
         },
+        computed: {
+            active() {
+                return this.getAdditionalInfoSidebarVisible()
+            }
+        },
         methods: {
+            ...mapGetters(['getAdditionalInfoSidebarVisible']),
+            ...mapActions(['showAdditionalInfoSidebar', 'hideAdditionalInfoSidebar']),
             changeTab(tabName) {
                 this.activeTab = tabName;
             },
@@ -238,14 +247,53 @@
     }
 
     .additional-info {
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%;
-        box-shadow: -8px 0 18px 0 rgba(25,42,70,.13);
+        overflow: hidden;
         border-radius: 0 .25rem .25rem 0;
+        transition: all .3s ease-in-out;
+
+        &, * {
+            pointer-events: none;
+        }
+
+        .additional-info__backdrop {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background: rgba(0,0,0,.35);
+            transition: all .3s ease-in-out;
+            pointer-events: none;
+        }
+
+        &.active {
+            &, * {
+                pointer-events: all;
+            }
+
+            .additional-info__content {
+                right: 0;
+            }
+
+            .additional-info__backdrop {
+                opacity: 1;
+            }
+        }
 
         .additional-info__content {
+            position: absolute;
+            right: -100%;
             height: 100%;
+            width: 320px;
+            box-shadow: -8px 0 18px 0 rgba(25,42,70,.13);
             background: #fff;
+            transition: all .5s ease-in-out;
 
             .additional-info__content__header {
                 display: flex;
@@ -269,7 +317,7 @@
                     line-height: 1.4;
                     letter-spacing: .01rem;
                     box-sizing: border-box;
-                    max-width: 60%;
+                    max-width: 65%;
                 }
 
                 .actions {
@@ -303,14 +351,16 @@
                         }
 
                         &.action__start-edit {
-                            border: none;
 
-                            svg {
-                                g > path {
-                                    stroke: #fff;
-                                }
-                                g > g > path {
-                                    fill: #719DF0;
+
+                            &:hover {
+                                svg {
+                                    g > path {
+                                        stroke: #fff;
+                                    }
+                                    g > g > path {
+                                        fill: #719DF0;
+                                    }
                                 }
                             }
                         }

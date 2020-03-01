@@ -1,6 +1,6 @@
 <template>
     <div class="file">
-        <div class="file__more">
+        <div class="file__more" @click="showAdditionalInfoSidebar">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
                  viewBox="0 0 172 172"
@@ -18,8 +18,13 @@
 </template>
 
 <script>
+    import {mapActions} from "vuex";
+
     export default {
-        name: "FileComponent"
+        name: "FileComponent",
+        methods: {
+            ...mapActions(['showAdditionalInfoSidebar']),
+        }
     }
 </script>
 

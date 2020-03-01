@@ -33,7 +33,7 @@
     };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import url('https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap');
 
     .file-manager {
@@ -95,21 +95,6 @@
                     position: relative;
                     height: calc(100% - 3.5rem);
                     overflow: hidden;
-                }
-            }
-
-            .file-manager__additional {
-                position: absolute;
-                right: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,.35);
-                display: flex;
-                justify-content: end;
-
-                .additional-info {
-                    width: 320px;
                 }
             }
         }
