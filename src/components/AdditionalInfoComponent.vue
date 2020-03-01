@@ -50,7 +50,7 @@
                 </div>
                 <div class="tabs__contents">
                     <div class="tabs__contents tabs__contents_details">
-
+                        awdad
                     </div>
                     <div class="tabs__contents tabs__contents_activity">
 
