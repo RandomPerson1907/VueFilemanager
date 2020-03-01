@@ -1,5 +1,11 @@
 <template>
     <div class="file">
+        <div class="file__more">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                 width="24" height="24"
+                 viewBox="0 0 172 172"
+                 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#727e8c"><path d="M21.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM86,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM150.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5z"></path></g></g></svg>
+        </div>
         <div class="file__preview">
             <img src="../assets/file-types/pdf.png" alt="PDF">
         </div>
@@ -19,6 +25,7 @@
 
 <style lang="scss" scoped>
     .file {
+        position: relative;
         box-sizing: border-box;
         width: 100%;
         height: 180px;
@@ -36,6 +43,33 @@
 
         * {
             box-sizing: border-box;
+        }
+
+        .file__more {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            opacity: .4;
+
+            svg {
+                width: 14px;
+                height: 14px;
+                transform: rotate(90deg);
+                transition: all .3s ease-in-out;
+            }
+
+            &:hover {
+                svg {
+                    g > g > path {
+                        fill: #719DF0;
+                    }
+                }
+            }
         }
 
         .file__preview {

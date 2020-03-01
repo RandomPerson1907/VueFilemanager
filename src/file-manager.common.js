@@ -10,9 +10,11 @@ import SearchComponent from "./components/SearchComponent";
 import SidebarComponent from "./components/SidebarComponent";
 import VueFileManager from "./components/VueFileManager";
 import PrimaryButtonComponent from "./components/PrimaryButtonComponent";
+import AdditionalInfoComponent from "./components/AdditionalInfoComponent";
 
 const Components = {
   vueCustomScrollbar,
+  AdditionalInfoComponent,
   ControlComponent,
   PrimaryButtonComponent,
   ContentComponent,

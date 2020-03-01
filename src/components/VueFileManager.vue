@@ -16,6 +16,9 @@
                     <content-component></content-component>
                 </div>
             </div>
+            <div class="file-manager__additional">
+                <additional-info-component></additional-info-component>
+            </div>
         </div>
     </div>
 </template>
@@ -51,6 +54,7 @@
         }
 
         .file-manager__wrapper {
+            position: relative;
             display: flex;
             justify-content: space-between;
             height: 100%;
@@ -91,6 +95,21 @@
                     position: relative;
                     height: calc(100% - 3.5rem);
                     overflow: hidden;
+                }
+            }
+
+            .file-manager__additional {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,.35);
+                display: flex;
+                justify-content: end;
+
+                .additional-info {
+                    width: 320px;
                 }
             }
         }

@@ -68,6 +68,10 @@
             svg {
                 width: 24px;
                 height: 24px;
+
+				* {
+					transition: all .3s ease-in-out;
+				}
             }
 
 			&.control__item_more {
@@ -75,6 +79,25 @@
 					width: 14px;
 					height: 14px;
 					transform: rotate(90deg);
+				}
+			}
+
+			&:hover {
+				svg {
+					path, rect, circle,
+					polyline, line, polygon {
+						stroke: #719DF0;
+					}
+				}
+			}
+
+			&.control__item_more {
+				&:hover {
+					svg {
+						g > g > path {
+								fill: #719DF0;
+						}
+					}
 				}
 			}
         }
