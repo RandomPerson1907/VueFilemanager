@@ -3,6 +3,9 @@
         <div class="directory__context">
             <vue-context ref="menu">
                 <li>
+                    <a href="#" @click.prevent="openDirectory">Open</a>
+                </li>
+                <li>
                     <a href="#" @click.prevent="showInfo">Info</a>
                 </li>
                 <li>
@@ -31,15 +34,20 @@
 
     export default {
         name: "DirectoryComponent",
-        ...mapActions(['showAdditionalInfoSidebar']),
-        showInfo() {
-            this.showAdditionalInfoSidebar()
-        },
-        shareDirectory() {
-            console.log('shared directory')
-        },
-        deleteDirectory() {
-            console.log('delete directory');
+        methods: {
+            ...mapActions(['showAdditionalInfoSidebar']),
+            openDirectory() {
+                console.log('open directory')
+            },
+            showInfo() {
+                this.showAdditionalInfoSidebar()
+            },
+            shareDirectory() {
+                console.log('shared directory')
+            },
+            deleteDirectory() {
+                console.log('delete directory');
+            }
         }
     }
 </script>
