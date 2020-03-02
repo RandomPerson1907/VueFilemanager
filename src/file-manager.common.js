@@ -11,6 +11,7 @@ import SidebarComponent from "./components/SidebarComponent";
 import VueFileManager from "./components/VueFileManager";
 import PrimaryButtonComponent from "./components/PrimaryButtonComponent";
 import AdditionalInfoComponent from "./components/AdditionalInfoComponent";
+import PreloaderComponent from "./components/PreloaderComponent";
 
 const Components = {
   vueCustomScrollbar,
@@ -23,7 +24,8 @@ const Components = {
   NavComponent,
   SearchComponent,
   SidebarComponent,
-  VueFileManager
+  VueFileManager,
+  PreloaderComponent
 };
 
 Object.keys(Components).forEach(name => {

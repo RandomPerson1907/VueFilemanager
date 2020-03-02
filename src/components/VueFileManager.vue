@@ -1,5 +1,6 @@
 <template>
     <div class="file-manager">
+        <preloader-component></preloader-component>
         <div class="file-manager__wrapper">
             <div class="file-manager__sidebar">
                 <primary-button-component>
@@ -24,11 +25,19 @@
 </template>
 
 <script>
+    import {mapActions} from "vuex";
+
     export default {
         name: "VueFilemanager",
         props: {},
         mounted() {
+            this.startLoading();
+            setTimeout(() => this.stopLoading(), 10000);
             console.log("File manager has been mounted");
+        },
+        methods: {
+            ...mapActions(['startLoading', 'stopLoading']),
+
         }
     };
 </script>
@@ -37,6 +46,7 @@
     @import url('https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap');
 
     .file-manager {
+        position: relative;
         margin: 3% auto auto;
         width: 1594px;
         height: 822px;
