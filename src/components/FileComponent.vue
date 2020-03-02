@@ -1,5 +1,21 @@
 <template>
-    <div class="file">
+    <div class="file" @contextmenu.prevent="$refs.menu.open">
+        <div class="file__context">
+            <vue-context ref="menu">
+                <li>
+                    <a href="#" @click.prevent="showInfo">Info</a>
+                </li>
+                <li>
+                    <a href="#" @click.prevent="shareFile">Share</a>
+                </li>
+                <li>
+                    <a href="#" @click.prevent="openFileInNewWindow">Open in new window</a>
+                </li>
+                <li>
+                    <a href="#" @click.prevent="deleteFIle">Delete</a>
+                </li>
+            </vue-context>
+        </div>
         <div class="file__more" @click="showAdditionalInfoSidebar">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
@@ -24,6 +40,18 @@
         name: "FileComponent",
         methods: {
             ...mapActions(['showAdditionalInfoSidebar']),
+            showInfo() {
+                this.showAdditionalInfoSidebar()
+            },
+            shareFile() {
+              console.log('shared file')
+            },
+            openFileInNewWindow() {
+              console.log('opened file in new window');
+            },
+            deleteFIle() {
+                console.log('delete file');
+            }
         }
     }
 </script>
@@ -42,12 +70,37 @@
         transition: box-shadow .3s ease-in-out;
 
         &:hover {
-            transform: scale(1.01);
             box-shadow: 0 0 6px 0 rgba(90,141,238,.6);
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        .file__context {
+            .v-context {
+                padding: 0;
+                border-radius: .15rem;
+
+                a {
+                    margin-left: 2px;
+                    padding: .35rem .5rem;
+                    color: #475F7B;
+                    font-family: 'Rubik', 'sans-serif';
+                    font-weight: 400;
+                    font-size: .8rem;
+                    line-height: 1.4;
+                    letter-spacing: .01rem;
+                    box-sizing: border-box;
+                    border-left: 0 solid #F2F4F4;
+                    transition: border-color .3s ease-in-out;
+
+                    &:hover {
+                        border-left: 2px solid #5a8dee;
+                        margin-left: 0;
+                    }
+                }
+            }
         }
 
         .file__more {

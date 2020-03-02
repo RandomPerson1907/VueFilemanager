@@ -32,12 +32,14 @@
         props: {},
         mounted() {
             this.startLoading();
-            setTimeout(() => this.stopLoading(), 10000);
+            setTimeout(() => this.stopLoading(), 1000);
             console.log("File manager has been mounted");
         },
         methods: {
             ...mapActions(['startLoading', 'stopLoading']),
-
+            onClick (text) {
+                alert(`You clicked ${text}!`);
+            }
         }
     };
 </script>

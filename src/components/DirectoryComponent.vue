@@ -1,5 +1,18 @@
 <template>
-    <div class="directory">
+    <div class="directory" @contextmenu.prevent="$refs.menu.open">
+        <div class="directory__context">
+            <vue-context ref="menu">
+                <li>
+                    <a href="#" @click.prevent="showInfo">Info</a>
+                </li>
+                <li>
+                    <a href="#" @click.prevent="shareDirectory">Share</a>
+                </li>
+                <li>
+                    <a href="#" @click.prevent="deleteDirectory">Delete</a>
+                </li>
+            </vue-context>
+        </div>
         <div class="directory__icon">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
@@ -14,8 +27,20 @@
 </template>
 
 <script>
+    import {mapActions} from "vuex";
+
     export default {
-        name: "DirectoryComponent"
+        name: "DirectoryComponent",
+        ...mapActions(['showAdditionalInfoSidebar']),
+        showInfo() {
+            this.showAdditionalInfoSidebar()
+        },
+        shareDirectory() {
+            console.log('shared directory')
+        },
+        deleteDirectory() {
+            console.log('delete directory');
+        }
     }
 </script>
 
@@ -31,8 +56,33 @@
         transition: box-shadow .3s ease-in-out;
 
         &:hover {
-            transform: scale(1.01);
             box-shadow: 0 0 6px 0 rgba(90,141,238,.6);
+        }
+
+        .directory__context {
+            .v-context {
+                padding: 0;
+                border-radius: .15rem;
+
+                a {
+                    margin-left: 2px;
+                    padding: .35rem .5rem;
+                    color: #475F7B;
+                    font-family: 'Rubik', 'sans-serif';
+                    font-weight: 400;
+                    font-size: .8rem;
+                    line-height: 1.4;
+                    letter-spacing: .01rem;
+                    box-sizing: border-box;
+                    border-left: 0 solid #F2F4F4;
+                    transition: border-color .3s ease-in-out;
+
+                    &:hover {
+                        border-left: 2px solid #5a8dee;
+                        margin-left: 0;
+                    }
+                }
+            }
         }
 
         .directory__info {
