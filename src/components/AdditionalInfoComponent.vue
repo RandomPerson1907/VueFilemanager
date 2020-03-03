@@ -1,6 +1,6 @@
 <template>
-    <div class="additional-info" :class="{active}">
-        <div class="additional-info__backdrop" @click="hideAdditionalInfoSidebar"></div>
+    <div class="additional-info" :class="{ active : isVisibleAdditionalInfoSidebar }">
+        <div class="additional-info__backdrop" @click="hideAdditionalInfo"></div>
         <div class="additional-info__content">
             <div class="additional-info__content__header">
                 <div class="title__text" v-show="!editing">Document.pdf</div>
@@ -46,7 +46,7 @@
 
                             <desc>LivIcons Evolution</desc><defs></defs></svg>
                     </div>
-                    <div class="action action__close" @click="hideAdditionalInfoSidebar">
+                    <div class="action action__close" @click="hideAdditionalInfo">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                              width="16" height="16"
                              viewBox="0 0 172 172"
@@ -214,13 +214,13 @@
             }
         },
         computed: {
-            active() {
-                return this.getAdditionalInfoSidebarVisible()
+            isVisibleAdditionalInfoSidebar() {
+                return this.isVisibleAdditionalInfo();
             }
         },
         methods: {
-            ...mapGetters(['getAdditionalInfoSidebarVisible']),
-            ...mapActions(['showAdditionalInfoSidebar', 'hideAdditionalInfoSidebar']),
+            ...mapGetters(['isVisibleAdditionalInfo', 'getCurrentObject']),
+            ...mapActions(['hideAdditionalInfo']),
             changeTab(tabName) {
                 this.activeTab = tabName;
             },
@@ -229,7 +229,6 @@
                 this.$nextTick(function () {
                     this.$refs.fileName.focus()
                 })
-
             },
             stopEdit() {
                 this.editing = false;

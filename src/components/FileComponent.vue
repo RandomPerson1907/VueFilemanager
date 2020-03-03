@@ -1,5 +1,5 @@
 <template>
-    <div class="file" @contextmenu.prevent="$refs.menu.open">
+    <div class="file" @click="openAdditionalInfo(file)" @contextmenu.prevent="$refs.menu.open">
         <div class="file__context">
             <vue-context ref="menu">
                 <li>
@@ -16,7 +16,7 @@
                 </li>
             </vue-context>
         </div>
-        <div class="file__more" @click="showAdditionalInfoSidebar">
+        <div class="file__more" @click="openAdditionalInfo(file)">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
                  viewBox="0 0 172 172"
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-    import {mapActions} from "vuex";
+    import {mapActions, mapMutations} from "vuex";
 
     export default {
         name: "FileComponent",
@@ -68,10 +68,8 @@
           }
         },
         methods: {
-            ...mapActions(['showAdditionalInfoSidebar']),
-            showInfo() {
-                this.showAdditionalInfoSidebar()
-            },
+            ...mapActions(['openAdditionalInfo']),
+            ...mapMutations(['setCurrentObject']),
             shareFile() {
               console.log('shared file')
             },

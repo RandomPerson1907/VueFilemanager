@@ -1,5 +1,5 @@
 <template>
-    <div class="directory" @contextmenu.prevent="$refs.menu.open">
+    <div class="directory" @click="openAdditionalInfo(directory)" @contextmenu.prevent="$refs.menu.open">
         <div class="directory__context">
             <vue-context ref="menu">
                 <li>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-    import {mapActions} from "vuex";
+    import {mapActions, mapMutations} from "vuex";
 
     export default {
         name: "DirectoryComponent",
@@ -40,12 +40,10 @@
           }
         },
         methods: {
-            ...mapActions(['showAdditionalInfoSidebar']),
+            ...mapActions(['openAdditionalInfo']),
+            ...mapMutations(['setCurrentObject']),
             openDirectory() {
                 console.log('open directory')
-            },
-            showInfo() {
-                this.showAdditionalInfoSidebar()
             },
             shareDirectory() {
                 console.log('shared directory')

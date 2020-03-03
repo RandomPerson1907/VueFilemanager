@@ -4,14 +4,14 @@
         <div class="section recently_accessed">
             <h3 class="section__header">Recently accessed files</h3>
             <div class="section__files">
-                <file-component>1</file-component>
-                <file-component>2</file-component>
-                <file-component>3</file-component>
-                <file-component>4</file-component>
-                <file-component>5</file-component>
-                <file-component>6</file-component>
-                <file-component>7</file-component>
-                <file-component>8</file-component>
+<!--                <file-component>1</file-component>-->
+<!--                <file-component>2</file-component>-->
+<!--                <file-component>3</file-component>-->
+<!--                <file-component>4</file-component>-->
+<!--                <file-component>5</file-component>-->
+<!--                <file-component>6</file-component>-->
+<!--                <file-component>7</file-component>-->
+<!--                <file-component>8</file-component>-->
             </div>
         </div>
         <div class="section">

@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         loading: false,
         additionalInfoSidebarVisible: false,
+        currentObject: {},
         directories: [
             {
                 name: "Project",
@@ -1288,15 +1289,26 @@ export default new Vuex.Store({
     },
     mutations: {
         setAdditionalInfoSidebarVisible: (state, status) => state.additionalInfoSidebarVisible = status,
-        setLoading: (state, status) => state.loading = status
+        setLoading: (state, status) => state.loading = status,
+        setCurrentObject: (state, object) => state.currentObject = object,
     },
     getters: {
         getAdditionalInfoSidebarVisible: state => state.additionalInfoSidebarVisible,
         isLoading: state => state.loading,
         getDirectories: state => state.directories,
         getFiles: state => state.files,
+        getCurrentObject: state => state.currentObject,
+        isVisibleAdditionalInfo: state => state.currentObject && state.additionalInfoSidebarVisible
     },
     actions: {
+        openAdditionalInfo({commit, dispatch}, object) {
+            commit("setCurrentObject", object);
+            dispatch("showAdditionalInfoSidebar")
+        },
+        hideAdditionalInfo({commit, dispatch}) {
+            commit("setCurrentObject", {});
+            dispatch("hideAdditionalInfoSidebar")
+        },
         showAdditionalInfoSidebar({commit}) {
             commit('setAdditionalInfoSidebarVisible', true)
         },
@@ -1308,6 +1320,9 @@ export default new Vuex.Store({
         },
         stopLoading({commit}) {
             commit('setLoading', false);
+        },
+        clearCurrentObject({commit}) {
+            commit("setCurrentObject", {});
         },
     },
 });
