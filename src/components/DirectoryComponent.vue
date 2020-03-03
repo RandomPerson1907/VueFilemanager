@@ -23,8 +23,8 @@
                  style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#b3c0ce"><path d="M28.66667,28.66667c-7.84216,0 -14.33333,6.49117 -14.33333,14.33333v86c0,7.84216 6.49117,14.33333 14.33333,14.33333h114.66667c7.84216,0 14.33333,-6.49117 14.33333,-14.33333v-71.66667c0,-7.84216 -6.49117,-14.33333 -14.33333,-14.33333h-57.33333l-14.33333,-14.33333zM28.66667,43h37.0651l14.33333,14.33333h63.26823v71.66667h-114.66667z"></path></g></g></svg>
         </div>
         <div class="directory__info">
-            <div class="directory__info__name">Project</div>
-            <div class="directory__info__size">2 files, 14.05mb</div>
+            <div class="directory__info__name">{{ directory.name }}</div>
+            <div class="directory__info__size">{{ directory.filesCount }}, {{ directory.size }}</div>
         </div>
     </div>
 </template>
@@ -34,6 +34,11 @@
 
     export default {
         name: "DirectoryComponent",
+        props: {
+          directory : {
+              required: true
+          }
+        },
         methods: {
             ...mapActions(['showAdditionalInfoSidebar']),
             openDirectory() {

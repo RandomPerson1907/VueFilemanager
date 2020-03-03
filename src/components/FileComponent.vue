@@ -23,11 +23,35 @@
                  style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#727e8c"><path d="M21.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM86,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM150.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5z"></path></g></g></svg>
         </div>
         <div class="file__preview">
-            <img src="../assets/file-types/pdf.png" alt="PDF">
+            <img src="../assets/file-types/avi.png" alt="avi" v-if="file.type === 'avi'">
+            <img src="../assets/file-types/css.png" alt="css" v-else-if="file.type === 'css'">
+            <img src="../assets/file-types/csv.png" alt="csv" v-else-if="file.type === 'csv'">
+            <img src="../assets/file-types/dbf.png" alt="dbf" v-else-if="file.type === 'dbf'">
+            <img src="../assets/file-types/doc.png" alt="doc" v-else-if="file.type === 'doc'">
+            <img src="../assets/file-types/dwg.png" alt="dwg" v-else-if="file.type === 'dwg'">
+            <img src="../assets/file-types/exe.png" alt="exe" v-else-if="file.type === 'exe'">
+            <img src="../assets/file-types/fla.png" alt="fla" v-else-if="file.type === 'fla'">
+            <img src="../assets/file-types/html.png" alt="html" v-else-if="file.type === 'html'">
+            <img src="../assets/file-types/iso.png" alt="iso" v-else-if="file.type === 'iso'">
+            <img src="../assets/file-types/javascript.png" alt="javascript" v-else-if="file.type === 'js'">
+            <img src="../assets/file-types/json-file.png" alt="json" v-else-if="file.type === 'json'">
+            <img src="../assets/file-types/mp3.png" alt="mp3" v-else-if="file.type === 'mp3'">
+            <img src="../assets/file-types/mp4.png" alt="mp4" v-else-if="file.type === 'mp4'">
+            <img src="../assets/file-types/pdf.png" alt="pdf" v-else-if="file.type === 'pdf'">
+            <img src="../assets/file-types/powerpoint.png" alt="pptx" v-else-if="file.type === 'pptx'">
+            <img src="../assets/file-types/psd.png" alt="psd" v-else-if="file.type === 'psd'">
+            <img src="../assets/file-types/rtf.png" alt="rtf" v-else-if="file.type === 'rtf'">
+            <img src="../assets/file-types/sketch.png" alt="sketch" v-else-if="file.type === 'sketch'">
+            <img src="../assets/file-types/svg.png" alt="svg" v-else-if="file.type === 'svg'">
+            <img src="../assets/file-types/txt.png" alt="txt" v-else-if="file.type === 'txt'">
+            <img src="../assets/file-types/xls.png" alt="xls" v-else-if="file.type === 'xls'">
+            <img src="../assets/file-types/xml.png" alt="xml" v-else-if="file.type === 'xml'">
+            <img src="../assets/file-types/zip.png" alt="zip" v-else-if="file.type === 'zip'">
+            <img src="../assets/file-types/other.png" alt="other" v-else>
         </div>
         <div class="file__info">
-            <div class="file__info__name">Felecia Resume.pdf</div>
-            <div class="file__info__size">12.85kb</div>
+            <div class="file__info__name">{{ file.name }}</div>
+            <div class="file__info__size">{{ file.size }}</div>
             <div class="file__info__last-accessed">Last accessed : 3 hours ago</div>
         </div>
     </div>
@@ -38,6 +62,11 @@
 
     export default {
         name: "FileComponent",
+        props: {
+          file: {
+              required: true
+          }
+        },
         methods: {
             ...mapActions(['showAdditionalInfoSidebar']),
             showInfo() {
@@ -139,7 +168,7 @@
 
             img {
                 width: 30px;
-                height: 38px;
+                max-height: 38px;
             }
         }
 

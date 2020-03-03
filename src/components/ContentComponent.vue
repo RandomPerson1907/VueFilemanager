@@ -17,49 +17,32 @@
         <div class="section">
             <h3 class="section__header">Folders</h3>
             <div class="section__files">
-                <directory-component></directory-component>
-                <directory-component></directory-component>
-                <directory-component></directory-component>
-                <directory-component></directory-component>
-                <directory-component></directory-component>
-                <directory-component></directory-component>
+                <directory-component
+                        v-for="directory in getDirectories()"
+                        :directory="directory"
+                ></directory-component>
             </div>
         </div>
         <div class="section">
             <h3 class="section__header">Files</h3>
             <div class="section__files">
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
-                <file-component></file-component>
+                <file-component
+                        v-for="file in getFiles()"
+                        :file="file"
+                ></file-component>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import {mapGetters} from "vuex";
+
     export default {
-        name: "ContentComponent"
+        name: "ContentComponent",
+        methods: {
+            ...mapGetters(['getFiles', 'getDirectories'])
+        }
     }
 </script>
 
