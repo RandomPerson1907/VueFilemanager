@@ -288,7 +288,7 @@ export default new Vuex.Store({
         ],
         files: [
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "avi",
                 size: "15mb",
@@ -328,7 +328,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "css",
                 size: "140.05mb",
@@ -368,7 +368,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "csv",
                 size: "112.85kb",
@@ -408,7 +408,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "dbf",
                 size: "1.05mb",
@@ -448,7 +448,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "doc",
                 size: "14.05mb",
@@ -488,7 +488,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "dwg",
                 size: "12.85kb",
@@ -528,7 +528,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "exe",
                 size: "12.85kb",
@@ -568,7 +568,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "fla",
                 size: "12.85kb",
@@ -608,7 +608,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "html",
                 size: "12.85kb",
@@ -648,7 +648,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "iso",
                 size: "12.85kb",
@@ -688,7 +688,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "js",
                 size: "12.85kb",
@@ -728,7 +728,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "json",
                 size: "12.85kb",
@@ -768,7 +768,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "mp3",
                 size: "12.85kb",
@@ -808,7 +808,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "mp4",
                 size: "12.85kb",
@@ -848,7 +848,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "pdf",
                 size: "12.85kb",
@@ -888,7 +888,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "pptx",
                 size: "12.85kb",
@@ -928,7 +928,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "psd",
                 size: "12.85kb",
@@ -968,7 +968,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "rtf",
                 size: "12.85kb",
@@ -1008,7 +1008,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "sketch",
                 size: "12.85kb",
@@ -1048,7 +1048,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "svg",
                 size: "12.85kb",
@@ -1088,7 +1088,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "txt",
                 size: "12.85kb",
@@ -1128,7 +1128,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "xls",
                 size: "12.85kb",
@@ -1168,7 +1168,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "xml",
                 size: "12.85kb",
@@ -1208,7 +1208,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "zip",
                 size: "12.85kb",
@@ -1248,7 +1248,7 @@ export default new Vuex.Store({
                 ],
             },
             {
-                name: "Felecia Resume.pdf",
+                name: "Felecia Resume",
                 filesCount: 2,
                 type: "other",
                 size: "12.85kb",
@@ -1287,6 +1287,328 @@ export default new Vuex.Store({
                     },
                 ],
             }
+        ],
+        recentlyAccessedFiles: [
+            {
+                name: "Felecia Resume",
+                filesCount: 2,
+                type: "avi",
+                size: "15mb",
+                share: true,
+                synchronization: false,
+                backup: false,
+                location: "/Uploads",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "edit",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "share",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "delete",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                ],
+            },
+            {
+                name: "Felecia Resume",
+                filesCount: 2,
+                type: "css",
+                size: "140.05mb",
+                share: false,
+                synchronization: false,
+                backup: false,
+                location: "",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "edit",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "share",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "delete",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                ],
+            },
+            {
+                name: "Felecia Resume",
+                filesCount: 2,
+                type: "csv",
+                size: "112.85kb",
+                share: false,
+                synchronization: false,
+                backup: false,
+                location: "",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "edit",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "share",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "delete",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                ],
+            },
+            {
+                name: "Felecia Resume",
+                filesCount: 2,
+                type: "dbf",
+                size: "1.05mb",
+                share: false,
+                synchronization: false,
+                backup: false,
+                location: "",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "edit",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "share",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "delete",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                ],
+            },
+            {
+                name: "Felecia Resume",
+                filesCount: 2,
+                type: "doc",
+                size: "14.05mb",
+                share: false,
+                synchronization: false,
+                backup: false,
+                location: "",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "edit",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "share",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "delete",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                ],
+            },
+            {
+                name: "Felecia Resume",
+                filesCount: 2,
+                type: "dwg",
+                size: "12.85kb",
+                share: false,
+                synchronization: false,
+                backup: false,
+                location: "",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "edit",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "share",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "delete",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                ],
+            },
+            {
+                name: "Felecia Resume",
+                filesCount: 2,
+                type: "exe",
+                size: "12.85kb",
+                share: false,
+                synchronization: false,
+                backup: false,
+                location: "",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "edit",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "share",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "delete",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                ],
+            },
+            {
+                name: "Felecia Resume",
+                filesCount: 2,
+                type: "fla",
+                size: "12.85kb",
+                share: false,
+                synchronization: false,
+                backup: false,
+                location: "",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "edit",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "share",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "delete",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                ],
+            },
         ]
     },
     mutations: {
@@ -1302,6 +1624,7 @@ export default new Vuex.Store({
         isLoading: state => state.loading,
         getDirectories: state => state.directories,
         getFiles: state => state.files,
+        getRecentlyAccessedFiles: state => state.recentlyAccessedFiles,
         getCurrentObject: state => state.currentObject,
         getCurrentObjectType: state => state.currentObjectType,
         getCurrentObjectIndex: state => state.currentObjectIndex,

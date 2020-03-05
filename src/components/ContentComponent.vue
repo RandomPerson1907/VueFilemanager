@@ -4,14 +4,12 @@
         <div class="section recently_accessed">
             <h3 class="section__header">Recently accessed files</h3>
             <div class="section__files">
-<!--                <file-component>1</file-component>-->
-<!--                <file-component>2</file-component>-->
-<!--                <file-component>3</file-component>-->
-<!--                <file-component>4</file-component>-->
-<!--                <file-component>5</file-component>-->
-<!--                <file-component>6</file-component>-->
-<!--                <file-component>7</file-component>-->
-<!--                <file-component>8</file-component>-->
+                <file-component
+                        v-for="(file, index) in recentlyAccessedFiles"
+                        :file="file"
+                        type="recentlyAccessedFiles"
+                        :index="index"
+                ></file-component>
             </div>
         </div>
         <div class="section">
@@ -20,6 +18,7 @@
                 <directory-component
                         v-for="(directory, index) in directories"
                         :directory="directory"
+                        type="directories"
                         :index="index"
                 ></directory-component>
             </div>
@@ -30,6 +29,7 @@
                 <file-component
                         v-for="(file, index) in files"
                         :file="file"
+                        type="files"
                         :index="index"
                 ></file-component>
             </div>
@@ -43,10 +43,10 @@
     export default {
         name: "ContentComponent",
         computed: {
-            ...mapState(["directories", "files"])
+            ...mapState(["directories", "files", "recentlyAccessedFiles"])
         },
         methods: {
-            ...mapGetters(['getFiles', 'getDirectories'])
+            ...mapGetters(['getFiles', 'getDirectories', 'getRecentlyAccessedFiles'])
         }
     }
 </script>

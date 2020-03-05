@@ -16,7 +16,7 @@
                 </li>
             </vue-context>
         </div>
-        <div class="directory__more" @click="openAdditionalInfo({object: directory, index, type: 'directories'})">
+        <div class="directory__more" @click="openAdditionalInfo({object: directory, index, type})">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
                  viewBox="0 0 172 172"
@@ -42,6 +42,9 @@
         name: "DirectoryComponent",
         props: {
             directory : {
+                required: true
+            },
+            type : {
                 required: true
             },
             index : {

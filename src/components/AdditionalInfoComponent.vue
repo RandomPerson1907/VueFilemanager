@@ -3,8 +3,10 @@
         <div class="additional-info__backdrop" @click="close"></div>
         <div class="additional-info__content">
             <div class="additional-info__content__header">
-                <div class="title__text" v-show="!editing">{{ object.name }}</div>
+                <div class="title__text" v-show="!editing">{{ object.name }}{{ type ? "." + object.type : "" }}</div>
                 <input class="title__input" v-model="object.name" v-show="editing" ref="fileName">
+                <span class="dot__input" v-show="editing">.</span>
+                <input class="type__input" v-model="object.type" v-show="editing" ref="fileType">
                 <div class="actions">
                     <div class="action action__start-edit" @click="startEdit" v-show="!editing">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -78,7 +80,7 @@
                 <div class="tabs__contents">
                     <transition name="fade">
                         <div class="tab__content tab__content_details" v-show="activeTab === 'details'" :class="{ active : activeTab === 'details'}">
-                        <div class="details__main" v-if="object.type">
+                        <div class="details__main" v-if="typeof object.type !== 'undefined'">
                             <div class="details__preview">
                                 <img src="../assets/file-types/avi.png" alt="avi" v-if="object.type === 'avi'">
                                 <img src="../assets/file-types/css.png" alt="css" v-else-if="object.type === 'css'">
@@ -324,6 +326,11 @@
                     font-size: .95rem;
                 }
 
+                .dot__input {
+                    user-select: none;
+                }
+
+                .type__input,
                 .title__input {
                     padding: 0;
                     border: none;
@@ -333,7 +340,14 @@
                     line-height: 1.4;
                     letter-spacing: .01rem;
                     box-sizing: border-box;
-                    max-width: 65%;
+                }
+
+                .title__input {
+                    max-width: 45%;
+                }
+
+                .type__input {
+                    max-width: 15%;
                 }
 
                 .actions {

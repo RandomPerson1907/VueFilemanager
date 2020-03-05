@@ -16,7 +16,7 @@
                 </li>
             </vue-context>
         </div>
-        <div class="file__more" @click="openAdditionalInfo({object: file, index, type: 'files'})">
+        <div class="file__more" @click="openAdditionalInfo({object: file, index, type})">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
                  viewBox="0 0 172 172"
@@ -50,7 +50,7 @@
             <img src="../assets/file-types/other.png" alt="other" v-else>
         </div>
         <div class="file__info">
-            <div class="file__info__name">{{ file.name }}</div>
+            <div class="file__info__name">{{ file.name }}{{ fileType }}</div>
             <div class="file__info__size">{{ file.size }}</div>
             <div class="file__info__last-accessed">Last accessed : 3 hours ago</div>
         </div>
@@ -66,9 +66,17 @@
             file: {
                 required: true
             },
+            type: {
+                required: true
+            },
             index: {
                 required: true
             },
+        },
+        computed: {
+            fileType() {
+                return this.file.type ? `.${this.file.type}` : "";
+            }
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
