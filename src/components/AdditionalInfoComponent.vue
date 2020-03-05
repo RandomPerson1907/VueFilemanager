@@ -1,6 +1,6 @@
 <template>
     <div class="additional-info" :class="{ active : isVisibleAdditionalInfoSidebar }">
-        <div class="additional-info__backdrop" @click="hideAdditionalInfo"></div>
+        <div class="additional-info__backdrop" @click="close"></div>
         <div class="additional-info__content">
             <div class="additional-info__content__header">
                 <div class="title__text" v-show="!editing">{{ object.name }}</div>
@@ -46,7 +46,7 @@
 
                             <desc>LivIcons Evolution</desc><defs></defs></svg>
                     </div>
-                    <div class="action action__close" @click="hideAdditionalInfo">
+                    <div class="action action__close" @click="close">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                              width="16" height="16"
                              viewBox="0 0 172 172"
@@ -245,6 +245,10 @@
             stopEdit() {
                 this.$store.dispatch('updateCurrentObject');
                 this.editing = false;
+            },
+            close() {
+                this.activeTab = "details";
+                this.hideAdditionalInfo();
             }
         }
     }

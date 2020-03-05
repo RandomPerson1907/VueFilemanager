@@ -1315,8 +1315,10 @@ export default new Vuex.Store({
             dispatch("showAdditionalInfoSidebar")
         },
         hideAdditionalInfo({commit, dispatch}) {
-            commit("setCurrentObject", {});
-            dispatch("hideAdditionalInfoSidebar")
+            dispatch("hideAdditionalInfoSidebar");
+            setTimeout(() => {
+                commit("setCurrentObject", {});
+            }, 700);
         },
         showAdditionalInfoSidebar({commit}) {
             commit('setAdditionalInfoSidebarVisible', true)
