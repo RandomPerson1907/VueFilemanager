@@ -3,8 +3,8 @@
         <div class="additional-info__backdrop" @click="hideAdditionalInfo"></div>
         <div class="additional-info__content">
             <div class="additional-info__content__header">
-                <div class="title__text" v-show="!editing">Document.pdf</div>
-                <input class="title__input" value="Document.pdf" v-show="editing" ref="fileName">
+                <div class="title__text" v-show="!editing">{{ object.name }}</div>
+                <input class="title__input" v-model="object.name" v-show="editing" ref="fileName">
                 <div class="actions">
                     <div class="action action__start-edit" @click="startEdit" v-show="!editing">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -82,7 +82,7 @@
                             <div class="details__preview">
                                 <img src="../assets/file-types/pdf.png" alt="">
                             </div>
-                            <div class="details__file_size">15.3mb</div>
+                            <div class="details__file_size">{{ object.size }}</div>
                         </div>
                         <div class="details__info">
                             <div class="details__info__header">Settings</div>
@@ -90,21 +90,36 @@
                                 <div class="details__info__row">
                                     <label class="details__info__row__label changeable" for="file-sharing__checkbox">File Sharing</label>
                                     <div class="details__info__row__value">
-                                        <input type="checkbox" id="file-sharing__checkbox">
+                                        <input
+                                                type="checkbox"
+                                                id="file-sharing__checkbox"
+                                                v-model="object.share"
+                                                :disabled="!editing"
+                                        >
                                         <label class="custom-checkbox" for="file-sharing__checkbox"></label>
                                     </div>
                                 </div>
                                 <div class="details__info__row">
                                     <label class="details__info__row__label changeable" for="synchronization__checkbox">Synchronization</label>
                                     <div class="details__info__row__value">
-                                        <input type="checkbox" id="synchronization__checkbox">
+                                        <input
+                                                type="checkbox"
+                                                id="synchronization__checkbox"
+                                                v-model="object.synchronization"
+                                                :disabled="!editing"
+                                        >
                                         <label class="custom-checkbox" for="synchronization__checkbox"></label>
                                     </div>
                                 </div>
                                 <div class="details__info__row">
                                     <label class="details__info__row__label changeable" for="backup__checkbox">Backup</label>
                                     <div class="details__info__row__value">
-                                        <input type="checkbox" id="backup__checkbox">
+                                        <input
+                                                type="checkbox"
+                                                id="backup__checkbox"
+                                                v-model="object.backup"
+                                                :disabled="!editing"
+                                        >
                                         <label class="custom-checkbox" for="backup__checkbox"></label>
                                     </div>
                                 </div>
@@ -114,32 +129,33 @@
                             <div class="details__info__header">Info</div>
                             <div class="details__info__rows">
                                 <label class="details__info__row">
-                                    <div class="details__info__row__label">Type</div>
-                                    <div class="details__info__row__value">PDF</div>
+                                    <span class="details__info__row__label">Type</span>
+                                    <span class="details__info__row__value">{{ type }}</span>
                                 </label>
                                 <label class="details__info__row">
-                                    <div class="details__info__row__label">Size</div>
-                                    <div class="details__info__row__value">15.6mb</div>
+                                    <span class="details__info__row__label">Size</span>
+                                    <span class="details__info__row__value">{{ object.size }}</span>
                                 </label>
                                 <label class="details__info__row">
-                                    <div class="details__info__row__label">Location</div>
-                                    <div class="details__info__row__value">Files > Documents</div>
+                                    <span class="details__info__row__label">Location</span>
+<!--                                    Change directory-->
+                                    <span class="details__info__row__value">{{ object.location }}</span>
                                 </label>
                                 <label class="details__info__row">
-                                    <div class="details__info__row__label">Owner</div>
-                                    <div class="details__info__row__value">Elnora Reese</div>
+                                    <span class="details__info__row__label">Owner</span>
+                                    <span class="details__info__row__value">{{ object.owner }}</span>
                                 </label>
                                 <label class="details__info__row">
-                                    <div class="details__info__row__label">Modified</div>
-                                    <div class="details__info__row__value">September 4 2019</div>
+                                    <span class="details__info__row__label">Modified</span>
+                                    <span class="details__info__row__value">{{ object.modified }}</span>
                                 </label>
                                 <label class="details__info__row">
-                                    <div class="details__info__row__label">Opened</div>
-                                    <div class="details__info__row__value">July 8, 2019</div>
+                                    <span class="details__info__row__label">Opened</span>
+                                    <span class="details__info__row__value">{{ object.opened }}</span>
                                 </label>
                                 <label class="details__info__row">
-                                    <div class="details__info__row__label">Created</div>
-                                    <div class="details__info__row__value">July 1, 2019</div>
+                                    <span class="details__info__row__label">Created</span>
+                                    <span class="details__info__row__value">{{ object.created }}</span>
                                 </label>
                             </div>
                         </div>
@@ -148,50 +164,16 @@
                     <transition name="fade">
                         <div class="tab__content tab__content_activity" v-show="activeTab === 'activity'" :class="{ active : activeTab === 'activity'}">
                             <div class="activity__wrapper">
-                                <div class="activity__section adding">
+                                <div
+                                    :class="activity.type"
+                                    class="activity__section"
+                                    v-for="activity in object.activities"
+                                >
                                     <div class="activity__section__title">
-                                        <div class="title__text">You added an item to</div>
-                                        <div class="title__datetime">Today</div>
+                                        <div class="title__text">{{ activity.title }}</div>
+                                        <div class="title__datetime">{{ activity.date }}</div>
                                     </div>
-                                    <div class="activity__section__description">
-                                        You added an item
-                                    </div>
-                                </div>
-                                <div class="activity__section editing">
-                                    <div class="activity__section__title">
-                                        <div class="title__text">You added an item to</div>
-                                        <div class="title__datetime">Today</div>
-                                    </div>
-                                    <div class="activity__section__description">
-                                        You added an item
-                                    </div>
-                                </div>
-                                <div class="activity__section deleting">
-                                    <div class="activity__section__title">
-                                        <div class="title__text">You added an item to</div>
-                                        <div class="title__datetime">Today</div>
-                                    </div>
-                                    <div class="activity__section__description">
-                                        You added an item
-                                    </div>
-                                </div>
-                                <div class="activity__section sharing">
-                                    <div class="activity__section__title">
-                                        <div class="title__text">You added an item to</div>
-                                        <div class="title__datetime">Today</div>
-                                    </div>
-                                    <div class="activity__section__description">
-                                        You added an item
-                                    </div>
-                                </div>
-                                <div class="activity__section editing">
-                                    <div class="activity__section__title">
-                                        <div class="title__text">You added an item to</div>
-                                        <div class="title__datetime">Today</div>
-                                    </div>
-                                    <div class="activity__section__description">
-                                        You added an item
-                                    </div>
+                                    <div class="activity__section__description">{{ activity.description }}</div>
                                 </div>
                             </div>
                         </div>
@@ -210,17 +192,23 @@
         data() {
             return {
                 activeTab: "details",
-                editing : false
+                editing : false,
             }
         },
         computed: {
             isVisibleAdditionalInfoSidebar() {
                 return this.isVisibleAdditionalInfo();
+            },
+            object() {
+                return this.getCurrentObject();
+            },
+            type() {
+                return this.object.type ? this.object.type.toUpperCase() : "";
             }
         },
         methods: {
-            ...mapGetters(['isVisibleAdditionalInfo', 'getCurrentObject']),
-            ...mapActions(['hideAdditionalInfo']),
+            ...mapGetters(['isVisibleAdditionalInfo', 'getCurrentObject', 'getCurrentObjectIndex', 'getCurrentObjectType']),
+            ...mapActions(['hideAdditionalInfo', 'updateCurrentObject']),
             changeTab(tabName) {
                 this.activeTab = tabName;
             },
@@ -231,6 +219,7 @@
                 })
             },
             stopEdit() {
+                this.$store.dispatch('updateCurrentObject');
                 this.editing = false;
             }
         }
@@ -641,19 +630,19 @@
                                         box-shadow: 1px 2px 6px 0 rgba(25,42,70,.3);
                                     }
 
-                                    &.adding:after {
+                                    &.add:after {
                                         background: #39DA8A;
                                     }
 
-                                    &.editing:after {
+                                    &.edit:after {
                                         background: #00CFDD;
                                     }
 
-                                    &.deleting:after {
+                                    &.delete:after {
                                         background: #FF5B5C;
                                     }
 
-                                    &.sharing:after {
+                                    &.share:after {
                                         background: #FDAC41;
                                     }
 

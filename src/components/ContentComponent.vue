@@ -18,7 +18,7 @@
             <h3 class="section__header">Folders</h3>
             <div class="section__files">
                 <directory-component
-                        v-for="directory in getDirectories()"
+                        v-for="directory in directories"
                         :directory="directory"
                 ></directory-component>
             </div>
@@ -27,8 +27,9 @@
             <h3 class="section__header">Files</h3>
             <div class="section__files">
                 <file-component
-                        v-for="file in getFiles()"
+                        v-for="(file, index) in files"
                         :file="file"
+                        :index="index"
                 ></file-component>
             </div>
         </div>
@@ -36,10 +37,13 @@
 </template>
 
 <script>
-    import {mapGetters} from "vuex";
+    import {mapGetters, mapState} from "vuex";
 
     export default {
         name: "ContentComponent",
+        computed: {
+            ...mapState(["directories", "files"])
+        },
         methods: {
             ...mapGetters(['getFiles', 'getDirectories'])
         }

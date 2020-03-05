@@ -1,5 +1,5 @@
 <template>
-    <div class="file" @click="openAdditionalInfo(file)" @contextmenu.prevent="$refs.menu.open">
+    <div class="file" @click="openAdditionalInfo({object: file, index, type: 'files'})" @contextmenu.prevent="$refs.menu.open">
         <div class="file__context">
             <vue-context ref="menu">
                 <li>
@@ -63,13 +63,16 @@
     export default {
         name: "FileComponent",
         props: {
-          file: {
-              required: true
-          }
+            file: {
+                required: true
+            },
+            index: {
+                required: true
+            },
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
-            ...mapMutations(['setCurrentObject']),
+            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType']),
             shareFile() {
               console.log('shared file')
             },
