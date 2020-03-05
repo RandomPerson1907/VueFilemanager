@@ -18,8 +18,9 @@
             <h3 class="section__header">Folders</h3>
             <div class="section__files">
                 <directory-component
-                        v-for="directory in directories"
+                        v-for="(directory, index) in directories"
                         :directory="directory"
+                        :index="index"
                 ></directory-component>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="file" @click="openAdditionalInfo({object: file, index, type: 'files'})" @contextmenu.prevent="$refs.menu.open">
+    <div class="file" @contextmenu.prevent="$refs.menu.open">
         <div class="file__context">
             <vue-context ref="menu">
                 <li>
@@ -16,7 +16,7 @@
                 </li>
             </vue-context>
         </div>
-        <div class="file__more" @click="openAdditionalInfo(file)">
+        <div class="file__more" @click="openAdditionalInfo({object: file, index, type: 'files'})">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
                  viewBox="0 0 172 172"

@@ -1,5 +1,5 @@
 <template>
-    <div class="directory" @click="openAdditionalInfo(directory)" @contextmenu.prevent="$refs.menu.open">
+    <div class="directory" @contextmenu.prevent="$refs.menu.open">
         <div class="directory__context">
             <vue-context ref="menu">
                 <li>
@@ -15,6 +15,12 @@
                     <a href="#" @click.prevent="deleteDirectory">Delete</a>
                 </li>
             </vue-context>
+        </div>
+        <div class="directory__more" @click="openAdditionalInfo({object: directory, index, type: 'directories'})">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                 width="24" height="24"
+                 viewBox="0 0 172 172"
+                 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#727e8c"><path d="M21.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM86,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM150.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5z"></path></g></g></svg>
         </div>
         <div class="directory__icon">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -35,9 +41,12 @@
     export default {
         name: "DirectoryComponent",
         props: {
-          directory : {
-              required: true
-          }
+            directory : {
+                required: true
+            },
+            index : {
+                required: true
+            }
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
@@ -58,6 +67,7 @@
 <style lang="scss" scoped>
     .directory {
         box-sizing: border-box;
+        position: relative;
         display: flex;
         align-items: center;
         padding: .5rem .75rem;
@@ -91,6 +101,33 @@
                     &:hover {
                         border-left: 2px solid #5a8dee;
                         margin-left: 0;
+                    }
+                }
+            }
+        }
+
+        .directory__more {
+            position: absolute;
+            right: 0;
+            top: calc(50% - 1rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            opacity: .4;
+
+            svg {
+                width: 14px;
+                height: 14px;
+                transform: rotate(90deg);
+                transition: all .3s ease-in-out;
+            }
+
+            &:hover {
+                svg {
+                    g > g > path {
+                        fill: #719DF0;
                     }
                 }
             }

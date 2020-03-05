@@ -78,9 +78,33 @@
                 <div class="tabs__contents">
                     <transition name="fade">
                         <div class="tab__content tab__content_details" v-show="activeTab === 'details'" :class="{ active : activeTab === 'details'}">
-                        <div class="details__main">
+                        <div class="details__main" v-if="object.type">
                             <div class="details__preview">
-                                <img src="../assets/file-types/pdf.png" alt="">
+                                <img src="../assets/file-types/avi.png" alt="avi" v-if="object.type === 'avi'">
+                                <img src="../assets/file-types/css.png" alt="css" v-else-if="object.type === 'css'">
+                                <img src="../assets/file-types/csv.png" alt="csv" v-else-if="object.type === 'csv'">
+                                <img src="../assets/file-types/dbf.png" alt="dbf" v-else-if="object.type === 'dbf'">
+                                <img src="../assets/file-types/doc.png" alt="doc" v-else-if="object.type === 'doc'">
+                                <img src="../assets/file-types/dwg.png" alt="dwg" v-else-if="object.type === 'dwg'">
+                                <img src="../assets/file-types/exe.png" alt="exe" v-else-if="object.type === 'exe'">
+                                <img src="../assets/file-types/fla.png" alt="fla" v-else-if="object.type === 'fla'">
+                                <img src="../assets/file-types/html.png" alt="html" v-else-if="object.type === 'html'">
+                                <img src="../assets/file-types/iso.png" alt="iso" v-else-if="object.type === 'iso'">
+                                <img src="../assets/file-types/javascript.png" alt="javascript" v-else-if="object.type === 'js'">
+                                <img src="../assets/file-types/json-file.png" alt="json" v-else-if="object.type === 'json'">
+                                <img src="../assets/file-types/mp3.png" alt="mp3" v-else-if="object.type === 'mp3'">
+                                <img src="../assets/file-types/mp4.png" alt="mp4" v-else-if="object.type === 'mp4'">
+                                <img src="../assets/file-types/pdf.png" alt="pdf" v-else-if="object.type === 'pdf'">
+                                <img src="../assets/file-types/powerpoint.png" alt="pptx" v-else-if="object.type === 'pptx'">
+                                <img src="../assets/file-types/psd.png" alt="psd" v-else-if="object.type === 'psd'">
+                                <img src="../assets/file-types/rtf.png" alt="rtf" v-else-if="object.type === 'rtf'">
+                                <img src="../assets/file-types/sketch.png" alt="sketch" v-else-if="object.type === 'sketch'">
+                                <img src="../assets/file-types/svg.png" alt="svg" v-else-if="object.type === 'svg'">
+                                <img src="../assets/file-types/txt.png" alt="txt" v-else-if="object.type === 'txt'">
+                                <img src="../assets/file-types/xls.png" alt="xls" v-else-if="object.type === 'xls'">
+                                <img src="../assets/file-types/xml.png" alt="xml" v-else-if="object.type === 'xml'">
+                                <img src="../assets/file-types/zip.png" alt="zip" v-else-if="object.type === 'zip'">
+                                <img src="../assets/file-types/other.png" alt="other" v-else>
                             </div>
                             <div class="details__file_size">{{ object.size }}</div>
                         </div>
@@ -128,32 +152,32 @@
                         <div class="details__info">
                             <div class="details__info__header">Info</div>
                             <div class="details__info__rows">
-                                <label class="details__info__row">
+                                <label class="details__info__row" v-if="object.type">
                                     <span class="details__info__row__label">Type</span>
                                     <span class="details__info__row__value">{{ type }}</span>
                                 </label>
-                                <label class="details__info__row">
+                                <label class="details__info__row" v-if="object.size">
                                     <span class="details__info__row__label">Size</span>
                                     <span class="details__info__row__value">{{ object.size }}</span>
                                 </label>
-                                <label class="details__info__row">
+                                <label class="details__info__row" v-if="object.location">
                                     <span class="details__info__row__label">Location</span>
 <!--                                    Change directory-->
                                     <span class="details__info__row__value">{{ object.location }}</span>
                                 </label>
-                                <label class="details__info__row">
+                                <label class="details__info__row" v-if="object.owner">
                                     <span class="details__info__row__label">Owner</span>
                                     <span class="details__info__row__value">{{ object.owner }}</span>
                                 </label>
-                                <label class="details__info__row">
+                                <label class="details__info__row" v-if="object.modified">
                                     <span class="details__info__row__label">Modified</span>
                                     <span class="details__info__row__value">{{ object.modified }}</span>
                                 </label>
-                                <label class="details__info__row">
+                                <label class="details__info__row" v-if="object.opened">
                                     <span class="details__info__row__label">Opened</span>
                                     <span class="details__info__row__value">{{ object.opened }}</span>
                                 </label>
-                                <label class="details__info__row">
+                                <label class="details__info__row" v-if="object.created">
                                     <span class="details__info__row__label">Created</span>
                                     <span class="details__info__row__value">{{ object.created }}</span>
                                 </label>
@@ -603,6 +627,10 @@
                                     margin-top: 1.5rem;
                                     margin-bottom: 1.5rem;
                                     padding-left: 1.6rem;
+
+                                    &:first-of-type {
+                                        margin-top: 0;
+                                    }
 
                                     &:before {
                                         content: "";
