@@ -76,6 +76,7 @@
         .search__input {
             width: 100%;
             padding: .5rem .8rem;
+            transition: all .3s ease-in-out;
 
             input {
                 width: 100%;

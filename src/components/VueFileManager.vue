@@ -1,5 +1,5 @@
 <template>
-    <div class="file-manager">
+    <div class="file-manager" @drop.prevent="addFile" @dragover.prevent="dragStart" @dragleave.prevent="dragStop">
         <preloader-component></preloader-component>
         <div class="file-manager__wrapper">
             <div class="file-manager__sidebar">
@@ -15,6 +15,7 @@
                 </div>
                 <div class="file-manager__content">
                     <content-component></content-component>
+                    <upload-drag-and-drop-component :active="dragging"></upload-drag-and-drop-component>
                 </div>
             </div>
             <div class="file-manager__additional">
@@ -30,6 +31,11 @@
     export default {
         name: "VueFilemanager",
         props: {},
+        data() {
+            return {
+                dragging : false
+            }
+        },
         mounted() {
             this.startLoading();
             setTimeout(() => this.stopLoading(), 1000);
@@ -39,7 +45,21 @@
             ...mapActions(['startLoading', 'stopLoading']),
             onClick (text) {
                 alert(`You clicked ${text}!`);
-            }
+            },
+            addFile(e) {
+                let droppedFiles = e.dataTransfer.files;
+                if(!droppedFiles) return;
+                ([...droppedFiles]).forEach(f => {
+                    console.log(f);
+                    this.dragging = false;
+                });
+            },
+            dragStart() {
+                this.dragging = true;
+            },
+            dragStop() {
+                this.dragging = false;
+            },
         }
     };
 </script>
