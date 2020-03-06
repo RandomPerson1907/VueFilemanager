@@ -1,5 +1,5 @@
 <template>
-    <div class="file-manager" @drop.prevent="addFile" @dragover.prevent="dragStart" @dragleave.prevent="dragStop">
+    <div class="file-manager" @dragover.prevent="dragStart" @dragleave.prevent="dragStop" @drop.prevent="dragStop">
         <preloader-component></preloader-component>
         <div class="file-manager__wrapper">
             <div class="file-manager__sidebar">
@@ -15,7 +15,10 @@
                 </div>
                 <div class="file-manager__content">
                     <content-component></content-component>
-                    <upload-drag-and-drop-component :active="dragging"></upload-drag-and-drop-component>
+                    <upload-drag-and-drop-component
+                            :active="dragging"
+                            @stopDragging="dragStop"
+                    ></upload-drag-and-drop-component>
                 </div>
             </div>
             <div class="file-manager__additional">
@@ -45,14 +48,6 @@
             ...mapActions(['startLoading', 'stopLoading']),
             onClick (text) {
                 alert(`You clicked ${text}!`);
-            },
-            addFile(e) {
-                let droppedFiles = e.dataTransfer.files;
-                if(!droppedFiles) return;
-                ([...droppedFiles]).forEach(f => {
-                    console.log(f);
-                    this.dragging = false;
-                });
             },
             dragStart() {
                 this.dragging = true;
