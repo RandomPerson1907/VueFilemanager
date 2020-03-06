@@ -1672,6 +1672,9 @@ export default new Vuex.Store({
         },
         search({commit}, query) {
             console.log(`search: ${query}`);
+        },
+        fetchAll({commit}) {
+            console.log('fetch all')
         }
     },
 });
