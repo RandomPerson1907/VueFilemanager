@@ -1669,6 +1669,9 @@ export default new Vuex.Store({
                 }
             );
             dispatch('stopLoading');
+        },
+        search({commit}, query) {
+            console.log(`search: ${query}`);
         }
     },
 });
