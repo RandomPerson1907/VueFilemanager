@@ -1,5 +1,5 @@
 <template>
-    <div class="file-manager" @dragover.prevent="dragStart" @dragleave.prevent="dragStop" @drop.prevent="dragStop">
+    <div id="vue-file-manager" class="file-manager" :class="{dragging}">
         <preloader-component></preloader-component>
         <div class="file-manager__wrapper">
             <div class="file-manager__sidebar">
@@ -15,10 +15,6 @@
                 </div>
                 <div class="file-manager__content">
                     <content-component></content-component>
-                    <upload-drag-and-drop-component
-                            :active="dragging"
-                            @stopDragging="dragStop"
-                    ></upload-drag-and-drop-component>
                 </div>
             </div>
             <div class="file-manager__additional">
@@ -34,11 +30,6 @@
     export default {
         name: "VueFilemanager",
         props: {},
-        data() {
-            return {
-                dragging : false
-            }
-        },
         mounted() {
             this.startLoading();
             setTimeout(() => this.stopLoading(), 1000);
@@ -46,15 +37,6 @@
         },
         methods: {
             ...mapActions(['startLoading', 'stopLoading']),
-            onClick (text) {
-                alert(`You clicked ${text}!`);
-            },
-            dragStart() {
-                this.dragging = true;
-            },
-            dragStop() {
-                this.dragging = false;
-            },
         }
     };
 </script>
@@ -78,6 +60,10 @@
             line-height: 1.4;
             letter-spacing: .01rem;
             box-sizing: border-box;
+        }
+
+        &.dragging {
+
         }
 
         .file-manager__wrapper {

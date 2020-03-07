@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <h2 class="content__title">All Files</h2>
-        <div class="section recently_accessed">
+        <div class="section section_with-recently-accessed">
             <h3 class="section__header">Recently accessed files</h3>
             <div class="section__files">
                 <file-component
@@ -12,7 +12,7 @@
                 ></file-component>
             </div>
         </div>
-        <div class="section">
+        <div class="section section_with-directories">
             <h3 class="section__header">Folders</h3>
             <div class="section__files">
                 <directory-component
@@ -23,7 +23,7 @@
                 ></directory-component>
             </div>
         </div>
-        <div class="section">
+        <div class="section section_with-files" :class="{dragging}" @dragenter.prevent="dragStart" @dragover.prevent="dragStart" @dragleave.prevent="dragStop" @drop.prevent="addFile">
             <h3 class="section__header">Files</h3>
             <div class="section__files">
                 <file-component
@@ -32,6 +32,9 @@
                         type="files"
                         :index="index"
                 ></file-component>
+            </div>
+            <div class="section__upload-icon">
+                Uploading
             </div>
         </div>
     </div>
@@ -42,11 +45,31 @@
 
     export default {
         name: "ContentComponent",
+        data() {
+            return {
+                dragging : false
+            }
+        },
         computed: {
             ...mapState(["directories", "files", "recentlyAccessedFiles"])
         },
         methods: {
-            ...mapGetters(['getFiles', 'getDirectories', 'getRecentlyAccessedFiles'])
+            ...mapGetters(['getFiles', 'getDirectories', 'getRecentlyAccessedFiles']),
+            dragStart(event) {
+                event.stopPropagation();
+                this.dragging = true;
+            },
+            dragStop() {
+                this.dragging = false;
+            },
+            addFile(e) {
+                let droppedFiles = e.dataTransfer.files;
+                if(!droppedFiles) return;
+                ([...droppedFiles]).forEach(f => {
+                    console.log(f);
+                    this.fireDragStopEvent();
+                });
+            },
         }
     }
 </script>
@@ -60,7 +83,7 @@
         overflow-y: auto;
 
         .content__title {
-            margin: 1.5rem 0 0;
+            margin: 1.5rem 1rem 0;
             font-size: 1.1rem;
             font-weight: 400;
             cursor: default;
@@ -99,7 +122,12 @@
                 }
             }
 
-            &.recently_accessed {
+            &.section_with-recently-accessed,
+            &.section_with-directories {
+                padding: 1rem;
+            }
+
+            &.section_with-recently-accessed {
                 .section__files {
                     overflow-x: auto;
                     box-sizing: border-box;
@@ -110,6 +138,27 @@
                         content: "";
                         min-width: .05rem;
                     }
+                }
+            }
+
+            &.section_with-files {
+                position: relative;
+                padding: 1rem;
+                border: 2px dashed transparent;
+                border-radius: 3px;
+                transition: border-color .15s ease-in-out;
+
+                &.dragging {
+                    border-color: #5A8DEE;
+                }
+
+                .section__upload-icon {
+                    position: fixed;
+                    bottom: auto;
+                    top: auto;
+                    left: 25%;
+                    width: 50%;
+                    height: 40px;
                 }
             }
         }
