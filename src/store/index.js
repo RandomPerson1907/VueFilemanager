@@ -1699,6 +1699,9 @@ export default new Vuex.Store({
         },
         fetchAll({commit}) {
             console.log('fetch all')
+        },
+        refresh({commit}) {
+            console.log('refreshed')
         }
     },
 });

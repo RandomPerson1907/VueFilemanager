@@ -23,7 +23,14 @@
                 ></directory-component>
             </div>
         </div>
-        <div class="section section_with-files" :class="{dragging}" @dragenter.prevent="dragStart" @dragover.prevent="dragStart" @dragleave.prevent="dragStop" @drop.prevent="addFile">
+        <div
+                class="section section_with-files"
+                :class="{dragging}"
+                @dragenter.prevent="dragStart"
+                @dragover.prevent="dragStart"
+                @dragleave.prevent="dragStop"
+                @drop.prevent="addFile"
+        >
             <h3 class="section__header">Files</h3>
             <div class="section__files">
                 <file-component

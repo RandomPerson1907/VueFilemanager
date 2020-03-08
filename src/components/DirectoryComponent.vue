@@ -1,5 +1,13 @@
 <template>
-    <div class="directory" @contextmenu.prevent="$refs.menu.open">
+    <div
+            class="directory"
+            :class="{dragging}"
+            @contextmenu.prevent="$refs.menu.open"
+            @dragenter.prevent="dragStart"
+            @dragover.prevent="dragStart"
+            @dragleave.prevent="dragStop"
+            @drop.prevent="addFile"
+    >
         <div class="directory__context">
             <vue-context ref="menu">
                 <li>
@@ -51,9 +59,15 @@
                 required: true
             }
         },
+        data() {
+            return {
+                dragging : false
+            }
+        },
         methods: {
             ...mapActions(['openAdditionalInfo']),
             ...mapMutations(['setCurrentObject']),
+            ...mapActions(['pushInfo']),
             openDirectory() {
                 console.log('open directory')
             },
@@ -62,7 +76,34 @@
             },
             deleteDirectory() {
                 console.log('delete directory');
-            }
+            },
+            dragStart(event) {
+                event.stopPropagation();
+                this.dragging = true;
+            },
+            dragStop() {
+                this.dragging = false;
+            },
+            addFile(e) {
+                let droppedFiles = e.dataTransfer.files;
+                if(!droppedFiles) return;
+                this.dragStop();
+                let message = '';
+                ([...droppedFiles]).forEach(f => {
+                    message = f.name;
+                    let status = getRandomInt(3);
+                    let statuses = [
+                        'success',
+                        'error',
+                        'warning'
+                    ];
+                    this.pushInfo({type: statuses[status], message: 'Files has been uploaded ' + message + ' to ' + this.directory.name});
+                });
+
+                function getRandomInt(max) {
+                    return Math.floor(Math.random() * Math.floor(max));
+                }
+            },
         }
     }
 </script>
@@ -81,6 +122,10 @@
 
         &:hover {
             box-shadow: 0 0 6px 0 rgba(90,141,238,.6);
+        }
+
+        &.dragging {
+            box-shadow: 0 0 12px 0 rgba(90,141,238,.6);
         }
 
         .directory__context {
