@@ -70,8 +70,18 @@
                 let message = '';
                 ([...droppedFiles]).forEach(f => {
                     message = f.name;
-                    this.pushInfo({type: 'upload', message: 'Files has been uploaded ' + message});
+                    let status = getRandomInt(3);
+                    let statuses = [
+                        'success',
+                        'error',
+                        'warning'
+                    ];
+                    this.pushInfo({type: statuses[status], message: 'Files has been uploaded ' + message});
                 });
+
+                function getRandomInt(max) {
+                    return Math.floor(Math.random() * Math.floor(max));
+                }
             },
         }
     }

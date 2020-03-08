@@ -1624,7 +1624,8 @@ export default new Vuex.Store({
               duration
             });
         },
-        removeFirstInfo: (state) => Vue.delete(state.info, 0),
+        removeFirstInfo: state=> Vue.delete(state.info, 0),
+        clearInfo: state => state.info = [],
         setInfoUpdated: (state) => state.infoUpdated++,
         setAdditionalInfoSidebarVisible: (state, status) => state.additionalInfoSidebarVisible = status,
         setLoading: (state, status) => state.loading = status,
