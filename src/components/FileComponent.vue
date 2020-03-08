@@ -17,6 +17,9 @@
                 <li>
                     <a href="#" @click.prevent="archiveFile">Archive</a>
                 </li>
+                <li>
+                    <a href="#" @click.prevent="addToFavorite">Add to favorite</a>
+                </li>
             </vue-context>
         </div>
         <div class="file__more" @click="openAdditionalInfo({object: file, index, type})">
@@ -95,6 +98,9 @@
             },
             archiveFile() {
                 console.log('archive file');
+            },
+            addToFavorite() {
+                console.log('added file to favorite');
             },
         }
     }

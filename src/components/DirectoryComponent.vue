@@ -25,6 +25,9 @@
                 <li>
                     <a href="#" @click.prevent="archiveDirectory">Archive</a>
                 </li>
+                <li>
+                    <a href="#" @click.prevent="addToFavorite">Add to favorite</a>
+                </li>
             </vue-context>
         </div>
         <div class="directory__more" @click="openAdditionalInfo({object: directory, index, type})">
@@ -82,6 +85,9 @@
             },
             archiveDirectory() {
                 console.log('archive directory');
+            },
+            addToFavorite() {
+                console.log('added directory to favorite');
             },
             dragStart(event) {
                 event.stopPropagation();
