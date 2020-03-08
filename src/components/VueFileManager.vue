@@ -1,5 +1,5 @@
 <template>
-    <div id="vue-file-manager" class="file-manager" :class="{dragging}">
+    <div id="vue-file-manager" class="file-manager">
         <preloader-component></preloader-component>
         <div class="file-manager__wrapper">
             <div class="file-manager__sidebar">
@@ -21,6 +21,7 @@
                 <additional-info-component></additional-info-component>
             </div>
         </div>
+        <info-component></info-component>
     </div>
 </template>
 
@@ -52,6 +53,7 @@
         border: 1px solid #DFE3E7;
         border-radius: .267rem;
         background-color: #F2F4F4;
+        overflow: hidden;
 
         * {
             color: #475F7B;

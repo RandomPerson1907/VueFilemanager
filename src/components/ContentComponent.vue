@@ -41,7 +41,7 @@
 </template>
 
 <script>
-    import {mapGetters, mapState} from "vuex";
+    import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 
     export default {
         name: "ContentComponent",
@@ -55,6 +55,7 @@
         },
         methods: {
             ...mapGetters(['getFiles', 'getDirectories', 'getRecentlyAccessedFiles']),
+            ...mapActions(['pushInfo']),
             dragStart(event) {
                 event.stopPropagation();
                 this.dragging = true;
@@ -65,10 +66,12 @@
             addFile(e) {
                 let droppedFiles = e.dataTransfer.files;
                 if(!droppedFiles) return;
+                this.dragStop();
+                let message = '';
                 ([...droppedFiles]).forEach(f => {
-                    console.log(f);
-                    this.fireDragStopEvent();
+                    message = f.name;
                 });
+                this.pushInfo({type: 'upload', message: 'Files has been uploaded ' + message});
             },
         }
     }
@@ -76,6 +79,7 @@
 
 <style lang="scss" scoped>
     .content {
+        position: relative;
         height: 100%;
         width: 100%;
         padding: 0 1.5rem;

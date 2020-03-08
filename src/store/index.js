@@ -5,6 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        info: [],
+        infoUpdated: 0,
         loading: false,
         additionalInfoSidebarVisible: false,
         currentObject: {},
@@ -1612,6 +1614,18 @@ export default new Vuex.Store({
         ]
     },
     mutations: {
+        addInfo: (state, {type, message, duration}) => {
+            if (!duration)
+                duration = 5000;
+
+            state.info.push({
+              type,
+              message,
+              duration
+            });
+        },
+        removeFirstInfo: (state) => Vue.delete(state.info, 0),
+        setInfoUpdated: (state) => state.infoUpdated++,
         setAdditionalInfoSidebarVisible: (state, status) => state.additionalInfoSidebarVisible = status,
         setLoading: (state, status) => state.loading = status,
         setCurrentObject: (state, object) => state.currentObject =  Object.assign({}, object),
@@ -1620,6 +1634,7 @@ export default new Vuex.Store({
         setObjectByIndexAndType: (state, {object, index, type}) => state[type] && state[type][index] ? Vue.set(state[type], index, object) : false
     },
     getters: {
+        getFirstInfo: state => state.info[0],
         getAdditionalInfoSidebarVisible: state => state.additionalInfoSidebarVisible,
         isLoading: state => state.loading,
         getDirectories: state => state.directories,
@@ -1631,6 +1646,14 @@ export default new Vuex.Store({
         isVisibleAdditionalInfo: state => state.currentObject && state.additionalInfoSidebarVisible
     },
     actions: {
+        pushInfo({commit}, {type, message, duration}) {
+            commit('addInfo', {type, message, duration});
+            commit('setInfoUpdated', true);
+        },
+        showInfo({commit}, {type, message}) {
+            commit("setInfoType", type);
+            commit("setInfoMessage", message);
+        },
         openAdditionalInfo({commit, dispatch}, {object, index, type}) {
             commit("setCurrentObject", object);
             commit("setCurrentObjectIndex", index);
