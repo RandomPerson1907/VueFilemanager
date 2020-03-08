@@ -24,12 +24,8 @@
             infoUpdated() {
                 if (this.showed) {
                     this.showed = false;
-                    setTimeout(() => {
-                        this.showNextMessage();
-                    }, 350);
-                } else {
-                    this.showNextMessage();
                 }
+                this.showNextMessage();
             }
         },
         methods: {
@@ -37,23 +33,29 @@
             ...mapGetters(['getFirstInfo']),
             showNextMessage() {
                 if (this.getFirstInfo) {
-                    const infoIndex = this.infoUpdated;
-
-                    this.type = this.getFirstInfo().type || false;
-                    this.message = this.getFirstInfo().message || false;
-                    this.duration = this.getFirstInfo().duration || false;
-                    this.removeFirstInfo();
-                    this.showed = true;
                     setTimeout(() => {
-                        if (infoIndex === this.infoUpdated) {
-                            this.showed = false;
-                            setTimeout(() => {
-                                this.type = false;
-                                this.message = false;
-                                this.duration = false;
-                            }, 350);
-                        }
-                    }, parseInt(this.duration));
+                        const infoIndex = this.infoUpdated;
+
+                        this.type = this.getFirstInfo().type || false;
+                        this.message = this.getFirstInfo().message || false;
+                        this.duration = this.getFirstInfo().duration || false;
+                        this.removeFirstInfo();
+                        this.showed = true;
+                        setTimeout(() => {
+                            if (infoIndex === this.infoUpdated) {
+                                this.showed = false;
+                                setTimeout(() => {
+                                    this.type = false;
+                                    this.message = false;
+                                    this.duration = false;
+                                }, 350);
+                            }
+
+                            if (this.info.length) {
+                                this.showNextMessage();
+                            }
+                        }, parseInt(this.duration));
+                    }, 350);
                 }
             }
         }

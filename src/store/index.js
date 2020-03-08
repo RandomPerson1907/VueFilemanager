@@ -1616,7 +1616,7 @@ export default new Vuex.Store({
     mutations: {
         addInfo: (state, {type, message, duration}) => {
             if (!duration)
-                duration = 5000;
+                duration = 3000;
 
             state.info.push({
               type,

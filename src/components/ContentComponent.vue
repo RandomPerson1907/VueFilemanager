@@ -70,8 +70,8 @@
                 let message = '';
                 ([...droppedFiles]).forEach(f => {
                     message = f.name;
+                    this.pushInfo({type: 'upload', message: 'Files has been uploaded ' + message});
                 });
-                this.pushInfo({type: 'upload', message: 'Files has been uploaded ' + message});
             },
         }
     }
