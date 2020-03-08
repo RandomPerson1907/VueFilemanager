@@ -12,7 +12,10 @@
                     <a href="#" @click.prevent="openFileInNewWindow">Open in new window</a>
                 </li>
                 <li>
-                    <a href="#" @click.prevent="deleteFIle">Delete</a>
+                    <a href="#" @click.prevent="deleteFile">Delete</a>
+                </li>
+                <li>
+                    <a href="#" @click.prevent="archiveFile">Archive</a>
                 </li>
             </vue-context>
         </div>
@@ -87,9 +90,12 @@
             openFileInNewWindow() {
               console.log('opened file in new window');
             },
-            deleteFIle() {
+            deleteFile() {
                 console.log('delete file');
-            }
+            },
+            archiveFile() {
+                console.log('archive file');
+            },
         }
     }
 </script>

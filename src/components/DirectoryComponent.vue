@@ -22,6 +22,9 @@
                 <li>
                     <a href="#" @click.prevent="deleteDirectory">Delete</a>
                 </li>
+                <li>
+                    <a href="#" @click.prevent="archiveDirectory">Archive</a>
+                </li>
             </vue-context>
         </div>
         <div class="directory__more" @click="openAdditionalInfo({object: directory, index, type})">
@@ -76,6 +79,9 @@
             },
             deleteDirectory() {
                 console.log('delete directory');
+            },
+            archiveDirectory() {
+                console.log('archive directory');
             },
             dragStart(event) {
                 event.stopPropagation();
