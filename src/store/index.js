@@ -8,6 +8,7 @@ export default new Vuex.Store({
         info: [],
         infoUpdated: 0,
         loading: false,
+        sidebarVisible: true,
         additionalInfoSidebarVisible: false,
         modalAction: '',
         currentObject: {},
@@ -1615,6 +1616,7 @@ export default new Vuex.Store({
         ]
     },
     mutations: {
+        setSidebarVisible: (state, status) => state.sidebarVisible = status,
         setModalAction: (state, action) => state.modalAction = action,
         addInfo: (state, {type, message, duration}) => {
             if (!duration)
@@ -1665,6 +1667,7 @@ export default new Vuex.Store({
         }
     },
     getters: {
+        getSidebarVisible: state => state.sidebarVisible,
         getFirstInfo: state => state.info[0],
         getAdditionalInfoSidebarVisible: state => state.additionalInfoSidebarVisible,
         isLoading: state => state.loading,
@@ -1680,6 +1683,15 @@ export default new Vuex.Store({
         pushInfo({commit}, {type, message, duration}) {
             commit('addInfo', {type, message, duration});
             commit('setInfoUpdated', true);
+        },
+        openSidebar({commit}) {
+            commit('setSidebarVisible', true)
+        },
+        hideSidebar({commit}) {
+            commit('setSidebarVisible', false)
+        },
+        toggleSidebar({commit, getters}) {
+            commit('setSidebarVisible', !getters["getSidebarVisible"])
         },
         openAdditionalInfo({commit, dispatch}, {object, index, type}) {
             commit("setCurrentObject", object);

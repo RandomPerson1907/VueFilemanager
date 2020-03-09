@@ -379,8 +379,13 @@
 </template>
 
 <script>
+    import {mapState} from "vuex";
+
     export default {
-        name: "SidebarComponent"
+        name: "SidebarComponent",
+        computed: {
+            ...mapState(['sidebarVisible'])
+        }
     }
 </script>
 
