@@ -1,5 +1,5 @@
 <template>
-    <button class="primary-button" @click="buttonClicked"><slot></slot></button>
+    <div class="primary-button" @click="buttonClicked"><slot></slot></div>
 </template>
 
 <script>
@@ -15,6 +15,9 @@
 
 <style lang="scss" scoped>
     .primary-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         height: 38px;
         padding: .5rem 1.5rem;
@@ -36,6 +39,11 @@
         &:hover {
             background-color: #719DF0;
             box-shadow: 0 7px 13px 0 rgba(90,141,238,.6);
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
         }
     }
 </style>

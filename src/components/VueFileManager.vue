@@ -4,11 +4,21 @@
         <div class="file-manager__wrapper">
             <div class="file-manager__sidebar">
                 <div class="sidebar__primary-buttons">
-                    <primary-button-component>
-                        <span class="plus-icon">+</span> Add File
+                    <primary-button-component
+                            title="Add file"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                             width="24" height="24"
+                             viewBox="0 0 172 172"
+                             style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M26.46154,0c-14.57452,0 -26.46154,11.88702 -26.46154,26.46154v112.46154c0,14.57452 11.88702,26.46154 26.46154,26.46154h66.15385c-3.30769,-3.95372 -6.04687,-8.39844 -8.0625,-13.23077h-58.09135c-7.3131,0 -13.23077,-5.91767 -13.23077,-13.23077v-112.46154c0,-7.3131 5.91767,-13.23077 13.23077,-13.23077h41.55288c4.78065,1.21454 4.75481,6.95132 4.75481,12.81731v20.25962c0,3.64363 2.97176,6.61538 6.61538,6.61538h19.84615c6.58954,0 13.23077,0.02584 13.23077,6.61538v25.01442c4.16046,-1.73137 8.60517,-2.92007 13.23077,-3.51442v-28.11538c0,-7.02885 -6.43449,-13.69591 -17.98558,-25.01442c-1.60216,-1.57632 -3.33353,-3.33353 -4.96154,-4.96154c-1.62801,-1.62801 -3.38522,-3.15264 -4.96154,-4.75481c-11.31851,-11.55108 -17.98558,-18.19231 -25.01442,-18.19231zM132.30769,93.85577c-21.24158,0 -38.45192,17.21034 -38.45192,38.45192c0,21.24159 17.21034,38.45192 38.45192,38.45192c21.24159,0 38.45192,-17.21033 38.45192,-38.45192c0,-21.24158 -17.21033,-38.45192 -38.45192,-38.45192zM125.69231,112.46154h13.23077v13.23077h13.23077v13.23077h-13.23077v13.23077h-13.23077v-13.23077h-13.23077v-13.23077h13.23077z"></path></g></g></svg>
                     </primary-button-component>
-                    <primary-button-component @click="addNewDirectory">
-                        <span class="plus-icon">+</span> Add Directory
+                    <primary-button-component
+                            title="Add directory"
+                            @click="addNewDirectory">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                             width="24" height="24"
+                             viewBox="0 0 172 172"
+                             style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M19.84615,0c-10.95673,0 -19.84615,8.88942 -19.84615,19.84615v105.84615c0,10.95673 8.88942,19.84615 19.84615,19.84615h62.63942c-1.11118,-4.23798 -1.86058,-8.65685 -1.86058,-13.23077h-60.77885c-3.64363,0 -6.61538,-2.97176 -6.61538,-6.61538v-86c0,-3.64363 2.97176,-6.61538 6.61538,-6.61538h125.69231c3.64363,0 6.61538,2.97176 6.61538,6.61538v44.86058c4.83233,2.01563 9.27704,4.78065 13.23077,8.0625v-52.92308c0,-10.95673 -8.88942,-19.84615 -19.84615,-19.84615h-72.76923c0,-10.95673 -8.88942,-19.84615 -19.84615,-19.84615zM132.30769,93.85577c-21.24158,0 -38.45192,17.21034 -38.45192,38.45192c0,21.24159 17.21034,38.45192 38.45192,38.45192c21.24159,0 38.45192,-17.21033 38.45192,-38.45192c0,-21.24158 -17.21033,-38.45192 -38.45192,-38.45192zM125.69231,112.46154h13.23077v13.23077h13.23077v13.23077h-13.23077v13.23077h-13.23077v-13.23077h-13.23077v-13.23077h13.23077z"></path></g></g></svg>
                     </primary-button-component>
                 </div>
                 <sidebar-component></sidebar-component>
@@ -185,14 +195,11 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    flex-direction: column;
                     width: 100%;
-                    margin-bottom: 1rem;
                     padding: 0 1rem;
 
                     .primary-button {
-                        width: 100%;
-                        margin-top: 1rem;
+                        margin: 1rem .5rem;
                     }
                 }
             }
