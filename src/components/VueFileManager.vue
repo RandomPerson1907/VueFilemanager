@@ -53,7 +53,7 @@
                 @modal-submit="fireSendToMail"
         >
             <template v-slot:header>
-                Send "{{ currentObject.name }}{{ currentObject.type ? `.${currentObject}` : '' }}" to email
+                Send "{{ currentObject.name }}{{ currentObject.type ? `.${currentObject.type}` : '' }}" to email
             </template>
             <template v-slot:body>
                 <div class="modal__section">
@@ -159,11 +159,16 @@
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap');
 
+    body {
+        margin: 0;
+    }
+
     .file-manager {
+        box-sizing: border-box;
         position: relative;
-        margin: 3% auto auto;
-        width: 1594px;
-        height: 822px;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
         border: 1px solid #DFE3E7;
         border-radius: .267rem;
         background-color: #F2F4F4;
