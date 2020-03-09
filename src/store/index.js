@@ -293,6 +293,7 @@ export default new Vuex.Store({
         files: [
             {
                 name: "Felecia Resume",
+                link: '#',
                 filesCount: 2,
                 type: "avi",
                 size: "15mb",

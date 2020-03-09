@@ -3,11 +3,15 @@
         <div class="additional-info__backdrop" @click="close"></div>
         <div class="additional-info__content">
             <div class="additional-info__content__header">
-                <div class="title__text" v-show="!editing">{{ object.name }}{{ type ? "." + object.type : "" }}</div>
-                <input class="title__input" v-model="object.name" v-show="editing" ref="fileName">
-                <span class="dot__input" v-show="editing">.</span>
-                <input class="type__input" v-model="object.type" v-show="editing" ref="fileType">
                 <div class="actions">
+                    <div class="action action__download">
+                        <a :href="object.link || '#'" download="">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                             width="23" height="23"
+                             viewBox="0 0 172 172"
+                     style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#475f7b"><path d="M68.8,27.52c-22.22562,0 -40.01687,17.57625 -40.9575,39.56c-16.08469,4.39406 -27.8425,18.90656 -27.8425,36.12c0,20.80125 17.03875,37.84 37.84,37.84h103.2c17.01188,0 30.96,-13.94812 30.96,-30.96c0,-13.41062 -8.93594,-24.79219 -20.9625,-28.81c-0.72562,-20.16969 -17.18656,-36.55 -37.5175,-36.55c-3.57437,0 -6.90687,0.88688 -10.2125,1.8275c-7.39062,-11.24719 -19.995,-19.0275 -34.5075,-19.0275zM68.8,34.4c12.81938,0 24.05313,7.2025 29.9925,17.5225l1.505,2.4725l2.6875,-0.9675c3.44,-1.24969 6.78594,-1.8275 10.535,-1.8275c17.03875,0 30.96,13.92125 30.96,30.96v3.7625l2.6875,0.645c10.09156,2.37844 17.9525,11.99969 17.9525,23.1125c0,13.26281 -10.81719,24.08 -24.08,24.08h-103.2c-17.03875,0 -30.96,-13.92125 -30.96,-30.96c0,-14.88875 10.52156,-27.53344 24.725,-30.315l2.795,-0.5375v-3.5475c0,-19.14844 15.25156,-34.4 34.4,-34.4zM82.56,68.8v39.775l-14.7275,-14.7275l-4.945,4.945l20.64,20.64l2.4725,2.365l2.4725,-2.365l20.64,-20.64l-4.945,-4.945l-14.7275,14.7275v-39.775z"></path></g></g></svg>
+                        </a>
+                    </div>
                     <div class="action action__start-edit" @click="startEdit" v-show="!editing">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                              width="32" height="32"
@@ -54,6 +58,12 @@
                              viewBox="0 0 172 172"
                              style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#727e8c"><path d="M31.4975,21.715l-9.7825,9.7825l54.5025,54.5025l-54.825,54.9325l9.675,9.675l54.9325,-54.825l54.825,54.825l9.7825,-9.7825l-54.825,-54.825l54.5025,-54.5025l-9.7825,-9.7825l-54.5025,54.5025z"></path></g></g></svg>
                     </div>
+                </div>
+                <div class="object__title">
+                    <div class="title__text" v-show="!editing">{{ object.name }}{{ type ? "." + object.type : "" }}</div>
+                    <input class="title__input" v-model="object.name" v-show="editing" ref="fileName">
+                    <span class="dot__input" v-show="editing">.</span>
+                    <input class="type__input" v-model="object.type" v-show="editing" ref="fileType">
                 </div>
             </div>
             <div class="additional-info__content__tabs">
@@ -212,6 +222,7 @@
 
 <script>
     import {mapActions, mapGetters} from "vuex";
+    import {AxiosInstance as Axios} from "axios";
 
     export default {
         name: "AdditionalInfoComponent",
@@ -251,7 +262,7 @@
             close() {
                 this.activeTab = "details";
                 this.hideAdditionalInfo();
-            }
+            },
         }
     }
 </script>
@@ -315,55 +326,88 @@
 
             .additional-info__content__header {
                 display: flex;
+                flex-direction: column;
                 justify-content: space-between;
                 align-items: center;
                 border-radius: .25rem .25rem 0 0;
                 border-bottom: 1px solid #EDEDED;
-                padding: 1rem 1.5rem;
 
-                .title__text,
-                .title__input {
-                    font-size: .95rem;
-                }
+                .object__title {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding-top: .5rem;
+                    padding-bottom: 1rem;
 
-                .dot__input {
-                    user-select: none;
-                }
+                    .title__text,
+                    .title__input {
+                        font-size: .95rem;
+                    }
 
-                .type__input,
-                .title__input {
-                    padding: 0;
-                    border: none;
-                    color: #475F7B;
-                    font-family: 'Rubik', 'sans-serif';
-                    font-weight: 400;
-                    line-height: 1.4;
-                    letter-spacing: .01rem;
-                    box-sizing: border-box;
-                }
+                    .dot__input {
+                        user-select: none;
+                    }
 
-                .title__input {
-                    max-width: 45%;
-                }
+                    .type__input,
+                    .title__input {
+                        padding: 0;
+                        border: none;
+                        color: #475F7B;
+                        font-family: 'Rubik', 'sans-serif';
+                        font-weight: 400;
+                        line-height: 1.4;
+                        letter-spacing: .01rem;
+                        box-sizing: border-box;
+                    }
 
-                .type__input {
-                    max-width: 15%;
+                    .title__input {
+                        max-width: 45%;
+                    }
+
+                    .type__input {
+                        max-width: 15%;
+                    }
                 }
 
                 .actions {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    height: 100%;
+                    height: auto;
+                    width: 100%;
+                    margin-bottom: .5rem;
 
                     .action {
-                        height: 22px;
-                        width: 22px;
-                        margin-left: .5rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        height: 35px;
+                        padding: .3rem;
+                        border: 1px solid #EDEDED;
+                        border-top: 1px solid transparent;
                         cursor: pointer;
+                        outline: 0;
+                        transition: all .3s ease-in-out;
+
+                        &:hover {
+                            border: 1px solid #93b4f3;
+                            box-shadow: 0 0 6px 0 rgba(90, 141, 238, 0.6);
+
+                            svg {
+                                path, rect, circle,
+                                polyline, line, polygon {
+                                    stroke: #5A8DEE;
+                                }
+                            }
+                        }
+
+                        &:last-of-type {
+                            border-top-right-radius: .267rem;
+                        }
 
                         svg {
-                            width: 100%;
+                            width: 22px;
                             height: 100%;
 
                             * {
@@ -371,35 +415,39 @@
                             }
                         }
 
-                        &:hover {
-                            svg {
-                                path, rect, circle,
-                                polyline, line, polygon {
-                                    stroke: #719DF0;
-                                }
+                        &.action__download {
+                            padding: 0;
+
+                            a {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 100%;
+                                height: 100%;
+                                padding: .3rem;
+                                outline: 0;
                             }
                         }
 
+                        &.action__download,
                         &.action__start-edit {
-
-
                             &:hover {
                                 svg {
                                     g > path {
                                         stroke: #fff;
                                     }
                                     g > g > path {
-                                        fill: #719DF0;
+                                        fill: #5A8DEE;
                                     }
                                 }
                             }
                         }
 
                         &.action__stop-edit {
-                            width: 22px;
-                            height: 22px;
-
                             svg {
+                                width: 22px;
+                                height: 22px;
+
                                 g > g > path {
                                     animation-name: pulse;
                                     animation-duration: 2s;
@@ -423,7 +471,9 @@
                         }
 
                         &.action__close {
-                            height: 16px;
+                            svg {
+                                height: 16px;
+                            }
 
                             &:hover {
                                 svg {
@@ -450,6 +500,7 @@
                         width: 100%;
                         padding: .7rem 0;
                         text-align: center;
+                        border: 1px solid transparent;
                         border-right: 1px solid #EDEDED;
                         font-size: .85rem;
                         font-weight: 400;
@@ -461,6 +512,7 @@
                         user-select: none;
 
                         &:hover {
+                            border: 1px solid #93b4f3;
                             color: #5A8DEE;
 
                             svg {
@@ -476,7 +528,7 @@
 
                         &.active {
                             color: #5A8DEE;
-                            border: 1px solid #5A8DEE;
+                            border: 1px solid #93b4f3;
                             box-shadow: 0 0 6px 0 rgba(90,141,238,.6);
 
                             &:first-of-type {
