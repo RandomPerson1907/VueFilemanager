@@ -28,7 +28,7 @@
                 @modal-submit="fireSendToMail"
         >
             <template v-slot:header>
-                Send "{{ currentObject.name }}.{{ currentObject.type }}"
+                Send "{{ currentObject.name }}{{ currentObject.type ? `.${currentObject}` : '' }}" to email
             </template>
             <template v-slot:body>
                 <div class="modal__section">

@@ -28,6 +28,9 @@
                 <li>
                     <a href="#" @click.prevent="addToFavorite">Add to favorite</a>
                 </li>
+                <li>
+                    <a href="#" @click.prevent="sendToMail">Send to email</a>
+                </li>
             </vue-context>
         </div>
         <div class="directory__more" @click="openAdditionalInfo({object: directory, index, type})">
@@ -72,7 +75,7 @@
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
-            ...mapMutations(['setCurrentObject']),
+            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction']),
             ...mapActions(['pushInfo']),
             openDirectory() {
                 console.log('open directory')
@@ -116,6 +119,12 @@
                     return Math.floor(Math.random() * Math.floor(max));
                 }
             },
+            sendToMail() {
+                this.setCurrentObject(this.directory);
+                this.setCurrentObjectType(this.type);
+                this.setCurrentObjectIndex(this.index);
+                this.setModalAction('sendToMail');
+            }
         }
     }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="modal__window" :class="{active : isActive}">
+    <div class="modal__window" :class="{active : isActive}" @keyup.prevent.enter="submitModal">
         <div class="modal__backdrop" @click="closeModal"></div>
         <div class="modal">
             <div class="modal__header">

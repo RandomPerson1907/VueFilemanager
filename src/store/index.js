@@ -1658,10 +1658,6 @@ export default new Vuex.Store({
             commit('addInfo', {type, message, duration});
             commit('setInfoUpdated', true);
         },
-        showInfo({commit}, {type, message}) {
-            commit("setInfoType", type);
-            commit("setInfoMessage", message);
-        },
         openAdditionalInfo({commit, dispatch}, {object, index, type}) {
             commit("setCurrentObject", object);
             commit("setCurrentObjectIndex", index);
@@ -1710,8 +1706,9 @@ export default new Vuex.Store({
         refresh({commit}) {
             console.log('refreshed')
         },
-        sendToMail({commit, getters}, email) {
+        sendToMail({commit, getters, dispatch}, email) {
             console.log("Send " + getters["getCurrentObjectType"] + " \"" + getters["getCurrentObject"].name + "\" to email " + email);
+            dispatch('pushInfo', {type: 'success', message: getters["getCurrentObject"].name + ' has been sended to email ' + email})
         }
     },
 });
