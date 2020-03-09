@@ -3,9 +3,14 @@
         <preloader-component></preloader-component>
         <div class="file-manager__wrapper">
             <div class="file-manager__sidebar">
-                <primary-button-component>
-                    <span class="plus-icon">+</span> Add File
-                </primary-button-component>
+                <div class="sidebar__primary-buttons">
+                    <primary-button-component>
+                        <span class="plus-icon">+</span> Add File
+                    </primary-button-component>
+                    <primary-button-component @click="addNewDirectory">
+                        <span class="plus-icon">+</span> Add Directory
+                    </primary-button-component>
+                </div>
                 <sidebar-component></sidebar-component>
             </div>
             <div class="file-manager__main">
@@ -45,6 +50,29 @@
                 </div>
             </template>
         </modal-component>
+        <modal-component
+                :active="modalAction === 'createDirectory'"
+                @modal-close="fireCloseModal"
+                @modal-submit="fireCreateDirectory"
+        >
+            <template v-slot:header>
+                Create directory
+            </template>
+            <template v-slot:body>
+                <div class="modal__section">
+                    <label class="modal__label">
+                        <div class="modal__text">Directory name:</div>
+                        <input
+                                type="text"
+                                class="modal__input"
+                                :class="{error: directoryNameError}"
+                                placeholder="Input name of new directory"
+                                v-model="directoryName"
+                        >
+                    </label>
+                </div>
+            </template>
+        </modal-component>
     </div>
 </template>
 
@@ -57,7 +85,9 @@
         data() {
             return {
                 email : '',
-                emailError: false
+                emailError: false,
+                directoryName: '',
+                directoryNameError: false
             }
         },
         computed: {
@@ -69,8 +99,11 @@
             console.log("File manager has been mounted");
         },
         methods: {
-            ...mapActions(['startLoading', 'stopLoading', 'sendToMail']),
+            ...mapActions(['startLoading', 'stopLoading', 'sendToMail', 'createDirectory']),
             ...mapMutations(['setModalAction', 'clearCurrentObject']),
+            addNewDirectory() {
+                this.setModalAction('createDirectory');
+            },
             fireSendToMail() {
                 this.emailError = false;
 
@@ -82,8 +115,20 @@
                     this.emailError = true;
                 }
             },
+            fireCreateDirectory() {
+                this.directoryNameError = false;
+
+                if (this.directoryName.length) {
+                    this.createDirectory(this.directoryName);
+                    this.directoryName = '';
+                    this.fireCloseModal();
+                } else {
+                    this.directoryNameError = true;
+                }
+            },
             fireCloseModal() {
                 this.emailError = false;
+                this.directoryNameError = false;
                 this.setModalAction('');
                 setTimeout(() => this.clearCurrentObject(), 350);
             }
@@ -136,8 +181,19 @@
                 align-items: start;
                 width: 260px;
 
-                .primary-button {
-                    margin: 1.5rem;
+                .sidebar__primary-buttons {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    width: 100%;
+                    margin-bottom: 1rem;
+                    padding: 0 1rem;
+
+                    .primary-button {
+                        width: 100%;
+                        margin-top: 1rem;
+                    }
                 }
             }
 

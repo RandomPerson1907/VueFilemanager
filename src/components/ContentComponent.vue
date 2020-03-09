@@ -1,5 +1,13 @@
 <template>
-    <div class="content">
+    <div class="content" @contextmenu.prevent="$refs.menu.open">
+        <div class="content__context">
+            <vue-context ref="menu">
+                <li>
+                    <a href="#" @click.prevent="createDirectory">Create directory</a>
+                </li>
+            </vue-context>
+        </div>
+
         <h2 class="content__title">All Files</h2>
         <div class="section section_with-recently-accessed">
             <h3 class="section__header">Recently accessed files</h3>
@@ -61,6 +69,7 @@
             ...mapState(["directories", "files", "recentlyAccessedFiles"])
         },
         methods: {
+            ...mapMutations(['setModalAction']),
             ...mapGetters(['getFiles', 'getDirectories', 'getRecentlyAccessedFiles']),
             ...mapActions(['pushInfo']),
             dragStart(event) {
@@ -90,6 +99,9 @@
                     return Math.floor(Math.random() * Math.floor(max));
                 }
             },
+            createDirectory() {
+                this.setModalAction('createDirectory');
+            }
         }
     }
 </script>
@@ -102,6 +114,32 @@
         padding: 0 1.5rem;
         overflow-x: hidden;
         overflow-y: auto;
+
+        .content__context {
+            .v-context {
+                padding: 0;
+                border-radius: .15rem;
+
+                a {
+                    margin-left: 2px;
+                    padding: .35rem .5rem;
+                    color: #475F7B;
+                    font-family: 'Rubik', 'sans-serif';
+                    font-weight: 400;
+                    font-size: .8rem;
+                    line-height: 1.4;
+                    letter-spacing: .01rem;
+                    box-sizing: border-box;
+                    border-left: 0 solid #F2F4F4;
+                    transition: border-color .3s ease-in-out;
+
+                    &:hover {
+                        border-left: 2px solid #5a8dee;
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
 
         .content__title {
             margin: 1.5rem 1rem 0;

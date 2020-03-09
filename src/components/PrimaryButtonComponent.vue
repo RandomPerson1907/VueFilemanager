@@ -1,10 +1,15 @@
 <template>
-    <button class="primary-button"><slot></slot></button>
+    <button class="primary-button" @click="buttonClicked"><slot></slot></button>
 </template>
 
 <script>
     export default {
-        name: "ButtonComponent"
+        name: "ButtonComponent",
+        methods: {
+            buttonClicked() {
+                this.$emit('click');
+            }
+        }
     }
 </script>
 

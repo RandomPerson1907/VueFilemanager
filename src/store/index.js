@@ -1639,6 +1639,29 @@ export default new Vuex.Store({
             state.currentObject = {};
             state.currentObjectType = false;
             state.currentObjectIndex = false;
+        },
+        addDirectory: (state, name) => {
+            state.directories.push({
+                name: name,
+                filesCount: "0 files",
+                size: "0mb",
+                share: false,
+                synchronization: false,
+                backup: false,
+                location: "",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added directory",
+                        description: "You added a directory today",
+                        date: "Today"
+                    },
+                ],
+            })
         }
     },
     getters: {
@@ -1709,6 +1732,10 @@ export default new Vuex.Store({
         sendToMail({commit, getters, dispatch}, email) {
             console.log("Send " + getters["getCurrentObjectType"] + " \"" + getters["getCurrentObject"].name + "\" to email " + email);
             dispatch('pushInfo', {type: 'success', message: getters["getCurrentObject"].name + ' has been sended to email ' + email})
+        },
+        createDirectory({commit, getters, dispatch}, name) {
+            console.log(`Created directory ${name}`);
+            commit('addDirectory', name);
         }
     },
 });
