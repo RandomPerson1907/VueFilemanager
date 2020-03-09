@@ -9,6 +9,7 @@ export default new Vuex.Store({
         infoUpdated: 0,
         loading: false,
         additionalInfoSidebarVisible: false,
+        modalAction: '',
         currentObject: {},
         currentObjectType: false,
         currentObjectIndex: false,
@@ -1614,6 +1615,7 @@ export default new Vuex.Store({
         ]
     },
     mutations: {
+        setModalAction: (state, action) => state.modalAction = action,
         addInfo: (state, {type, message, duration}) => {
             if (!duration)
                 duration = 3000;
@@ -1632,7 +1634,12 @@ export default new Vuex.Store({
         setCurrentObject: (state, object) => state.currentObject =  Object.assign({}, object),
         setCurrentObjectType: (state, type) => state.currentObjectType = type,
         setCurrentObjectIndex: (state, index) => state.currentObjectIndex = index,
-        setObjectByIndexAndType: (state, {object, index, type}) => state[type] && state[type][index] ? Vue.set(state[type], index, object) : false
+        setObjectByIndexAndType: (state, {object, index, type}) => state[type] && state[type][index] ? Vue.set(state[type], index, object) : false,
+        clearCurrentObject: state => {
+            state.currentObject = {};
+            state.currentObjectType = false;
+            state.currentObjectIndex = false;
+        }
     },
     getters: {
         getFirstInfo: state => state.info[0],
@@ -1702,6 +1709,9 @@ export default new Vuex.Store({
         },
         refresh({commit}) {
             console.log('refreshed')
+        },
+        sendToMail({commit, getters}, email) {
+            console.log("Send " + getters["getCurrentObjectType"] + " \"" + getters["getCurrentObject"].name + "\" to email " + email);
         }
     },
 });

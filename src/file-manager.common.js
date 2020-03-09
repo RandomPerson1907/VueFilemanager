@@ -13,6 +13,7 @@ import PrimaryButtonComponent from "./components/PrimaryButtonComponent";
 import AdditionalInfoComponent from "./components/AdditionalInfoComponent";
 import PreloaderComponent from "./components/PreloaderComponent";
 import InfoComponent from "./components/InfoComponent";
+import ModalComponent from "./components/ModalComponent";
 import { VueContext } from "vue-context";
 
 import 'vue-context/src/sass/vue-context.scss';
@@ -31,6 +32,7 @@ const Components = {
   SidebarComponent,
   VueFileManager,
   InfoComponent,
+  ModalComponent,
   PreloaderComponent
 };
 

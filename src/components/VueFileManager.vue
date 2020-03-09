@@ -22,22 +22,71 @@
             </div>
         </div>
         <info-component></info-component>
+        <modal-component
+                :active="modalAction === 'sendToMail'"
+                @modal-close="fireCloseModal"
+                @modal-submit="fireSendToMail"
+        >
+            <template v-slot:header>
+                Send "{{ currentObject.name }}.{{ currentObject.type }}"
+            </template>
+            <template v-slot:body>
+                <div class="modal__section">
+                    <label class="modal__label">
+                        <div class="modal__text">Email:</div>
+                        <input
+                                type="text"
+                                class="modal__input"
+                                :class="{error: emailError}"
+                                placeholder="Input email"
+                                v-model="email"
+                        >
+                    </label>
+                </div>
+            </template>
+        </modal-component>
     </div>
 </template>
 
 <script>
-    import {mapActions} from "vuex";
+    import {mapActions, mapMutations, mapState} from "vuex";
 
     export default {
         name: "VueFilemanager",
         props: {},
+        data() {
+            return {
+                email : '',
+                emailError: false
+            }
+        },
+        computed: {
+            ...mapState(['modalAction', 'currentObject'])
+        },
         mounted() {
             this.startLoading();
             setTimeout(() => this.stopLoading(), 1000);
             console.log("File manager has been mounted");
         },
         methods: {
-            ...mapActions(['startLoading', 'stopLoading']),
+            ...mapActions(['startLoading', 'stopLoading', 'sendToMail']),
+            ...mapMutations(['setModalAction', 'clearCurrentObject']),
+            fireSendToMail() {
+                this.emailError = false;
+
+                if (this.email.length) {
+                    this.sendToMail(this.email);
+                    this.email = '';
+                    this.fireCloseModal();
+                } else {
+                    this.emailError = true;
+                }
+            },
+            fireCloseModal() {
+                this.emailError = false;
+                this.setModalAction('');
+                setTimeout(() => this.clearCurrentObject(), 350);
+            }
         }
     };
 </script>

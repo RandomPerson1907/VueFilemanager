@@ -20,6 +20,9 @@
                 <li>
                     <a href="#" @click.prevent="addToFavorite">Add to favorite</a>
                 </li>
+                <li>
+                    <a href="#" @click.prevent="sendToMail">Send to email</a>
+                </li>
             </vue-context>
         </div>
         <div class="file__more" @click="openAdditionalInfo({object: file, index, type})">
@@ -86,7 +89,7 @@
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
-            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType']),
+            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction']),
             shareFile() {
               console.log('shared file')
             },
@@ -102,6 +105,12 @@
             addToFavorite() {
                 console.log('added file to favorite');
             },
+            sendToMail() {
+                this.setCurrentObject(this.file);
+                this.setCurrentObjectType(this.type);
+                this.setCurrentObjectIndex(this.index);
+                this.setModalAction('sendToMail');
+            }
         }
     }
 </script>
