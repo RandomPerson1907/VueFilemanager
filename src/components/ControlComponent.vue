@@ -6,6 +6,12 @@
 				 viewBox="0 0 172 172"
 				 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#596778"><path d="M86,21.5c-27.48389,0 -50.43261,16.98584 -59.79687,40.98438l9.91016,4.03125c7.83154,-20.07227 26.83301,-34.26562 49.88672,-34.26562c17.42676,0 32.96387,8.54541 42.66406,21.5h-21.16406v10.75h37.625v-37.625h-10.75v16.62891c-11.77881,-13.50049 -29.18457,-22.00391 -48.375,-22.00391zM135.88672,105.48438c-7.83154,20.07227 -26.83301,34.26563 -49.88672,34.26563c-17.61572,0 -33.08984,-8.67139 -42.83203,-21.5h21.33203v-10.75h-37.625v37.625h10.75v-16.62891c11.75781,13.33252 28.9956,22.00391 48.375,22.00391c27.48389,0 50.43262,-16.98584 59.79688,-40.98437z"></path></g></g></svg>
 		</div>
+		<div class="control__item control__item_check" @click="toggleChecking">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+				 width="50" height="50"
+				 viewBox="0 0 172 172"
+				 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#475f7b"><path d="M24.08,6.88c-9.63469,0 -17.2,7.56531 -17.2,17.2v92.88c0,9.63469 7.56531,17.2 17.2,17.2h92.88c9.63469,0 17.2,-7.56531 17.2,-17.2v-83.205l-6.88,7.525v75.68c0,5.84531 -4.47469,10.32 -10.32,10.32h-92.88c-5.84531,0 -10.32,-4.47469 -10.32,-10.32v-92.88c0,-5.84531 4.47469,-10.32 10.32,-10.32h90.8375l5.805,-6.5575c-1.37062,0 -2.39187,-0.3225 -3.7625,-0.3225zM124.7,18.3825l-59.555,66.22l-28.4875,-25.2625l-4.515,5.16l30.96,27.52l2.58,2.2575l2.2575,-2.58l61.92,-68.8zM141.04,37.84v6.88h6.88c5.84531,0 10.32,4.47469 10.32,10.32v92.88c0,5.84531 -4.47469,10.32 -10.32,10.32h-92.88c-5.84531,0 -10.32,-4.47469 -10.32,-10.32v-6.88h-6.88v6.88c0,9.63469 7.56531,17.2 17.2,17.2h92.88c9.63469,0 17.2,-7.56531 17.2,-17.2v-92.88c0,-9.63469 -7.56531,-17.2 -17.2,-17.2z"></path></g></g></svg>
+		</div>
 		<div class="control__item control__item_view">
 			<transition name="fade">
 				<svg v-if="view === 'rows'" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -52,7 +58,7 @@
 		},
 		methods: {
         	...mapMutations(['setView']),
-        	...mapActions(['refresh'])
+        	...mapActions(['refresh', 'toggleChecking'])
 		}
     }
 </script>

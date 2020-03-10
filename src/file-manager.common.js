@@ -15,6 +15,7 @@ import PreloaderComponent from "./components/PreloaderComponent";
 import InfoComponent from "./components/InfoComponent";
 import ModalComponent from "./components/ModalComponent";
 import TabsComponent from "./components/TabsComponent";
+import CheckboxComponent from "./components/CheckboxComponent";
 import { VueContext } from "vue-context";
 
 import 'vue-context/src/sass/vue-context.scss';
@@ -35,6 +36,7 @@ const Components = {
   InfoComponent,
   ModalComponent,
   TabsComponent,
+  CheckboxComponent,
   PreloaderComponent
 };
 

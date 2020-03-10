@@ -1,5 +1,13 @@
 <template>
-    <div class="file" :class="[type, view]" @contextmenu.prevent="$refs.menu.open">
+    <div
+            class="file" :class="[type, view]"
+            @contextmenu.prevent="$refs.menu.open"
+            @mousedown="startClickTimer"
+            @mouseleave="stopClickTimer"
+            @mouseup="stopClickTimer"
+            @touchstart="startClickTimer"
+            @touchend="stopClickTimer"
+            @touchcancel="stopClickTimer">
         <div class="file__context">
             <vue-context ref="menu">
                 <li>
@@ -57,6 +65,11 @@
             <div class="file__info__size">{{ file.size }}</div>
             <div class="file__info__last-accessed">Last accessed : 3 hours ago</div>
         </div>
+        <transition name="fade">
+            <div class="file__checkbox" v-show="checkingMode">
+                <checkbox-component></checkbox-component>
+            </div>
+        </transition>
         <div class="file__more" @click="openAdditionalInfo({object: file, index, type})">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
@@ -83,7 +96,7 @@
             },
         },
         computed: {
-            ...mapState(['view']),
+            ...mapState(['view', 'checkingMode']),
             fileType() {
                 return this.file.type ? `.${this.file.type}` : "";
             }
@@ -91,6 +104,15 @@
         methods: {
             ...mapActions(['openAdditionalInfo']),
             ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction']),
+            startClickTimer() {
+                /*if(!this.interval){
+                    this.interval = setInterval(() => this.count++, 30)
+                }*/
+            },
+            stopClickTimer() {
+                /*clearInterval(this.interval)
+                this.interval = false*/
+            },
             shareFile() {
               console.log('shared file')
             },
@@ -117,6 +139,13 @@
 </script>
 
 <style lang="scss" scoped>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .3s;
+    }
+    .fade-enter {
+        opacity: 0;
+    }
+
     .file {
         position: relative;
         box-sizing: border-box;
@@ -125,7 +154,6 @@
         border-radius: .25rem;
         background-color: #F2F4F4;
         border: 1px solid #DFE3E7;
-        overflow: hidden;
         cursor: pointer;
         transition: box-shadow .3s ease-in-out;
 
@@ -160,7 +188,7 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            height: 70px;
+            height: 67.5px;
             padding: 10px 6px;
             background-color: #fff;
 
@@ -179,6 +207,12 @@
                 font-weight: 400;
                 color: #828D99;
             }
+        }
+
+        .file__checkbox {
+            position: absolute;
+            left: -9px;
+            top: -9px;
         }
 
         .file__context {

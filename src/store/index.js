@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         view: "cards",
+        checkingMode: false,
         info: [],
         infoUpdated: 0,
         loading: false,
@@ -1631,6 +1632,7 @@ export default new Vuex.Store({
     },
     mutations: {
         setView: (state, view) => state.view = view,
+        setCheckingMode: (state, status) => state.checkingMode = status,
         setSidebarVisible: (state, status) => state.sidebarVisible = status,
         setModalAction: (state, action) => state.modalAction = action,
         addInfo: (state, {type, message, duration}) => {
@@ -1688,6 +1690,7 @@ export default new Vuex.Store({
         setCurrentTab: (state, index) => state.currentTabIndex = index,
     },
     getters: {
+        getCheckingMode: state => state.checkingMode,
         getSidebarVisible: state => state.sidebarVisible,
         getFirstInfo: state => state.info[0],
         getAdditionalInfoSidebarVisible: state => state.additionalInfoSidebarVisible,
@@ -1702,6 +1705,15 @@ export default new Vuex.Store({
         getTabs: state => state.tabs,
     },
     actions: {
+        startChecking({commit}) {
+            commit('setCheckingMode', true);
+        },
+        stopChecking({commit}) {
+            commit('setCheckingMode', false);
+        },
+        toggleChecking({commit, getters}) {
+            commit('setCheckingMode', !getters['getCheckingMode'])
+        },
         pushInfo({commit}, {type, message, duration}) {
             commit('addInfo', {type, message, duration});
             commit('setInfoUpdated', true);

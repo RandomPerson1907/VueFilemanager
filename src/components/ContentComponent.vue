@@ -200,6 +200,7 @@
                     box-sizing: border-box;
                     flex-wrap: nowrap;
                     padding-right: 1rem;
+                    padding-top: .5rem;
 
                     &:after {
                         content: "";
@@ -231,9 +232,9 @@
         }
 
         .file {
-            width: calc(25% - 2rem);
-            min-width: calc(25% - 2rem);
-            margin: .5rem 1rem;
+            width: calc(25% - 3.6rem);
+            min-width: calc(25% - 3.6rem);
+            margin: .5rem 1.8rem;
         }
 
         &.rows {

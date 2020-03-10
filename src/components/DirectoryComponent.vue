@@ -42,6 +42,11 @@
                  viewBox="0 0 172 172"
                  style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#727e8c"><path d="M21.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM86,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM150.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5z"></path></g></g></svg>
         </div>
+        <transition name="fade">
+            <div class="directory__checkbox" v-show="checkingMode">
+                <checkbox-component></checkbox-component>
+            </div>
+        </transition>
         <div class="directory__icon">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
@@ -56,7 +61,7 @@
 </template>
 
 <script>
-    import {mapActions, mapMutations} from "vuex";
+    import {mapActions, mapMutations, mapState} from "vuex";
 
     export default {
         name: "DirectoryComponent",
@@ -75,6 +80,9 @@
             return {
                 dragging : false
             }
+        },
+        computed: {
+            ...mapState(['checkingMode'])
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
@@ -138,6 +146,13 @@
 </script>
 
 <style lang="scss" scoped>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .3s;
+    }
+    .fade-enter {
+        opacity: 0;
+    }
+
     .directory {
         box-sizing: border-box;
         position: relative;
@@ -232,6 +247,12 @@
                 font-weight: 400;
                 color: #828D99;
             }
+        }
+
+        .directory__checkbox {
+            position: absolute;
+            left: -9px;
+            top: -9px;
         }
     }
 </style>
