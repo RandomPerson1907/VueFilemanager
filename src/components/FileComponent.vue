@@ -25,6 +25,9 @@
                 <li>
                     <a href="#" @click.prevent="archiveFile">Archive</a>
                 </li>
+                <li v-if="file.zipped">
+                    <a href="#" @click.prevent="unzipFile">Unzip</a>
+                </li>
                 <li>
                     <a href="#" @click.prevent="addToFavorite">Add to favorite</a>
                 </li>
@@ -124,6 +127,9 @@
             },
             archiveFile() {
                 console.log('archive file');
+            },
+            unzipFile() {
+                console.log('unzip file');
             },
             addToFavorite() {
                 console.log('added file to favorite');

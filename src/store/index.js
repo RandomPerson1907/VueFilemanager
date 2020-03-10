@@ -1230,6 +1230,7 @@ export default new Vuex.Store({
                 name: "Felecia Resume",
                 filesCount: 2,
                 type: "zip",
+                zipped: true,
                 size: "12.85kb",
                 share: false,
                 synchronization: false,
