@@ -1,5 +1,5 @@
 <template>
-    <div class="file" @contextmenu.prevent="$refs.menu.open">
+    <div class="file" :class="[type, view]" @contextmenu.prevent="$refs.menu.open">
         <div class="file__context">
             <vue-context ref="menu">
                 <li>
@@ -24,12 +24,6 @@
                     <a href="#" @click.prevent="sendToMail">Send to email</a>
                 </li>
             </vue-context>
-        </div>
-        <div class="file__more" @click="openAdditionalInfo({object: file, index, type})">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                 width="24" height="24"
-                 viewBox="0 0 172 172"
-                 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#727e8c"><path d="M21.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM86,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM150.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5z"></path></g></g></svg>
         </div>
         <div class="file__preview">
             <img src="../assets/file-types/avi.png" alt="avi" v-if="file.type === 'avi'">
@@ -63,11 +57,17 @@
             <div class="file__info__size">{{ file.size }}</div>
             <div class="file__info__last-accessed">Last accessed : 3 hours ago</div>
         </div>
+        <div class="file__more" @click="openAdditionalInfo({object: file, index, type})">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                 width="24" height="24"
+                 viewBox="0 0 172 172"
+                 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#727e8c"><path d="M21.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM86,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5zM150.5,64.5c-11.86979,0 -21.5,9.63021 -21.5,21.5c0,11.86979 9.63021,21.5 21.5,21.5c11.86979,0 21.5,-9.63021 21.5,-21.5c0,-11.86979 -9.63021,-21.5 -21.5,-21.5z"></path></g></g></svg>
+        </div>
     </div>
 </template>
 
 <script>
-    import {mapActions, mapMutations} from "vuex";
+    import {mapActions, mapMutations, mapState} from "vuex";
 
     export default {
         name: "FileComponent",
@@ -83,6 +83,7 @@
             },
         },
         computed: {
+            ...mapState(['view']),
             fileType() {
                 return this.file.type ? `.${this.file.type}` : "";
             }
@@ -128,12 +129,56 @@
         cursor: pointer;
         transition: box-shadow .3s ease-in-out;
 
+        * {
+            transition:
+                    all .3s ease-in-out,
+                    border 0s;
+        }
+
         &:hover {
             box-shadow: 0 0 6px 0 rgba(90,141,238,.6);
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        .file__preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 110px;
+            border-bottom: 1px solid #DFE3E7;
+
+            img {
+                width: 30px;
+                max-height: 38px;
+            }
+        }
+
+        .file__info {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: 70px;
+            padding: 10px 6px;
+            background-color: #fff;
+
+            * {
+                width: 100%;
+            }
+
+            .file__info__name {
+                font-size: 12.8px;
+                font-weight: 500;
+            }
+
+            .file__info__size,
+            .file__info__last-accessed {
+                font-size: 10px;
+                font-weight: 400;
+                color: #828D99;
+            }
         }
 
         .file__context {
@@ -189,41 +234,24 @@
             }
         }
 
-        .file__preview {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 110px;
-            border-bottom: 1px solid #DFE3E7;
-
-            img {
-                width: 30px;
-                max-height: 38px;
+        &.files.rows {
+            .file__preview {
+                height: 100%;
+                width: 100px;
+                border: none;
             }
-        }
 
-        .file__info {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            height: 70px;
-            padding: 10px 6px;
-            background-color: #fff;
-
-            * {
+            .file__info {
                 width: 100%;
+                height: auto;
+                padding: .25rem 1rem;
             }
 
-            .file__info__name {
-                font-size: 12.8px;
-                font-weight: 500;
-            }
-
-            .file__info__size,
-            .file__info__last-accessed {
-                font-size: 10px;
-                font-weight: 400;
-                color: #828D99;
+            .file__more {
+                position: unset;
+                height: 100%;
+                opacity: 1;
+                background-color: #fff;
             }
         }
     }

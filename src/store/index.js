@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        view: "cards",
         info: [],
         infoUpdated: 0,
         loading: false,
@@ -1629,6 +1630,7 @@ export default new Vuex.Store({
         ]
     },
     mutations: {
+        setView: (state, view) => state.view = view,
         setSidebarVisible: (state, status) => state.sidebarVisible = status,
         setModalAction: (state, action) => state.modalAction = action,
         addInfo: (state, {type, message, duration}) => {

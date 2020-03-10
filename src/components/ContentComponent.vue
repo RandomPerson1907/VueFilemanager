@@ -1,5 +1,9 @@
 <template>
-    <div class="content" @contextmenu.prevent="$refs.menu.open">
+    <div
+        class="content"
+        :class="[view]"
+        @contextmenu.prevent="$refs.menu.open"
+    >
         <div class="content__context">
             <vue-context ref="menu">
                 <li>
@@ -66,7 +70,7 @@
             }
         },
         computed: {
-            ...mapState(["directories", "files", "recentlyAccessedFiles"])
+            ...mapState(["view", "directories", "files", "recentlyAccessedFiles"])
         },
         methods: {
             ...mapMutations(['setModalAction']),
@@ -114,6 +118,11 @@
         padding: 0 1.5rem;
         overflow-x: hidden;
         overflow-y: auto;
+        transition: all .3s ease-in-out;
+
+        * {
+            transition: all .3s ease-in-out;
+        }
 
         .content__context {
             .v-context {
@@ -173,7 +182,6 @@
                 flex-wrap: wrap;
                 width: 100%;
 
-                .file,
                 .directory {
                     width: calc(25% - 2rem);
                     min-width: calc(25% - 2rem);
@@ -218,6 +226,30 @@
                     left: 25%;
                     width: 50%;
                     height: 40px;
+                }
+            }
+        }
+
+        .file {
+            width: calc(25% - 2rem);
+            min-width: calc(25% - 2rem);
+            margin: .5rem 1rem;
+        }
+
+        &.rows {
+            .section {
+                .section__files {
+                    .file.files {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        height: auto;
+                        margin: .25rem 1rem;
+
+                        &:last-of-type {
+                            margin-bottom: 2rem;
+                        }
+                    }
                 }
             }
         }
