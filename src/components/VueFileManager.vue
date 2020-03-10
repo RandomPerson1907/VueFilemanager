@@ -39,6 +39,7 @@
                     <control-component></control-component>
                 </div>
                 <div class="file-manager__content">
+                    <tabs-component></tabs-component>
                     <content-component></content-component>
                 </div>
             </div>

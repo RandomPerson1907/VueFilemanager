@@ -14,6 +14,18 @@ export default new Vuex.Store({
         currentObject: {},
         currentObjectType: false,
         currentObjectIndex: false,
+        tabs: [
+            {
+                name: "First tab",
+            },
+            {
+                name: "Second tab",
+            },
+            {
+                name: "Third tab",
+            },
+        ],
+        currentTabIndex: 0,
         directories: [
             {
                 name: "Project",
@@ -1629,7 +1641,7 @@ export default new Vuex.Store({
               duration
             });
         },
-        removeFirstInfo: state=> Vue.delete(state.info, 0),
+        removeFirstInfo: state => Vue.delete(state.info, 0),
         clearInfo: state => state.info = [],
         setInfoUpdated: (state) => state.infoUpdated++,
         setAdditionalInfoSidebarVisible: (state, status) => state.additionalInfoSidebarVisible = status,
@@ -1665,7 +1677,13 @@ export default new Vuex.Store({
                     },
                 ],
             })
-        }
+        },
+        addTab: (state, tab) => {
+            state.tabs.push(Object.assign({}, tab));
+            state.currentTabIndex = state.tabs.length - 1;
+        },
+        removeTab: (state, index) => Vue.delete(state.tabs, index),
+        setCurrentTab: (state, index) => state.currentTabIndex = index,
     },
     getters: {
         getSidebarVisible: state => state.sidebarVisible,
@@ -1678,7 +1696,8 @@ export default new Vuex.Store({
         getCurrentObject: state => state.currentObject,
         getCurrentObjectType: state => state.currentObjectType,
         getCurrentObjectIndex: state => state.currentObjectIndex,
-        isVisibleAdditionalInfo: state => state.currentObject && state.additionalInfoSidebarVisible
+        isVisibleAdditionalInfo: state => state.currentObject && state.additionalInfoSidebarVisible,
+        getTabs: state => state.tabs,
     },
     actions: {
         pushInfo({commit}, {type, message, duration}) {

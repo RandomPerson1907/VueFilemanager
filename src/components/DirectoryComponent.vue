@@ -14,6 +14,9 @@
                     <a href="#" @click.prevent="openDirectory">Open</a>
                 </li>
                 <li>
+                    <a href="#" @click.prevent="openInNewTab">Open in new tab</a>
+                </li>
+                <li>
                     <a href="#" @click.prevent="showInfo">Info</a>
                 </li>
                 <li>
@@ -75,10 +78,15 @@
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
-            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction']),
+            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction', 'addTab']),
             ...mapActions(['pushInfo']),
             openDirectory() {
                 console.log('open directory')
+            },
+            openInNewTab() {
+                this.addTab({
+                    name : this.directory.name
+                })
             },
             shareDirectory() {
                 console.log('shared directory')
