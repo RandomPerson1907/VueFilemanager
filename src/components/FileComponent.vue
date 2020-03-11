@@ -2,12 +2,8 @@
     <div
             class="file" :class="[type, view]"
             @contextmenu.prevent="$refs.menu.open"
-            @mousedown="startClickTimer"
-            @mouseleave="stopClickTimer"
-            @mouseup="stopClickTimer"
-            @touchstart="startClickTimer"
-            @touchend="stopClickTimer"
-            @touchcancel="stopClickTimer">
+            @click="openFile"
+    >
         <div class="file__context">
             <vue-context ref="menu">
                 <li>
@@ -37,7 +33,8 @@
             </vue-context>
         </div>
         <div class="file__preview">
-            <img src="../assets/file-types/avi.png" alt="avi" v-if="file.type === 'avi'">
+            <img :src="file.link" :alt="file.name" v-if="file.isImage">
+            <img src="../assets/file-types/avi.png" alt="avi" v-else-if="file.type === 'avi'">
             <img src="../assets/file-types/css.png" alt="css" v-else-if="file.type === 'css'">
             <img src="../assets/file-types/csv.png" alt="csv" v-else-if="file.type === 'csv'">
             <img src="../assets/file-types/dbf.png" alt="dbf" v-else-if="file.type === 'dbf'">
@@ -106,15 +103,11 @@
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
-            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction']),
-            startClickTimer() {
-                /*if(!this.interval){
-                    this.interval = setInterval(() => this.count++, 30)
-                }*/
-            },
-            stopClickTimer() {
-                /*clearInterval(this.interval)
-                this.interval = false*/
+            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction', 'setImage']),
+            openFile() {
+                if (this.file.isImage) {
+                    this.setImage(this.file);
+                }
             },
             shareFile() {
               console.log('shared file')

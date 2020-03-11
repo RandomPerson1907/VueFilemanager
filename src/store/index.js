@@ -16,6 +16,7 @@ export default new Vuex.Store({
         currentObject: {},
         currentObjectType: false,
         currentObjectIndex: false,
+        image: false,
         tabs: [
             {
                 name: "First tab",
@@ -319,6 +320,48 @@ export default new Vuex.Store({
             }
         ],
         files: [
+            {
+                name: "Image",
+                isImage: true,
+                link: "#",
+                filesCount: 2,
+                type: "avi",
+                size: "15mb",
+                share: true,
+                synchronization: false,
+                backup: false,
+                location: "/Uploads",
+                owner: "Elnora Reese",
+                opened: "July 8, 2019",
+                created: "July 1, 2019",
+                modified: "September 4 2019",
+                activities: [
+                    {
+                        type: "add",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "edit",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "share",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                    {
+                        type: "delete",
+                        title: "You added file",
+                        description: "You added an item today",
+                        date: "Today"
+                    },
+                ],
+            },
             {
                 name: "Felecia Resume",
                 link: '#',
@@ -1713,6 +1756,8 @@ export default new Vuex.Store({
             if (!exists)
                 state.bookmarks.push(directory);
         },
+        setImage: (state, image) => state.image = image,
+        clearImage: state => state.image = false
     },
     getters: {
         getCheckingMode: state => state.checkingMode,

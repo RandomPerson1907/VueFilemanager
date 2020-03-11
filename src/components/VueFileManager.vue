@@ -48,6 +48,7 @@
             </div>
         </div>
         <info-component></info-component>
+        <preview-component></preview-component>
         <modal-component
                 :active="modalAction === 'sendToMail'"
                 @modal-close="fireCloseModal"
