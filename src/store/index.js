@@ -30,7 +30,9 @@ export default new Vuex.Store({
         currentTabIndex: 0,
         directories: [
             {
+                id: 0,
                 name: "Project",
+                icon: "/assets/icons/directory.svg",
                 filesCount: "2 files",
                 size: "14.05mb",
                 share: false,
@@ -69,7 +71,9 @@ export default new Vuex.Store({
                 ],
             },
             {
+                id: 1,
                 name: "Video",
+                icon: "../assets/icons/directory.svg",
                 filesCount: "1 files",
                 size: "14.05mb",
                 share: false,
@@ -108,7 +112,9 @@ export default new Vuex.Store({
                 ],
             },
             {
+                id: 2,
                 name: "Music",
+                icon: "../assets/icons/directory.svg",
                 filesCount: "12 files",
                 size: "14.05mb",
                 share: false,
@@ -147,6 +153,8 @@ export default new Vuex.Store({
                 ],
             },
             {
+                id: 3,
+                icon: "../assets/icons/directory.svg",
                 name: "Documents",
                 filesCount: "322 files",
                 size: "14.05mb",
@@ -186,7 +194,9 @@ export default new Vuex.Store({
                 ],
             },
             {
+                id: 4,
                 name: "Application Design",
+                icon: "../assets/icons/directory.svg",
                 filesCount: "22 files",
                 size: "14.05mb",
                 share: false,
@@ -225,7 +235,9 @@ export default new Vuex.Store({
                 ],
             },
             {
+                id: 5,
                 name: "Photos",
+                icon: "../assets/icons/directory.svg",
                 filesCount: "0 files",
                 size: "14.05mb",
                 share: false,
@@ -264,7 +276,9 @@ export default new Vuex.Store({
                 ],
             },
             {
+                id: 6,
                 name: "Project",
+                icon: "../assets/icons/directory.svg",
                 filesCount: "12 files",
                 type: "directory",
                 size: "14.05mb",
@@ -1629,7 +1643,8 @@ export default new Vuex.Store({
                     },
                 ],
             },
-        ]
+        ],
+        bookmarks: []
     },
     mutations: {
         setView: (state, view) => state.view = view,
@@ -1689,6 +1704,15 @@ export default new Vuex.Store({
         },
         removeTab: (state, index) => Vue.delete(state.tabs, index),
         setCurrentTab: (state, index) => state.currentTabIndex = index,
+        addToBookmarks: (state, directory) => {
+            let exists = false;
+            state.bookmarks.forEach((bookmark) => {
+               if (bookmark.id === directory.id)
+                   exists = true;
+            });
+            if (!exists)
+                state.bookmarks.push(directory);
+        },
     },
     getters: {
         getCheckingMode: state => state.checkingMode,

@@ -3,6 +3,8 @@
             class="directory"
             :class="{dragging}"
             @contextmenu.prevent="$refs.menu.open"
+            draggable="true"
+            @drag="directoryDragStart"
             @dragenter.prevent="dragStart"
             @dragover.prevent="dragStart"
             @dragleave.prevent="dragStop"
@@ -29,7 +31,7 @@
                     <a href="#" @click.prevent="archiveDirectory">Archive</a>
                 </li>
                 <li>
-                    <a href="#" @click.prevent="addToFavorite">Add to favorite</a>
+                    <a href="#" @click.prevent="addToBookmarks(directory)">Add to bookmarks</a>
                 </li>
                 <li>
                     <a href="#" @click.prevent="sendToMail">Send to email</a>
@@ -86,7 +88,7 @@
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
-            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction', 'addTab']),
+            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction', 'addTab', 'setDraggedDirectory', 'addToBookmarks']),
             ...mapActions(['pushInfo']),
             openDirectory() {
                 console.log('open directory')
@@ -104,9 +106,6 @@
             },
             archiveDirectory() {
                 console.log('archive directory');
-            },
-            addToFavorite() {
-                console.log('added directory to favorite');
             },
             dragStart(event) {
                 event.stopPropagation();
@@ -140,6 +139,11 @@
                 this.setCurrentObjectType(this.type);
                 this.setCurrentObjectIndex(this.index);
                 this.setModalAction('sendToMail');
+            },
+            directoryDragStart() {
+                this.setCurrentObject(this.directory);
+                this.setCurrentObjectType(this.type);
+                this.setCurrentObjectIndex(this.index);
             }
         }
     }

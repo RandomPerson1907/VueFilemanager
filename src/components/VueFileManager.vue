@@ -210,7 +210,7 @@
                 overflow: hidden;
                 transition: all .2s linear .3s;
 
-                * {
+                & > * {
                     opacity: 0;
                     transition: opacity .2s linear;
                 }
@@ -220,7 +220,7 @@
                     min-width: 260px;
                     transition: all .2s linear 0s;
 
-                    * {
+                    & > * {
                         opacity: 1;
                         transition: opacity .2s linear .3s;
                     }

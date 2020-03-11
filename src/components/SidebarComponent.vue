@@ -334,6 +334,26 @@
                 </button>
             </div>
         </div>
+        <div
+            class="sidebar__section sidebar__section_bookmarks"
+            :class="{dragging}"
+            @dragenter.prevent="dragStart"
+            @dragover.prevent="dragStart"
+            @dragleave.prevent="dragStop"
+            @drop.prevent="appendDirectory"
+        >
+            <input id="bookmarks_section" class="sidebar__section__checkbox" type="checkbox">
+            <label class="sidebar__section__header" for="bookmarks_section">Bookmarks</label>
+            <div class="sidebar__section__content">
+                <button class="sidebar__section__item" v-for="bookmarks in bookmarks">
+                    <div class="sidebar__section__item__icon">
+                        <img :src="bookmarks.icon">
+                    </div>
+                    <div class="sidebar__section__item__title">{{ bookmarks.name }}</div>
+                    <div class="sidebar__section__item__count"></div>
+                </button>
+            </div>
+        </div>
         <div class="sidebar__section">
             <input id="storage_status_section" class="sidebar__section__checkbox" type="checkbox">
             <label class="sidebar__section__header" for="storage_status_section">Storage status</label>
@@ -379,12 +399,31 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapMutations, mapState} from "vuex";
 
     export default {
         name: "SidebarComponent",
+        data() {
+            return {
+                dragging : false
+            }
+        },
         computed: {
-            ...mapState(['sidebarVisible'])
+            ...mapState(['sidebarVisible', 'currentObject', 'bookmarks'])
+        },
+        methods: {
+            ...mapMutations(['addToBookmarks']),
+            dragStart(event) {
+                event.stopPropagation();
+                this.dragging = true;
+            },
+            dragStop() {
+                this.dragging = false;
+            },
+            appendDirectory() {
+                this.addToBookmarks(this.currentObject);
+                this.dragStop();
+            },
         }
     }
 </script>
@@ -411,6 +450,20 @@
                     transition:
                             transform .3s ease-in-out .1s,
                             max-height .5s ease-in-out;
+                }
+            }
+
+            &.sidebar__section_bookmarks {
+                min-height: 0;
+                border: 2px dashed transparent;
+                border-radius: 3px;
+                transition:
+                        border-color .15s ease-in-out,
+                        min-height .5s ease-in-out;
+
+                &.dragging {
+                    min-height: 300px;
+                    border-color: #5A8DEE;
                 }
             }
 

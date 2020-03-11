@@ -70,7 +70,7 @@
             }
         },
         computed: {
-            ...mapState(["view", "directories", "files", "recentlyAccessedFiles"])
+            ...mapState(["view", "directories", "files", "recentlyAccessedFiles", "currentObjectType"])
         },
         methods: {
             ...mapMutations(['setModalAction']),
@@ -78,6 +78,7 @@
             ...mapActions(['pushInfo']),
             dragStart(event) {
                 event.stopPropagation();
+                if (this.currentObjectType === "directories") return;
                 this.dragging = true;
             },
             dragStop() {
@@ -86,6 +87,7 @@
             addFile(e) {
                 let droppedFiles = e.dataTransfer.files;
                 if(!droppedFiles) return;
+                if (this.currentObjectType === "directories") return;
                 this.dragStop();
                 let message = '';
                 ([...droppedFiles]).forEach(f => {
