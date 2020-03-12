@@ -33,7 +33,7 @@ export default new Vuex.Store({
             {
                 id: 0,
                 name: "Project",
-                icon: "/assets/icons/directory.svg",
+                icon: require("../assets/icons/directory.svg"),
                 filesCount: "2 files",
                 size: "14.05mb",
                 share: false,
@@ -74,7 +74,7 @@ export default new Vuex.Store({
             {
                 id: 1,
                 name: "Video",
-                icon: "../assets/icons/directory.svg",
+                icon: require("../assets/icons/directory.svg"),
                 filesCount: "1 files",
                 size: "14.05mb",
                 share: false,
@@ -115,7 +115,7 @@ export default new Vuex.Store({
             {
                 id: 2,
                 name: "Music",
-                icon: "../assets/icons/directory.svg",
+                icon: require("../assets/icons/directory.svg"),
                 filesCount: "12 files",
                 size: "14.05mb",
                 share: false,
@@ -155,7 +155,7 @@ export default new Vuex.Store({
             },
             {
                 id: 3,
-                icon: "../assets/icons/directory.svg",
+                icon: require("../assets/icons/directory.svg"),
                 name: "Documents",
                 filesCount: "322 files",
                 size: "14.05mb",
@@ -197,7 +197,7 @@ export default new Vuex.Store({
             {
                 id: 4,
                 name: "Application Design",
-                icon: "../assets/icons/directory.svg",
+                icon: require("../assets/icons/directory.svg"),
                 filesCount: "22 files",
                 size: "14.05mb",
                 share: false,
@@ -238,7 +238,7 @@ export default new Vuex.Store({
             {
                 id: 5,
                 name: "Photos",
-                icon: "../assets/icons/directory.svg",
+                icon: require("../assets/icons/directory.svg"),
                 filesCount: "0 files",
                 size: "14.05mb",
                 share: false,
@@ -279,7 +279,7 @@ export default new Vuex.Store({
             {
                 id: 6,
                 name: "Project",
-                icon: "../assets/icons/directory.svg",
+                icon: require("../assets/icons/directory.svg"),
                 filesCount: "12 files",
                 type: "directory",
                 size: "14.05mb",
@@ -1687,6 +1687,29 @@ export default new Vuex.Store({
                 ],
             },
         ],
+        storages: [
+            {
+                id: 0,
+                name: "local",
+                icon: require("../assets/icons/storages/local.svg")
+            },
+            {
+                id: 1,
+                name: "other local",
+                icon: require("../assets/icons/storages/local.svg")
+            },
+            {
+                id: 2,
+                name: "Google Drive",
+                icon: require("../assets/icons/storages/google-drive.svg")
+            },
+            {
+                id: 3,
+                name: "Yandex Disc",
+                icon: require("../assets/icons/storages/yandex-disc.svg")
+            },
+        ],
+        currentStorage: false,
         bookmarks: []
     },
     mutations: {
@@ -1757,7 +1780,8 @@ export default new Vuex.Store({
                 state.bookmarks.push(directory);
         },
         setImage: (state, image) => state.image = image,
-        clearImage: state => state.image = false
+        clearImage: state => state.image = false,
+        setCurrentStorage: (state, storage) => state.currentStorage = storage,
     },
     getters: {
         getCheckingMode: state => state.checkingMode,
@@ -1852,6 +1876,10 @@ export default new Vuex.Store({
         createDirectory({commit, getters, dispatch}, name) {
             console.log(`Created directory ${name}`);
             commit('addDirectory', name);
+        },
+        changeStorage({commit}, storage) {
+            console.log(`Changed storage to ${storage.name}`);
+            commit('setCurrentStorage', storage);
         }
     },
 });

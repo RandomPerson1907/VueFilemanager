@@ -30,15 +30,28 @@
 				<div class="popup__item" :class="{active : view === 'cards'}" @click="setView('cards')">Cards</div>
 			</div>
 		</div>
-        <div class="control__item control__item_user">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve" data-animoptions="{'duration':'1', 'repeat':'0', 'repeatDelay':'0.5'}" preserveAspectRatio="xMinYMin meet" style="left: 0.0167236px; top: -0.150002px;"><g class="lievo-setrotation"><g class="lievo-setsharp" style="transform-origin: 0px 0px 0px;" data-svg-origin="30.25 30" transform="matrix(1,0,0,1,-0.25000029802321944,-0.25000029802321944)"><g class="lievo-setflip"><g class="lievo-main">
-		<g class="lievo-common">
-			<path class="lievo-altstroke" fill="none" stroke="#596778" stroke-width="2.5px" stroke-miterlimit="10" d="M30,7c-2.15,0.04-4.17,0.25-4.8,2c-2.63-0.06-3.25,1.44-4.2,3.58s-0.39,7.72,0.3,9.73c-1.54,0.94-1.04,5.44,1.2,5.58c0.26,1.17,0.48,4.22,2.4,5.3v3.9C24.83,40.5,12.76,43.16,11,45s-2.08,3.75-2,6h42c0.08-2.25-0.24-4.16-2-6s-13.58-4.5-13.8-7.9v-3.9c1.92-1.08,2.25-4.33,2.5-5.5c2.24-0.25,2.64-4.55,1.1-5.48c0.69-2.02,1.45-7.49,0.5-9.63S36,7,30,7z" style="" data-original="M30,7c-2.15,0.04-4.17,0.25-4.8,2c-2.63-0.06-3.25,1.44-4.2,3.58s-0.39,7.72,0.3,9.73c-1.54,0.94-1.04,5.44,1.2,5.58c0.26,1.17,0.48,4.22,2.4,5.3v3.9C24.83,40.5,12.76,43.16,11,45s-2.08,3.75-2,6h42c0.08-2.25-0.24-4.16-2-6s-13.58-4.5-13.8-7.9v-3.9c1.92-1.08,2.25-4.33,2.5-5.5c2.24-0.25,2.64-4.55,1.1-5.48c0.69-2.02,1.45-7.49,0.5-9.63S36,7,30,7z" data-svg-origin="8.98887825012207 7" transform="matrix(1,0,0,1,0,0)"></path>
-		</g>
-	<rect x="-19" y="-19" width="4" height="4" class="lievo-checkshift lievo-donotdraw lievo-nohoverstroke lievo-nohovercolor" style="stroke-width: 2px; stroke-linecap: butt; stroke-linejoin: round; opacity: 0;" fill="none" stroke="#596778" stroke-width="2.5px"></rect></g></g></g></g>
-
-                <desc>LivIcons Evolution</desc><defs></defs></svg>
-        </div>
+		<div class="control__item control__item_storages">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+					 width="100" height="100"
+					 viewBox="0 0 172 172"
+					 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#475f7b"><path d="M26.445,0c-3.1175,0 -5.52281,2.10969 -6.235,5.0525h-0.1075l-0.1075,0.43l-19.2425,60.3075c-0.05375,0.12094 -0.16125,0.20156 -0.215,0.3225v0.215c-0.16125,0.30906 -0.26875,0.63156 -0.3225,0.9675c-0.01344,0.04031 -0.09406,0.06719 -0.1075,0.1075c-0.01344,0.17469 -0.01344,0.36281 0,0.5375c-0.04031,0.28219 -0.1075,0.56438 -0.1075,0.86v27.52c0,1.23625 0.37625,2.43219 0.9675,3.44c-0.59125,1.00781 -0.9675,2.20375 -0.9675,3.44v27.52c0,1.23625 0.37625,2.43219 0.9675,3.44c-0.59125,1.00781 -0.9675,2.20375 -0.9675,3.44v27.52c0,3.7625 3.1175,6.88 6.88,6.88h158.24c3.7625,0 6.88,-3.1175 6.88,-6.88v-27.52c0,-1.23625 -0.37625,-2.43219 -0.9675,-3.44c0.59125,-1.00781 0.9675,-2.20375 0.9675,-3.44v-27.52c0,-1.23625 -0.37625,-2.43219 -0.9675,-3.44c0.59125,-1.00781 0.9675,-2.20375 0.9675,-3.44v-27.52c0,-0.95406 -0.28219,-1.85437 -0.645,-2.6875c0,-0.04031 0,-0.06719 0,-0.1075l-19.35,-60.5225l-0.1075,-0.43h-0.1075c-0.71219,-2.94281 -3.1175,-5.0525 -6.235,-5.0525zM26.7675,6.88h118.5725c0,0.06719 0,0.14781 0,0.215l17.5225,54.825h-153.8325l17.63,-54.825c0.04031,-0.06719 0.08063,-0.14781 0.1075,-0.215zM6.88,68.8h158.24v27.52h-158.24v-27.305c0,-0.06719 0,-0.14781 0,-0.215zM147.92,75.68c-3.80281,0 -6.88,3.07719 -6.88,6.88c0,3.80281 3.07719,6.88 6.88,6.88c3.80281,0 6.88,-3.07719 6.88,-6.88c0,-3.80281 -3.07719,-6.88 -6.88,-6.88zM6.88,103.2h158.24v27.52h-158.24zM147.92,110.08c-3.80281,0 -6.88,3.07719 -6.88,6.88c0,3.80281 3.07719,6.88 6.88,6.88c3.80281,0 6.88,-3.07719 6.88,-6.88c0,-3.80281 -3.07719,-6.88 -6.88,-6.88zM6.88,137.6h158.24v27.52h-158.24zM147.92,144.48c-3.80281,0 -6.88,3.07719 -6.88,6.88c0,3.80281 3.07719,6.88 6.88,6.88c3.80281,0 6.88,-3.07719 6.88,-6.88c0,-3.80281 -3.07719,-6.88 -6.88,-6.88z"></path></g></g></svg>
+			<div class="control__item__popup">
+				<div
+						class="popup__item"
+						:class="{active : storage.id === currentStorage.id}"
+						v-for="(storage, index) in storages"
+						:key="index"
+						@click="changeStorage(storage)"
+				>
+					<div class="popup__item__icon">
+						<img :src="storage.icon" :alt="storage.name">
+					</div>
+					<div class="popup__item__name">
+						{{ storage.name }}
+					</div>
+				</div>
+			</div>
+		</div>
         <div class="control__item control__item_more">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                  width="24" height="24"
@@ -54,11 +67,11 @@
 	export default {
         name: "ControlComponent",
 		computed: {
-        	...mapState(['view'])
+        	...mapState(['view', 'storages', 'currentStorage'])
 		},
 		methods: {
         	...mapMutations(['setView']),
-        	...mapActions(['refresh', 'toggleChecking'])
+        	...mapActions(['refresh', 'toggleChecking', 'changeStorage'])
 		}
     }
 </script>
@@ -96,27 +109,32 @@
 				}
             }
 
+			&.control__item_storages,
 			&.control__item_view {
 				&:hover {
 					.control__item__popup {
 						visibility: visible;
 						opacity: 1;
+						z-index: 10;
 					}
 				}
 
 				.control__item__popup {
 					position: absolute;
 					top: 100%;
-					left: 0;
+					left: -25px;
 					visibility: hidden;
 					opacity: 0;
+					width: 100px;
 					padding: .5rem 0;
 					border-radius: .25rem;
 					background: #e8ecf0;
-					z-index: 10;
+					box-shadow: 0 7px 13px 0 rgba(90, 141, 238, 0.3);
+					z-index: 0;
 					transition: all .3s ease-in-out;
 
 					.popup__item {
+						display: flex;
 						margin-left: 2px;
 						padding: .35rem .5rem;
 						color: #475F7B;
@@ -138,7 +156,28 @@
 							border-left: 2px solid #5a8dee;
 							margin-left: 0;
 						}
+
+						.popup__item__icon {
+							height: 25px;
+							max-width: 25px;
+
+							img {
+								width: 100%;
+								height: 100%;
+							}
+						}
+
+						.popup__item__name {
+							margin-left: 1rem;
+						}
 					}
+				}
+			}
+
+			&.control__item_storages {
+				.control__item__popup {
+					left: -50px;
+					width: 150px;
 				}
 			}
 
