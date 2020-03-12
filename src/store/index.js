@@ -16,6 +16,9 @@ export default new Vuex.Store({
         currentObject: {},
         currentObjectType: false,
         currentObjectIndex: false,
+        targetObject: {},
+        targetObjectType: false,
+        targetObjectIndex: false,
         image: false,
         tabs: [
             {
@@ -1741,6 +1744,14 @@ export default new Vuex.Store({
             state.currentObjectType = false;
             state.currentObjectIndex = false;
         },
+        setTargetObject: (state, object) => state.targetObject =  Object.assign({}, object),
+        setTargetObjectType: (state, type) => state.targetObjectType = type,
+        setTargetObjectIndex: (state, index) => state.targetObjectIndex = index,
+        clearTargetObject: state => {
+            state.targetObject = {};
+            state.targetObjectType = false;
+            state.targetObjectIndex = false;
+        },
         addDirectory: (state, name) => {
             state.directories.push({
                 name: name,
@@ -1795,6 +1806,9 @@ export default new Vuex.Store({
         getCurrentObject: state => state.currentObject,
         getCurrentObjectType: state => state.currentObjectType,
         getCurrentObjectIndex: state => state.currentObjectIndex,
+        getTargetObject: state => state.targetObject,
+        getTargetObjectType: state => state.targetObjectType,
+        getTargetObjectIndex: state => state.targetObjectIndex,
         isVisibleAdditionalInfo: state => state.currentObject && state.additionalInfoSidebarVisible,
         getTabs: state => state.tabs,
     },
@@ -1883,6 +1897,10 @@ export default new Vuex.Store({
             console.log(`Changed storage to ${storage.name}`);
             commit('setCurrentStorage', storage);
             dispatch('pushInfo', {type: 'success', message: `Changed storage to ${storage.name}`});
+        },
+        moveToFolder({commit, getters, dispatch}) {
+            console.log(`Moved folder ${getters['getCurrentObject'].name} to ${getters['getTargetObject'].name}`);
+            dispatch('pushInfo', {type: 'success', message: `Moved folder ${getters['getCurrentObject'].name}${ getters['getCurrentObject'].type ? '.' + getters['getCurrentObject'].type : '' } to ${getters['getTargetObject'].name}`});
         }
     },
 });

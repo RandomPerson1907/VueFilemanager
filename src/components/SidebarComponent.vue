@@ -412,13 +412,14 @@
             ...mapState(['sidebarVisible', 'currentObject', 'bookmarks'])
         },
         methods: {
-            ...mapMutations(['addToBookmarks']),
+            ...mapMutations(['addToBookmarks', 'clearCurrentObject']),
             dragStart(event) {
                 event.stopPropagation();
                 this.dragging = true;
             },
             dragStop() {
                 this.dragging = false;
+                this.clearCurrentObject();
             },
             appendDirectory() {
                 this.addToBookmarks(this.currentObject);

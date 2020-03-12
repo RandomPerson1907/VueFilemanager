@@ -95,6 +95,15 @@
                 </div>
             </template>
         </modal-component>
+        <modal-component
+                :active="modalAction === 'moveToFolder'"
+                @modal-close="fireCloseModal"
+                @modal-submit="fireMoveToFolder"
+        >
+            <template v-slot:header>
+                Move "{{ currentObject.name }}{{ currentObject.type ? `.${currentObject.type}` : '' }}" to {{ targetObject.name }}
+            </template>
+        </modal-component>
     </div>
 </template>
 
@@ -113,7 +122,7 @@
             }
         },
         computed: {
-            ...mapState(['modalAction', 'currentObject', 'sidebarVisible'])
+            ...mapState(['modalAction', 'currentObject', 'targetObject', 'sidebarVisible'])
         },
         mounted() {
             this.startLoading();
@@ -121,8 +130,8 @@
             console.log("File manager has been mounted");
         },
         methods: {
-            ...mapActions(['toggleSidebar', 'startLoading', 'stopLoading', 'sendToMail', 'createDirectory']),
-            ...mapMutations(['setModalAction', 'clearCurrentObject']),
+            ...mapActions(['toggleSidebar', 'startLoading', 'stopLoading', 'sendToMail', 'createDirectory', 'moveToFolder']),
+            ...mapMutations(['setModalAction', 'clearCurrentObject', 'clearTargetObject']),
             addNewDirectory() {
                 this.setModalAction('createDirectory');
             },
@@ -136,6 +145,10 @@
                 } else {
                     this.emailError = true;
                 }
+            },
+            fireMoveToFolder() {
+                this.moveToFolder();
+                this.fireCloseModal();
             },
             fireCreateDirectory() {
                 this.directoryNameError = false;
@@ -152,7 +165,10 @@
                 this.emailError = false;
                 this.directoryNameError = false;
                 this.setModalAction('');
-                setTimeout(() => this.clearCurrentObject(), 350);
+                setTimeout(() => {
+                    this.clearCurrentObject();
+                    this.clearTargetObject;
+                }, 350);
             }
         }
     };

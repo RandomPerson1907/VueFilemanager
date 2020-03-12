@@ -2,6 +2,8 @@
     <div
             class="file" :class="[type, view]"
             @contextmenu.prevent="$refs.menu.open"
+            draggable="true"
+            @drag="fileDragStart"
             @click="openFile"
     >
         <div class="file__context">
@@ -132,6 +134,11 @@
                 this.setCurrentObjectType(this.type);
                 this.setCurrentObjectIndex(this.index);
                 this.setModalAction('sendToMail');
+            },
+            fileDragStart() {
+                this.setCurrentObject(this.file);
+                this.setCurrentObjectType(this.type);
+                this.setCurrentObjectIndex(this.index);
             }
         }
     }

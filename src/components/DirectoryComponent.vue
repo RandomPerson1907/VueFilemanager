@@ -84,11 +84,14 @@
             }
         },
         computed: {
-            ...mapState(['checkingMode'])
+            ...mapState(['checkingMode', 'currentObject', 'targetObject'])
         },
         methods: {
             ...mapActions(['openAdditionalInfo']),
-            ...mapMutations(['setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction', 'addTab', 'setDraggedDirectory', 'addToBookmarks']),
+            ...mapMutations([
+                'setCurrentObject', 'setCurrentObjectIndex', 'setCurrentObjectType', 'setModalAction', 'addTab', 'setDraggedDirectory', 'addToBookmarks', 'clearCurrentObject',
+                'setTargetObject', 'setTargetObjectIndex', 'setTargetObjectType'
+            ]),
             ...mapActions(['pushInfo']),
             openDirectory() {
                 console.log('open directory')
@@ -110,18 +113,33 @@
             dragStart(event) {
                 event.stopPropagation();
                 this.dragging = true;
+                this.setTargetObject(this.directory);
+                this.setTargetObjectType(this.type);
+                this.setTargetObjectIndex(this.index);
             },
             dragStop() {
                 this.dragging = false;
             },
             addObject(e) {
+                if (this.currentObject) {
+                    this.moveObject();
+                } else {
+                    this.addNewObject();
+                }
+            },
+            moveObject() {
+                console.log('move ', this.currentObject.name);
+                this.setModalAction('moveToFolder');
+                this.dragStop();
+            },
+            addNewObject() {
                 let droppedFiles = e.dataTransfer.files;
                 if(!droppedFiles) return;
                 this.dragStop();
                 let message = '';
                 ([...droppedFiles]).forEach(f => {
                     message = f.name;
-                    let status = getRandomInt(3);
+                    let status = this.getRandomInt(3);
                     let statuses = [
                         'success',
                         'error',
@@ -129,10 +147,9 @@
                     ];
                     this.pushInfo({type: statuses[status], message: 'Files has been uploaded ' + message + ' to ' + this.directory.name});
                 });
-
-                function getRandomInt(max) {
-                    return Math.floor(Math.random() * Math.floor(max));
-                }
+            },
+            getRandomInt(max) {
+                return Math.floor(Math.random() * Math.floor(max));
             },
             sendToMail() {
                 this.setCurrentObject(this.directory);
