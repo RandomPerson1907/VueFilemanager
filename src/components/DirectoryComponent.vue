@@ -8,7 +8,7 @@
             @dragenter.prevent="dragStart"
             @dragover.prevent="dragStart"
             @dragleave.prevent="dragStop"
-            @drop.prevent="addFile"
+            @drop.prevent="addObject"
     >
         <div class="directory__context">
             <vue-context ref="menu">
@@ -114,7 +114,7 @@
             dragStop() {
                 this.dragging = false;
             },
-            addFile(e) {
+            addObject(e) {
                 let droppedFiles = e.dataTransfer.files;
                 if(!droppedFiles) return;
                 this.dragStop();

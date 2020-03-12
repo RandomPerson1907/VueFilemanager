@@ -1866,20 +1866,23 @@ export default new Vuex.Store({
         fetchAll({commit}) {
             console.log('fetch all')
         },
-        refresh({commit}) {
-            console.log('refreshed')
+        refresh({commit, dispatch}) {
+            console.log('refreshed');
+            dispatch('pushInfo', {type: 'success', message: `Refreshed`});
         },
         sendToMail({commit, getters, dispatch}, email) {
             console.log("Send " + getters["getCurrentObjectType"] + " \"" + getters["getCurrentObject"].name + "\" to email " + email);
             dispatch('pushInfo', {type: 'success', message: getters["getCurrentObject"].name + ' has been sended to email ' + email})
         },
-        createDirectory({commit, getters, dispatch}, name) {
+        createDirectory({commit, dispatch}, name) {
             console.log(`Created directory ${name}`);
             commit('addDirectory', name);
+            dispatch('pushInfo', {type: 'success', message: `Created directory ${name}`})
         },
-        changeStorage({commit}, storage) {
+        changeStorage({commit, dispatch}, storage) {
             console.log(`Changed storage to ${storage.name}`);
             commit('setCurrentStorage', storage);
+            dispatch('pushInfo', {type: 'success', message: `Changed storage to ${storage.name}`});
         }
     },
 });
