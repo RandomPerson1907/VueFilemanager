@@ -40,6 +40,7 @@
                 </div>
                 <div class="file-manager__content">
                     <tabs-component></tabs-component>
+                    <loading-bar-component></loading-bar-component>
                     <content-component></content-component>
                 </div>
             </div>
@@ -130,8 +131,8 @@
             console.log("File manager has been mounted");
         },
         methods: {
-            ...mapActions(['toggleSidebar', 'startLoading', 'stopLoading', 'sendToMail', 'createDirectory', 'moveToFolder']),
-            ...mapMutations(['setModalAction', 'clearCurrentObject', 'clearTargetObject']),
+            ...mapActions(['toggleSidebar', 'startLoading', 'stopLoading', 'sendToMail', 'createDirectory', 'moveToFolder', 'updateProgress']),
+            ...mapMutations(['setModalAction', 'clearCurrentObject', 'clearTargetObject', 'setProgressMaxValue']),
             addNewDirectory() {
                 this.setModalAction('createDirectory');
             },

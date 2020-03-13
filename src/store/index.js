@@ -10,6 +10,8 @@ export default new Vuex.Store({
         info: [],
         infoUpdated: 0,
         loading: false,
+        progressMaxValue: 1000,
+        progress: 0,
         sidebarVisible: true,
         additionalInfoSidebarVisible: false,
         modalAction: '',
@@ -1793,6 +1795,8 @@ export default new Vuex.Store({
         setImage: (state, image) => state.image = image,
         clearImage: state => state.image = false,
         setCurrentStorage: (state, storage) => state.currentStorage = storage,
+        setProgress: (state, progress) => state.progress = progress,
+        setProgressMaxValue: (state, progressMaxValue) => state.progressMaxValue = progressMaxValue,
     },
     getters: {
         getCheckingMode: state => state.checkingMode,
@@ -1811,6 +1815,7 @@ export default new Vuex.Store({
         getTargetObjectIndex: state => state.targetObjectIndex,
         isVisibleAdditionalInfo: state => state.currentObject && state.additionalInfoSidebarVisible,
         getTabs: state => state.tabs,
+        getProgressMaxValue: state => state.progressMaxValue
     },
     actions: {
         startChecking({commit}) {
@@ -1901,6 +1906,9 @@ export default new Vuex.Store({
         moveToFolder({commit, getters, dispatch}) {
             console.log(`Moved folder ${getters['getCurrentObject'].name} to ${getters['getTargetObject'].name}`);
             dispatch('pushInfo', {type: 'success', message: `Moved folder ${getters['getCurrentObject'].name}${ getters['getCurrentObject'].type ? '.' + getters['getCurrentObject'].type : '' } to ${getters['getTargetObject'].name}`});
+        },
+        updateProgress({commit, getters}, currentValue) {
+            commit('setProgress', currentValue * 100 / getters['getProgressMaxValue']);
         }
     },
 });
