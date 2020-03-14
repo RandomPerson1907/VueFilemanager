@@ -22,6 +22,47 @@ export default new Vuex.Store({
         targetObjectType: false,
         targetObjectIndex: false,
         image: false,
+        currentDirectory: {
+            id: 0,
+            name: "Root",
+            icon: require("../assets/icons/directory.svg"),
+            filesCount: "2 files",
+            size: "14.05mb",
+            share: false,
+            synchronization: false,
+            backup: false,
+            location: "/",
+            owner: "Elnora Reese",
+            opened: "July 8, 2019",
+            created: "July 1, 2019",
+            modified: "September 4 2019",
+            activities: [
+                {
+                    type: "add",
+                    title: "You added file",
+                    description: "You added an item today",
+                    date: "Today"
+                },
+                {
+                    type: "edit",
+                    title: "You added file",
+                    description: "You added an item today",
+                    date: "Today"
+                },
+                {
+                    type: "share",
+                    title: "You added file",
+                    description: "You added an item today",
+                    date: "Today"
+                },
+                {
+                    type: "delete",
+                    title: "You added file",
+                    description: "You added an item today",
+                    date: "Today"
+                },
+            ],
+        },
         tabs: [
             {
                 name: "First tab",
@@ -1897,6 +1938,10 @@ export default new Vuex.Store({
             console.log(`Created directory ${name}`);
             commit('addDirectory', name);
             dispatch('pushInfo', {type: 'success', message: `Created directory ${name}`})
+        },
+        addNewFile({commit, dispatch}, file) {
+            console.log(`Added new file ${file.name}`);
+            dispatch('pushInfo', {type: 'success', message: `Added new file ${file.name}`})
         },
         changeStorage({commit, dispatch}, storage) {
             console.log(`Changed storage to ${storage.name}`);

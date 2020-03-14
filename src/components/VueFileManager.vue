@@ -6,6 +6,7 @@
                 <div class="sidebar__primary-buttons">
                     <primary-button-component
                             title="Add file"
+                            @click="setModalAction('addNewFile')"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                              width="24" height="24"
@@ -14,7 +15,7 @@
                     </primary-button-component>
                     <primary-button-component
                             title="Add directory"
-                            @click="addNewDirectory">
+                            @click="setModalAction('createDirectory')">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                              width="24" height="24"
                              viewBox="0 0 172 172"
@@ -105,6 +106,7 @@
                 Move "{{ currentObject.name }}{{ currentObject.type ? `.${currentObject.type}` : '' }}" to {{ targetObject.name }}
             </template>
         </modal-component>
+        <add-new-file-modal-component></add-new-file-modal-component>
     </div>
 </template>
 
@@ -131,11 +133,8 @@
             console.log("File manager has been mounted");
         },
         methods: {
-            ...mapActions(['toggleSidebar', 'startLoading', 'stopLoading', 'sendToMail', 'createDirectory', 'moveToFolder', 'updateProgress']),
+            ...mapActions(['toggleSidebar', 'startLoading', 'stopLoading', 'sendToMail', 'createDirectory', 'moveToFolder', 'updateProgress', 'addNewFile']),
             ...mapMutations(['setModalAction', 'clearCurrentObject', 'clearTargetObject', 'setProgressMaxValue']),
-            addNewDirectory() {
-                this.setModalAction('createDirectory');
-            },
             fireSendToMail() {
                 this.emailError = false;
 

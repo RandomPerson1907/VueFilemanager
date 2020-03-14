@@ -18,6 +18,7 @@ import TabsComponent from "./components/TabsComponent";
 import CheckboxComponent from "./components/CheckboxComponent";
 import PreviewComponent from "./components/PreviewComponent";
 import LoadingBarComponent from "./components/LoadingBarComponent";
+import AddNewFileModalComponent from "./components/modals/AddNewFileModalComponent";
 import { VueContext } from "vue-context";
 
 import 'vue-context/src/sass/vue-context.scss';
@@ -41,6 +42,7 @@ const Components = {
   CheckboxComponent,
   PreviewComponent,
   LoadingBarComponent,
+  AddNewFileModalComponent,
   PreloaderComponent
 };
 
