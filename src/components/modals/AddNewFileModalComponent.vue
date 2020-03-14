@@ -9,84 +9,9 @@
         </template>
         <template v-slot:body>
             <div class="modal__section" v-if="!fileAdded">
-                <label class="modal__label">
-                    <span class="modal__text">Drag & Drop file or click to select</span>
-                    <input type="file" @change="addFile">
-                </label>
-            </div>
-            <div class="modal__section" v-else>
-                <label class="modal__label">
-                    <div class="modal__text">Name:</div>
-                    <span class="modal__input__wrapper">
-                        <input
-                                type="text"
-                                class="modal__input"
-                                :class="{error: errors.name}"
-                                placeholder="Input name of new file"
-                                v-model="newFile.name"
-                        >
-                    </span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Backup:</div>
-                    <span
-                        class="modal__input__wrapper"
-                        :class="{error: errors.backup}"
-                    >
-                        <checkbox-component
-                                v-model="newFile.backup"
-                        ></checkbox-component>
-                    </span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Share:</div>
-                    <span
-                            class="modal__input__wrapper"
-                            :class="{error: errors.share}"
-                    >
-                        <checkbox-component
-                                v-model="newFile.share"
-                        ></checkbox-component>
-                    </span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Syncronization:</div>
-                    <span
-                            class="modal__input__wrapper"
-                            :class="{error: errors.syncronization}"
-                    >
-                        <checkbox-component
-                                v-model="newFile.syncronization"
-                        ></checkbox-component>
-                    </span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Type:</div>
-                    <span class="modal__text">{{ newFile.type }}</span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Size:</div>
-                    <span class="modal__text">{{ newFile.size }}</span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Created:</div>
-                    <span class="modal__text">{{ newFile.created }}</span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Modified:</div>
-                    <span class="modal__text">{{ newFile.modified }}</span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Opened:</div>
-                    <span class="modal__text">{{ newFile.opened }}</span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Owner:</div>
-                    <span class="modal__text">{{ newFile.owner }}</span>
-                </label>
-                <label class="modal__label">
-                    <div class="modal__text">Location:</div>
-                    <span class="modal__text">{{ newFile.location }}</span>
+                <label class="modal__label modal__label_file">
+                    <span class="modal__text">Drag & Drop or click to select</span>
+                    <input class="modal__file" type="file" multiple @change="addFiles">
                 </label>
             </div>
         </template>
@@ -103,7 +28,19 @@
             return {
                 fileAdded: false,
                 newFile : {
-                    name: ''
+                    name: '',
+                    link: '',
+                    type: '',
+                    size: '',
+                    modified: '',
+                    share: false,
+                    synchronization: false,
+                    backup: false,
+                    location: '',
+                    owner: '',
+                    opened: '',
+                    created: '',
+                    activities: []
                 },
                 errors : {
 
@@ -116,22 +53,19 @@
         methods: {
             ...mapMutations(['setModalAction', 'clearCurrentObject', 'clearTargetObject', 'setProgressMaxValue']),
             ...mapActions(['updateProgress', 'addNewFile']),
-            addFile(event) {
-                let file = event.target.files;
-                file = this.validateFile(file);
+            async addFiles(event) {
+                let files = event.target.files;
 
-                if (!file)
-                    return;
-
-                this.fillFileInfo(file);
-            },
-            validateFile(file) {
-                if (file[0])
-                    return file[0];
-                else {
-                    this.errors.general = 'File has not been uploaded';
-                    return false;
+                for (const file of files) {
+                    this.fillFileInfo(file);
+                    await this.addNewFile(
+                        this.cloneNewFile()
+                    );
+                    this.clear();
                 }
+            },
+            cloneNewFile() {
+                return Object.assign({}, this.newFile)
             },
             getFileExtension(filename) {
                 return filename.split('.').pop()
@@ -143,8 +77,6 @@
                     .setFileSize(file.size)
                     .setFileModified(file.lastModified)
                     .setAdditionalDefaultInfo();
-
-                this.fileAdded = true;
             },
             setFileName(filename) {
                 this.newFile.name = filename;
@@ -183,6 +115,23 @@
                     }
                 ];
                 return this;
+            },
+            clear() {
+                this.newFile = Object.assign({}, {
+                    name: '',
+                    link: '',
+                    type: '',
+                    size: '',
+                    modified: '',
+                    share: false,
+                    synchronization: false,
+                    backup: false,
+                    location: '',
+                    owner: '',
+                    opened: '',
+                    created: '',
+                    activities: []
+                });
             },
             fireAddNewFile() {
                 this.addNewFile(newFile);

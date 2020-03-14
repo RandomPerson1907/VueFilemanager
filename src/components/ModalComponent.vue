@@ -71,7 +71,7 @@
         .modal {
             position: relative;
             bottom: -100%;
-            width: 500px;
+            width: 700px;
             height: auto;
             overflow-y: auto;
             border-radius: .5rem;
@@ -93,7 +93,6 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                flex-direction: column;
                 padding: 1rem;
 
                 .modal__errors {
@@ -109,11 +108,50 @@
                     flex-wrap: wrap;
                     width: 100%;
 
+                    &.half {
+                        width: 50%;
+                        margin-right: 1rem;
+                        padding-left: 1rem;
+                        padding-right: 1rem;
+                        border-right: 1px solid #DFE3E7;
+
+                        &:last-of-type {
+                            margin-right: 0;
+                            border-right: 0;
+                        }
+                    }
+
                     .modal__label {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
                         width: 100%;
+                        margin-bottom: 1rem;
+
+                        &.modal__label_file {
+                            .modal__text {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 100%;
+                                height: 200px;
+                                margin: 1rem;
+                                border: 2px dashed #5A8DEE;
+                                font-size: 1.5rem;
+                                font-style: italic;
+                                animation: pulse 2s ease-in-out infinite;
+                                cursor: pointer;
+                                transition: all .3s ease-in-out;
+                                
+                                &:hover {
+                                    box-shadow: 0 0 6px 0 rgba(90,141,238,.6);
+                                }
+                            }
+
+                            .modal__file {
+                                display: none;
+                            }
+                        }
 
                         .modal__text {
                             width: 50%;
@@ -201,6 +239,20 @@
             .modal__backdrop {
                 opacity: 1;
             }
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 8px 0 rgba(90, 141, 238, 0);
+        }
+
+        50% {
+            box-shadow: 0 0 8px 0 rgba(90, 141, 238, 0.8);
+        }
+
+        100% {
+            box-shadow: 0 0 8px 0 rgba(90, 141, 238, 0);
         }
     }
 </style>

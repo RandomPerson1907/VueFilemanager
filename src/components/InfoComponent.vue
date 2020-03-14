@@ -44,7 +44,8 @@
             setInfoData(type = false, message = false, duration = false) {
                 this.type = type;
                 this.message = message;
-                this.duration = duration;
+                if (duration)
+                    this.duration = duration;
             },
             clear() {
                 this.showed = false;
@@ -53,8 +54,9 @@
                 }, 350);
                 this.clearInfo();
             },
+            // Need to fix. Info component does not work correct with multiple messages
             showNextMessage() {
-                if (this.getFirstInfo) {
+                if (this.getFirstInfo()) {
                     setTimeout(() => {
                         const infoIndex = this.infoUpdated;
 
@@ -70,7 +72,7 @@
                                 this.showed = false;
                                 setTimeout(() => {
                                     this.setInfoData();
-                                }, 350);
+                                }, 3550);
                             }
 
                             if (this.info.length) {

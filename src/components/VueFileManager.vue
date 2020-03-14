@@ -63,13 +63,15 @@
                 <div class="modal__section">
                     <label class="modal__label">
                         <div class="modal__text">Email:</div>
-                        <input
-                                type="text"
-                                class="modal__input"
-                                :class="{error: emailError}"
-                                placeholder="Input email"
-                                v-model="email"
-                        >
+                        <span class="modal__input__wrapper">
+                            <input
+                                    type="text"
+                                    class="modal__input"
+                                    :class="{error: emailError}"
+                                    placeholder="Input email"
+                                    v-model="email"
+                            >
+                        </span>
                     </label>
                 </div>
             </template>
@@ -86,13 +88,15 @@
                 <div class="modal__section">
                     <label class="modal__label">
                         <div class="modal__text">Directory name:</div>
-                        <input
-                                type="text"
-                                class="modal__input"
-                                :class="{error: directoryNameError}"
-                                placeholder="Input name of new directory"
-                                v-model="directoryName"
-                        >
+                        <span class="modal__input__wrapper">
+                            <input
+                                    type="text"
+                                    class="modal__input"
+                                    :class="{error: directoryNameError}"
+                                    placeholder="Input name of new directory"
+                                    v-model="directoryName"
+                            >
+                        </span>
                     </label>
                 </div>
             </template>
