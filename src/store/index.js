@@ -1818,6 +1818,7 @@ export default new Vuex.Store({
                 ],
             })
         },
+        addFile: (state, file) => state.files.push(file),
         addTab: (state, tab) => {
             state.tabs.push(Object.assign({}, tab));
             state.currentTabIndex = state.tabs.length - 1;
@@ -1941,6 +1942,7 @@ export default new Vuex.Store({
         },
         addNewFile({commit, dispatch}, file) {
             console.log(`Added new file ${file.name}`);
+            commit('addFile', file);
             dispatch('pushInfo', {type: 'success', message: `Added new file ${file.name}`})
         },
         changeStorage({commit, dispatch}, storage) {

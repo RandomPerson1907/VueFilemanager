@@ -23,64 +23,74 @@
             return {
                 showed: false,
                 type: false,
+                runnedQueue: false,
                 message: 'File has been updated',
-                duration: 5000,
+                infoQueue: [],
             }
         },
         computed: {
             ...mapState(['info', 'infoUpdated'])
         },
         watch: {
-            infoUpdated() {
-                if (this.showed) {
-                    this.showed = false;
+            info() {
+                let info = this.info[0];
+                if (info) {
+                    this.infoQueue.push({
+                        type: info.type,
+                        message: info.message,
+                        duration: info.duration || 3000
+                    });
+                    this.clearInfo();
+
+                    if (!this.runnedQueue)
+                        this.runQueue();
                 }
-                this.showNextMessage();
             }
         },
         methods: {
             ...mapMutations(['setInfoMessage', 'removeFirstInfo', 'clearInfo']),
             ...mapGetters(['getFirstInfo']),
-            setInfoData(type = false, message = false, duration = false) {
-                this.type = type;
-                this.message = message;
-                if (duration)
-                    this.duration = duration;
+            runQueue() {
+                this.runnedQueue = true;
+
+                let info = this.infoQueue[0] || false;
+                if (info) {
+                    this.showed = true;
+                    this.setInfoData(
+                        info.type,
+                        info.message,
+                        info.duration,
+                    );
+                    setTimeout(() => {
+                        this.$delete(this.infoQueue, 0);
+                        if (this.infoQueue.length) {
+                            this.showed = false;
+                            setTimeout(() => {
+                                this.runQueue();
+                            }, 350);
+                        } else {
+                            this.runnedQueue = false;
+                            this.showed = false;
+                        }
+                    }, info.duration);
+                } else {
+                    this.runnedQueue = false;
+                    this.showed = false;
+                }
+            },
+            setInfoData(type = false, message = false) {
+               this.type = type;
+               this.message = message;
             },
             clear() {
                 this.showed = false;
                 setTimeout(() => {
-                    this.setInfoData();
+                    this.clearQueue();
                 }, 350);
                 this.clearInfo();
             },
-            // Need to fix. Info component does not work correct with multiple messages
-            showNextMessage() {
-                if (this.getFirstInfo()) {
-                    setTimeout(() => {
-                        const infoIndex = this.infoUpdated;
-
-                        this.setInfoData(
-                            this.getFirstInfo().type || false,
-                            this.getFirstInfo().message || false,
-                            this.getFirstInfo().duration || false
-                        );
-                        this.removeFirstInfo();
-                        this.showed = true;
-                        setTimeout(() => {
-                            if (infoIndex === this.infoUpdated) {
-                                this.showed = false;
-                                setTimeout(() => {
-                                    this.setInfoData();
-                                }, 3550);
-                            }
-
-                            if (this.info.length) {
-                                this.showNextMessage();
-                            }
-                        }, parseInt(this.duration));
-                    }, 350);
-                }
+            clearQueue() {
+                this.infoQueue = [];
             }
         }
     }

@@ -2,17 +2,20 @@
     <modal-component
             :active="modalAction === 'addNewFile'"
             @modal-close="fireCloseModal"
-            @modal-submit="fireAddNewFile"
+            @modal-submit="uploadFiles"
     >
         <template v-slot:header>
             Upload new file
         </template>
         <template v-slot:body>
-            <div class="modal__section" v-if="!fileAdded">
+            <div class="modal__section" v-if="!files.length">
                 <label class="modal__label modal__label_file">
                     <span class="modal__text">Drag & Drop or click to select</span>
                     <input class="modal__file" type="file" multiple @change="addFiles">
                 </label>
+            </div>
+            <div class="modal__section" v-if="files.length">
+
             </div>
         </template>
     </modal-component>
@@ -26,25 +29,8 @@
         name: "AddNewFileModalComponent",
         data() {
             return {
-                fileAdded: false,
-                newFile : {
-                    name: '',
-                    link: '',
-                    type: '',
-                    size: '',
-                    modified: '',
-                    share: false,
-                    synchronization: false,
-                    backup: false,
-                    location: '',
-                    owner: '',
-                    opened: '',
-                    created: '',
-                    activities: []
-                },
-                errors : {
-
-                }
+                files: [],
+                newFile: {},
             }
         },
         computed: {
@@ -53,19 +39,19 @@
         methods: {
             ...mapMutations(['setModalAction', 'clearCurrentObject', 'clearTargetObject', 'setProgressMaxValue']),
             ...mapActions(['updateProgress', 'addNewFile']),
-            async addFiles(event) {
-                let files = event.target.files;
-
-                for (const file of files) {
+            addFiles(event) {
+                for (const file of event.target.files) {
                     this.fillFileInfo(file);
-                    await this.addNewFile(
-                        this.cloneNewFile()
-                    );
-                    this.clear();
+                    this.files.push(Object.assign({}, this.newFile));
+                    this.newFile = {};
                 }
             },
-            cloneNewFile() {
-                return Object.assign({}, this.newFile)
+            async uploadFiles() {
+                for (const file of this.files) {
+                    await this.addNewFile(file);
+                }
+                this.fireCloseModal();
+                this.files = [];
             },
             getFileExtension(filename) {
                 return filename.split('.').pop()
@@ -116,33 +102,8 @@
                 ];
                 return this;
             },
-            clear() {
-                this.newFile = Object.assign({}, {
-                    name: '',
-                    link: '',
-                    type: '',
-                    size: '',
-                    modified: '',
-                    share: false,
-                    synchronization: false,
-                    backup: false,
-                    location: '',
-                    owner: '',
-                    opened: '',
-                    created: '',
-                    activities: []
-                });
-            },
-            fireAddNewFile() {
-                this.addNewFile(newFile);
-                this.fireCloseModal();
-            },
             fireCloseModal() {
                 this.setModalAction('');
-                setTimeout(() => {
-                    this.clearCurrentObject();
-                    this.clearTargetObject;
-                }, 350);
             },
             humanFileSize(bytes, si = true) {
                 var thresh = si ? 1000 : 1024;
