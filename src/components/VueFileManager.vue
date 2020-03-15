@@ -300,6 +300,7 @@
                 .file-manager__content {
                     position: relative;
                     height: calc(100% - 3.5rem);
+                    padding-bottom: 3.5rem;
                     overflow: hidden;
                 }
             }

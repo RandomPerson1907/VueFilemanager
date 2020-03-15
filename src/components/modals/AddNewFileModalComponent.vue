@@ -9,7 +9,13 @@
         </template>
         <template v-slot:body>
             <div class="modal__section" v-if="!files.length">
-                <label class="modal__label modal__label_file">
+                <label
+                    class="modal__label modal__label_file"
+                    @dragenter.prevent
+                    @dragover.prevent
+                    @dragleave.prevent
+                    @drop.prevent="addFilesFromDrag"
+                >
                     <span class="modal__text">Drag & Drop or click to select</span>
                     <input class="modal__file" type="file" multiple @change="addFiles">
                 </label>
@@ -23,7 +29,7 @@
                     class="modal__label"
                     v-for="file in files"
                 >
-                    <div class="modal__text">{{ file.name }}</div>
+                    <div class="modal__text">{{ file.name }}{{ fileType(file.type) }}</div>
                     <div class="modal__text">{{ file.size }}</div>
                 </div>
             </div>
@@ -44,17 +50,30 @@
             }
         },
         computed: {
-            ...mapState(['modalAction', 'currentDirectory'])
+            ...mapState(['modalAction', 'currentDirectory']),
         },
         methods: {
             ...mapMutations(['setModalAction', 'clearCurrentObject', 'clearTargetObject', 'setProgressMaxValue']),
             ...mapActions(['updateProgress', 'addNewFile']),
+            fileType(type) {
+                return type ? `.${type}` : "";
+            },
+            addFilesFromDrag(event) {
+                let droppedFiles = event.dataTransfer.files;
+                if(!droppedFiles) return;
+                ([...droppedFiles]).forEach(file => {
+                    this.addFile(file);
+                });
+            },
             addFiles(event) {
                 for (const file of event.target.files) {
-                    this.fillFileInfo(file);
-                    this.files.push(Object.assign({}, this.newFile));
-                    this.newFile = {};
+                    this.addFile(file)
                 }
+            },
+            addFile(file) {
+                this.fillFileInfo(file);
+                this.files.push(Object.assign({}, this.newFile));
+                this.newFile = {};
             },
             async uploadFiles() {
                 for (const file of this.files) {
@@ -65,8 +84,13 @@
             getFileExtension(filename) {
                 return filename.split('.').pop()
             },
+            getFileName(filename) {
+                let fileNameArray = filename.split('.');
+                fileNameArray.pop();
+                return fileNameArray.join();
+            },
             fillFileInfo(file) {
-                this.setFileName(file.name)
+                this.setFileName(this.getFileName(file.name))
                     .setFileLink("#")
                     .setFileType(this.getFileExtension(file.name))
                     .setFileSize(file.size)
