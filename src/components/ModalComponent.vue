@@ -2,7 +2,7 @@
     <div class="modal__window" :class="{active : isActive}" @keyup.prevent.enter="submitModal">
         <div class="modal__backdrop" @click="closeModal"></div>
         <div class="modal">
-            <div class="modal__header">
+            <div class="modal__title">
                 <slot name="header"></slot>
             </div>
             <div class="modal__body">
@@ -80,7 +80,7 @@
             transition: all .3s ease-in-out;
             z-index: 10;
 
-            .modal__header {
+            .modal__title {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -103,7 +103,7 @@
 
                 .modal__section {
                     display: flex;
-                    justify-content: space-around;
+                    justify-content: center;
                     align-items: center;
                     flex-wrap: wrap;
                     width: 100%;
@@ -118,6 +118,20 @@
                         &:last-of-type {
                             margin-right: 0;
                             border-right: 0;
+                        }
+                    }
+
+                    .modal__header {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        margin-bottom: 1rem;
+
+                        .modal__header__item {
+                            width: 50%;
+                            display: flex;
+                            justify-content: center;
+                            font-size: 1.2rem;
                         }
                     }
 
@@ -155,6 +169,8 @@
 
                         .modal__text {
                             width: 50%;
+                            display: flex;
+                            justify-content: center;
                         }
 
                         .modal__input {

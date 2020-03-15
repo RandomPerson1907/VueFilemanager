@@ -15,7 +15,17 @@
                 </label>
             </div>
             <div class="modal__section" v-if="files.length">
-
+                <div class="modal__header">
+                    <div class="modal__header__item">File name</div>
+                    <div class="modal__header__item">File size</div>
+                </div>
+                <div
+                    class="modal__label"
+                    v-for="file in files"
+                >
+                    <div class="modal__text">{{ file.name }}</div>
+                    <div class="modal__text">{{ file.size }}</div>
+                </div>
             </div>
         </template>
     </modal-component>
@@ -51,7 +61,6 @@
                     await this.addNewFile(file);
                 }
                 this.fireCloseModal();
-                this.files = [];
             },
             getFileExtension(filename) {
                 return filename.split('.').pop()
@@ -103,6 +112,9 @@
                 return this;
             },
             fireCloseModal() {
+                setTimeout(() => {
+                    this.files = [];
+                }, 350);
                 this.setModalAction('');
             },
             humanFileSize(bytes, si = true) {
