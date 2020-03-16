@@ -21,6 +21,7 @@ import LoadingBarComponent from "./components/LoadingBarComponent";
 import AddNewFileModalComponent from "./components/modals/AddNewFileModalComponent";
 import BigCheckboxComponent from "./components/BigCheckboxComponent";
 import ChangeAccessRightsComponent from "./components/ChangeAccessRightsComponent";
+import BackgroundsSidebarComponent from "./components/BackgroundsSidebarComponent";
 import { VueContext } from "vue-context";
 
 import 'vue-context/src/sass/vue-context.scss';
@@ -47,6 +48,7 @@ const Components = {
   AddNewFileModalComponent,
   ChangeAccessRightsComponent,
   BigCheckboxComponent,
+  BackgroundsSidebarComponent,
   PreloaderComponent
 };
 

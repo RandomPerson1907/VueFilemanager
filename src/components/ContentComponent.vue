@@ -4,6 +4,7 @@
         :class="[view]"
         @contextmenu.prevent="$refs.menu.open"
     >
+        <div class="content__background"></div>
         <div class="content__context">
             <vue-context ref="menu">
                 <li>
@@ -12,48 +13,50 @@
             </vue-context>
         </div>
 
-        <h2 class="content__title">All Files</h2>
-        <div class="section section_with-recently-accessed">
-            <h3 class="section__header">Recently accessed files</h3>
-            <div class="section__files">
-                <file-component
-                        v-for="(file, index) in recentlyAccessedFiles"
-                        :file="file"
-                        type="recentlyAccessedFiles"
-                        :index="index"
-                ></file-component>
+        <div class="content__content">
+            <h2 class="content__title">All Files</h2>
+            <div class="section section_with-recently-accessed">
+                <h3 class="section__header">Recently accessed files</h3>
+                <div class="section__files">
+                    <file-component
+                            v-for="(file, index) in recentlyAccessedFiles"
+                            :file="file"
+                            type="recentlyAccessedFiles"
+                            :index="index"
+                    ></file-component>
+                </div>
             </div>
-        </div>
-        <div class="section section_with-directories">
-            <h3 class="section__header">Folders</h3>
-            <div class="section__files">
-                <directory-component
-                        v-for="(directory, index) in directories"
-                        :directory="directory"
-                        type="directories"
-                        :index="index"
-                ></directory-component>
+            <div class="section section_with-directories">
+                <h3 class="section__header">Folders</h3>
+                <div class="section__files">
+                    <directory-component
+                            v-for="(directory, index) in directories"
+                            :directory="directory"
+                            type="directories"
+                            :index="index"
+                    ></directory-component>
+                </div>
             </div>
-        </div>
-        <div
-                class="section section_with-files"
-                :class="{dragging}"
-                @dragenter.prevent="dragStart"
-                @dragover.prevent="dragStart"
-                @dragleave.prevent="dragStop"
-                @drop.prevent="addFile"
-        >
-            <h3 class="section__header">Files</h3>
-            <div class="section__files">
-                <file-component
-                        v-for="(file, index) in files"
-                        :file="file"
-                        type="files"
-                        :index="index"
-                ></file-component>
-            </div>
-            <div class="section__upload-icon">
-                Uploading
+            <div
+                    class="section section_with-files"
+                    :class="{dragging}"
+                    @dragenter.prevent="dragStart"
+                    @dragover.prevent="dragStart"
+                    @dragleave.prevent="dragStop"
+                    @drop.prevent="addFile"
+            >
+                <h3 class="section__header">Files</h3>
+                <div class="section__files">
+                    <file-component
+                            v-for="(file, index) in files"
+                            :file="file"
+                            type="files"
+                            :index="index"
+                    ></file-component>
+                </div>
+                <div class="section__upload-icon">
+                    Uploading
+                </div>
             </div>
         </div>
     </div>
@@ -70,7 +73,7 @@
             }
         },
         computed: {
-            ...mapState(["view", "directories", "files", "recentlyAccessedFiles", "currentObjectType"])
+            ...mapState(["view", "directories", "files", "recentlyAccessedFiles", "currentObjectType", 'selectedBackground'])
         },
         methods: {
             ...mapMutations(['setModalAction']),
@@ -118,12 +121,27 @@
         height: 100%;
         width: 100%;
         padding: 0 1.5rem;
+        background-size: cover;
         overflow-x: hidden;
         overflow-y: auto;
         transition: all .3s ease-in-out;
 
         * {
             transition: all .3s ease-in-out;
+        }
+
+        .content__background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .content__content {
+            /*background-color: rgba(0,0,0,.3);*/
         }
 
         .content__context {

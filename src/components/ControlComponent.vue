@@ -6,6 +6,12 @@
 				 viewBox="0 0 172 172"
 				 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#596778"><path d="M86,21.5c-27.48389,0 -50.43261,16.98584 -59.79687,40.98438l9.91016,4.03125c7.83154,-20.07227 26.83301,-34.26562 49.88672,-34.26562c17.42676,0 32.96387,8.54541 42.66406,21.5h-21.16406v10.75h37.625v-37.625h-10.75v16.62891c-11.77881,-13.50049 -29.18457,-22.00391 -48.375,-22.00391zM135.88672,105.48438c-7.83154,20.07227 -26.83301,34.26563 -49.88672,34.26563c-17.61572,0 -33.08984,-8.67139 -42.83203,-21.5h21.33203v-10.75h-37.625v37.625h10.75v-16.62891c11.75781,13.33252 28.9956,22.00391 48.375,22.00391c27.48389,0 50.43262,-16.98584 59.79688,-40.98437z"></path></g></g></svg>
 		</div>
+		<div class="control__item control__item_change-background" @click="showBackgroundsSidebar">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+				 width="24" height="24"
+				 viewBox="0 0 172 172"
+				 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#475f7b"><path d="M0,17.2v137.6h172v-137.6zM6.88,24.08h158.24v89.44h-36.73812l-24.08,-17.2h-20.3175l-14.05563,-14.05562l-16.74312,3.35937l-14.80813,-22.22562l-31.4975,31.4975zM129,44.72c-8.50594,0 -15.48,6.97406 -15.48,15.48c0,8.50594 6.97406,15.48 15.48,15.48c8.50594,0 15.48,-6.97406 15.48,-15.48c0,-8.50594 -6.97406,-15.48 -15.48,-15.48zM129,51.6c4.78375,0 8.6,3.81625 8.6,8.6c0,4.78375 -3.81625,8.6 -8.6,8.6c-4.78375,0 -8.6,-3.81625 -8.6,-8.6c0,-4.78375 3.81625,-8.6 8.6,-8.6zM37.3025,74.20188l12.71188,19.05437l17.65687,-3.52062l13.46438,13.46437h20.9625l24.08,17.2h38.94187v27.52h-158.24v-43.29562z"></path></g></g></svg>
+		</div>
 		<div class="control__item control__item_check" @click="toggleChecking">
 			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 				 width="50" height="50"
@@ -71,7 +77,7 @@
 		},
 		methods: {
         	...mapMutations(['setView']),
-        	...mapActions(['refresh', 'toggleChecking', 'changeStorage'])
+        	...mapActions(['refresh', 'toggleChecking', 'changeStorage', 'showBackgroundsSidebar'])
 		}
     }
 </script>

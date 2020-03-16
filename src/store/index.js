@@ -14,6 +14,7 @@ export default new Vuex.Store({
         progress: 0,
         sidebarVisible: true,
         additionalInfoSidebarVisible: false,
+        backgroundsSidebarVisible: false,
         modalAction: '',
         currentObject: {},
         currentObjectType: false,
@@ -1756,6 +1757,34 @@ export default new Vuex.Store({
                 icon: require("../assets/icons/storages/yandex-disc.svg")
             },
         ],
+        backgrounds: [
+            {
+                id: 0,
+                name: 'First',
+                url: require('../assets/backgrounds/background.jpg')
+            },
+            {
+                id: 1,
+                name: 'First',
+                url: require('../assets/backgrounds/background-2.jpg')
+            },
+            {
+                id: 2,
+                name: 'First',
+                url: require('../assets/backgrounds/background-3.jpg')
+            },
+            {
+                id: 3,
+                name: 'First',
+                url: require('../assets/backgrounds/background-4.jpg')
+            },
+            {
+                id: 4,
+                name: 'First',
+                url: require('../assets/backgrounds/background-5.jpg')
+            },
+        ],
+        selectedBackground: {},
         currentStorage: false,
         bookmarks: []
     },
@@ -1778,6 +1807,7 @@ export default new Vuex.Store({
         clearInfo: state => state.info = [],
         setInfoUpdated: (state) => state.infoUpdated++,
         setAdditionalInfoSidebarVisible: (state, status) => state.additionalInfoSidebarVisible = status,
+        setBackgroundsSidebarVisible: (state, status) => state.backgroundsSidebarVisible = status,
         setLoading: (state, status) => state.loading = status,
         setCurrentObject: (state, object) => state.currentObject =  Object.assign({}, object),
         setCurrentObjectType: (state, type) => state.currentObjectType = type,
@@ -1840,6 +1870,7 @@ export default new Vuex.Store({
         setCurrentStorage: (state, storage) => state.currentStorage = storage,
         setProgress: (state, progress) => state.progress = progress,
         setProgressMaxValue: (state, progressMaxValue) => state.progressMaxValue = progressMaxValue,
+        setCurrentBackground: (state, selectedBackground) => state.selectedBackground = selectedBackground,
     },
     getters: {
         getCheckingMode: state => state.checkingMode,
@@ -1894,6 +1925,12 @@ export default new Vuex.Store({
             setTimeout(() => {
                 commit("setCurrentObject", {});
             }, 700);
+        },
+        showBackgroundsSidebar({commit}) {
+            commit('setBackgroundsSidebarVisible', true);
+        },
+        hideBackgroundsSidebar({commit}) {
+            commit('setBackgroundsSidebarVisible', false);
         },
         showAdditionalInfoSidebar({commit}) {
             commit('setAdditionalInfoSidebarVisible', true)
@@ -1963,6 +2000,11 @@ export default new Vuex.Store({
             commit('setObjectByIndexAndType', {object: getters['getCurrentObject'], index: getters['getCurrentObjectIndex'], type : getters['getCurrentObjectType']});
             console.log(accessRights);
             dispatch('pushInfo', {type: 'success', message: `Changed access rights to ${accessRights} for ${getters['getCurrentObject'].name}${ getters['getCurrentObject'].type ? '.' + getters['getCurrentObject'].type : '' }`});
+        },
+        changeBackground({commit, dispatch}, background) {
+            commit('setCurrentBackground', Object.assign({}, background));
+            console.log(`Background has been changed to ${background.name}`);
+            dispatch('pushInfo', {type: 'success', message: `Background has been changed to ${background.name}`});
         }
     },
 });

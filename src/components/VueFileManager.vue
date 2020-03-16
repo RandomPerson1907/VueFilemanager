@@ -47,6 +47,7 @@
             </div>
             <div class="file-manager__additional">
                 <additional-info-component></additional-info-component>
+                <backgrounds-sidebar-component></backgrounds-sidebar-component>
             </div>
         </div>
         <info-component></info-component>
