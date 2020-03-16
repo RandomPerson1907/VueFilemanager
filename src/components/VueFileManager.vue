@@ -111,6 +111,7 @@
             </template>
         </modal-component>
         <add-new-file-modal-component></add-new-file-modal-component>
+        <change-access-rights-component></change-access-rights-component>
     </div>
 </template>
 
@@ -125,7 +126,7 @@
                 email : '',
                 emailError: false,
                 directoryName: '',
-                directoryNameError: false
+                directoryNameError: false,
             }
         },
         computed: {
@@ -165,13 +166,25 @@
                     this.directoryNameError = true;
                 }
             },
+            fireChangeAccessRights() {
+                this.acessRightsError = false;
+
+                if (this.accessRights.trim().length) {
+                    this.changeAccessRights(this.accessRights);
+                    this.accessRights = '';
+                    this.fireCloseModal();
+                } else {
+                    this.acessRightsError = true;
+                }
+            },
             fireCloseModal() {
                 this.emailError = false;
                 this.directoryNameError = false;
+                this.acessRightsError = false;
                 this.setModalAction('');
                 setTimeout(() => {
                     this.clearCurrentObject();
-                    this.clearTargetObject;
+                    this.clearTargetObject();
                 }, 350);
             }
         }

@@ -27,6 +27,9 @@
                     <a href="#" @click.prevent="unzipFile">Unzip</a>
                 </li>
                 <li>
+                    <a href="#" @click.prevent="changeAccessRights">Change rights</a>
+                </li>
+                <li>
                     <a href="#" @click.prevent="addToFavorite">Add to favorite</a>
                 </li>
                 <li>
@@ -134,6 +137,12 @@
                 this.setCurrentObjectType(this.type);
                 this.setCurrentObjectIndex(this.index);
                 this.setModalAction('sendToMail');
+            },
+            changeAccessRights() {
+                this.setCurrentObject(this.file);
+                this.setCurrentObjectType(this.type);
+                this.setCurrentObjectIndex(this.index);
+                this.setModalAction('changeAccessRights');
             },
             fileDragStart() {
                 this.setCurrentObject(this.file);

@@ -31,6 +31,9 @@
                     <a href="#" @click.prevent="archiveDirectory">Archive</a>
                 </li>
                 <li>
+                    <a href="#" @click.prevent="changeAccessRights">Change rights</a>
+                </li>
+                <li>
                     <a href="#" @click.prevent="addToBookmarks(directory)">Add to bookmarks</a>
                 </li>
                 <li>
@@ -156,6 +159,12 @@
                 this.setCurrentObjectType(this.type);
                 this.setCurrentObjectIndex(this.index);
                 this.setModalAction('sendToMail');
+            },
+            changeAccessRights() {
+                this.setCurrentObject(this.directory);
+                this.setCurrentObjectType(this.type);
+                this.setCurrentObjectIndex(this.index);
+                this.setModalAction('changeAccessRights');
             },
             directoryDragStart() {
                 this.setCurrentObject(this.directory);

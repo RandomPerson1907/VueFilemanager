@@ -79,6 +79,7 @@ export default new Vuex.Store({
             {
                 id: 0,
                 name: "Project",
+                accessRights: '0777',
                 icon: require("../assets/icons/directory.svg"),
                 filesCount: "2 files",
                 size: "14.05mb",
@@ -1956,6 +1957,12 @@ export default new Vuex.Store({
         },
         updateProgress({commit, getters}, currentValue) {
             commit('setProgress', currentValue * 100 / getters['getProgressMaxValue']);
+        },
+        changeAccessRights({commit, getters, dispatch}, accessRights) {
+            getters['getCurrentObject'].accessRights = accessRights;
+            commit('setObjectByIndexAndType', {object: getters['getCurrentObject'], index: getters['getCurrentObjectIndex'], type : getters['getCurrentObjectType']});
+            console.log(accessRights);
+            dispatch('pushInfo', {type: 'success', message: `Changed access rights to ${accessRights} for ${getters['getCurrentObject'].name}${ getters['getCurrentObject'].type ? '.' + getters['getCurrentObject'].type : '' }`});
         }
     },
 });
