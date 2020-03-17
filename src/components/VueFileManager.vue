@@ -112,7 +112,8 @@
             </template>
         </modal-component>
         <add-new-file-modal-component></add-new-file-modal-component>
-        <change-access-rights-component></change-access-rights-component>
+        <change-access-rights-modal-component></change-access-rights-modal-component>
+        <move-to-other-storage-modal-component></move-to-other-storage-modal-component>
     </div>
 </template>
 

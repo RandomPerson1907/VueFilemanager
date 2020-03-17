@@ -1889,7 +1889,8 @@ export default new Vuex.Store({
         getTargetObjectIndex: state => state.targetObjectIndex,
         isVisibleAdditionalInfo: state => state.currentObject && state.additionalInfoSidebarVisible,
         getTabs: state => state.tabs,
-        getProgressMaxValue: state => state.progressMaxValue
+        getProgressMaxValue: state => state.progressMaxValue,
+        getStorages: state => state.storages,
     },
     actions: {
         startChecking({commit}) {
@@ -2005,6 +2006,13 @@ export default new Vuex.Store({
             commit('setCurrentBackground', Object.assign({}, background));
             console.log(`Background has been changed to ${background.name}`);
             dispatch('pushInfo', {type: 'success', message: `Background has been changed to ${background.name}`});
+        },
+        moveToOtherStorage({commit, getters, dispatch}, storageId) {
+            let storage = getters['getStorages'].find((storage) => {
+                return storage.id === storageId ? storage : false;
+            });
+            console.log(storage, storageId);
+            dispatch('pushInfo', {type: 'success', message: `${getters['getCurrentObject'].name} has been moved to ${storage.name}`});
         }
     },
 });
