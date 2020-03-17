@@ -371,7 +371,7 @@ export default new Vuex.Store({
             {
                 name: "Image",
                 isImage: true,
-                link: "#",
+                link: require('../assets/backgrounds/background.jpg'),
                 filesCount: 2,
                 type: "avi",
                 size: "15mb",

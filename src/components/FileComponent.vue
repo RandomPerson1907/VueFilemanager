@@ -1,6 +1,7 @@
 <template>
     <div
-            class="file" :class="[type, view]"
+            class="file"
+            :class="[type, view, { 'image' : file.isImage }]"
             @contextmenu.prevent="$refs.menu.open"
             draggable="true"
             @drag="fileDragStart"
@@ -205,6 +206,19 @@
             img {
                 width: 30px;
                 max-height: 38px;
+            }
+        }
+
+        &.image {
+            border-radius: .25rem;
+            overflow: hidden;
+
+            .file__preview {
+                img {
+                    width: 100%;
+                    max-height: 100%;
+                    object-fit: cover;
+                }
             }
         }
 
