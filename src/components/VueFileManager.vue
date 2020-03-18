@@ -114,6 +114,7 @@
         <add-new-file-modal-component></add-new-file-modal-component>
         <change-access-rights-component></change-access-rights-component>
         <queue-component></queue-component>
+        <move-to-other-storage-modal-component></move-to-other-storage-modal-component>
     </div>
 </template>
 

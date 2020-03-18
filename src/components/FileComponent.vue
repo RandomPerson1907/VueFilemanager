@@ -1,6 +1,7 @@
 <template>
     <div
-            class="file" :class="[type, view]"
+            class="file"
+            :class="[type, view, { 'image' : file.isImage }]"
             @contextmenu.prevent="$refs.menu.open"
             draggable="true"
             @drag="fileDragStart"
@@ -28,6 +29,9 @@
                 </li>
                 <li>
                     <a href="#" @click.prevent="changeAccessRights">Change rights</a>
+                </li>
+                <li>
+                    <a href="#" @click.prevent="moveToOtherStorage">Move to other storage</a>
                 </li>
                 <li>
                     <a href="#" @click.prevent="addToFavorite">Add to favorite</a>
@@ -144,6 +148,12 @@
                 this.setCurrentObjectIndex(this.index);
                 this.setModalAction('changeAccessRights');
             },
+            moveToOtherStorage() {
+                this.setCurrentObject(this.file);
+                this.setCurrentObjectType(this.type);
+                this.setCurrentObjectIndex(this.index);
+                this.setModalAction('moveToOtherStorage');
+            },
             fileDragStart() {
                 this.setCurrentObject(this.file);
                 this.setCurrentObjectType(this.type);
@@ -196,6 +206,19 @@
             img {
                 width: 30px;
                 max-height: 38px;
+            }
+        }
+
+        &.image {
+            border-radius: .25rem;
+            overflow: hidden;
+
+            .file__preview {
+                img {
+                    width: 100%;
+                    max-height: 100%;
+                    object-fit: cover;
+                }
             }
         }
 

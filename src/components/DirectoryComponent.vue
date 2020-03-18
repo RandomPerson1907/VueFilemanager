@@ -34,6 +34,9 @@
                     <a href="#" @click.prevent="changeAccessRights">Change rights</a>
                 </li>
                 <li>
+                    <a href="#" @click.prevent="moveToOtherStorage">Move to other storage</a>
+                </li>
+                <li>
                     <a href="#" @click.prevent="addToBookmarks(directory)">Add to bookmarks</a>
                 </li>
                 <li>
@@ -134,6 +137,12 @@
                 console.log('move ', this.currentObject.name);
                 this.setModalAction('moveToFolder');
                 this.dragStop();
+            },
+            moveToOtherStorage() {
+                this.setCurrentObject(this.directory);
+                this.setCurrentObjectType(this.type);
+                this.setCurrentObjectIndex(this.index);
+                this.setModalAction('moveToOtherStorage');
             },
             addNewObject() {
                 let droppedFiles = e.dataTransfer.files;

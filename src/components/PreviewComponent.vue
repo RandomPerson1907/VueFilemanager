@@ -1,5 +1,5 @@
 <template>
-    <div class="modal__window" :class="{active : image !== false}" v-if="image !== false">
+    <div class="modal__window" :class="{active : image !== false}">
         <div class="modal__backdrop" @click="clearImage"></div>
         <div class="modal">
             <div class="modal__header">
@@ -55,9 +55,8 @@
         .modal {
             position: relative;
             bottom: -100%;
-            min-width: 500px;
-            max-width: 100%;
-            height: auto;
+            width: 80%;
+            height: 80%;
             border-radius: .5rem;
             box-shadow: -8px 0 18px 0 rgba(25,42,70,.13);
             background: #fff;
@@ -74,42 +73,19 @@
             }
 
             .modal__body {
+                box-sizing: border-box;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                width: 100%;
+                height: 92%;
                 padding: 1rem;
 
-                .modal__errors {
-                    .modal__error {
-                        color: rgba(217, 34, 34, 0.8);
-                    }
-                }
-
-                .modal__section {
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;
+                img {
                     width: 100%;
-
-                    .modal__label {
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: center;
-                        width: 100%;
-                    }
-
-                    .modal__input {
-                        margin-top: 1rem;
-                        margin-bottom: 1rem;
-                        border: none;
-                        border-bottom: 1px solid #DFE3E7;
-                        transition: all .3s ease-in-out;
-
-                        &.error {
-                            border-bottom: 1px solid rgba(217, 34, 34, 0.6);
-                        }
-                    }
+                    height: auto;
+                    max-height: 100%;
                 }
             }
 
