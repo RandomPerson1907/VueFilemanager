@@ -1786,7 +1786,15 @@ export default new Vuex.Store({
         ],
         selectedBackground: {},
         currentStorage: false,
-        bookmarks: []
+        bookmarks: [],
+        queue: [
+            {
+                name: 'Downloading file'
+            },
+            {
+                name: 'Deleting files'
+            },
+        ]
     },
     mutations: {
         setView: (state, view) => state.view = view,
