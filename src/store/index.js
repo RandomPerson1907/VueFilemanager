@@ -1794,6 +1794,18 @@ export default new Vuex.Store({
             {
                 name: 'Deleting files'
             },
+            {
+                name: 'Downloading file'
+            },
+            {
+                name: 'Deleting files'
+            },
+            {
+                name: 'Downloading file'
+            },
+            {
+                name: 'Deleting files'
+            },
         ]
     },
     mutations: {
@@ -1879,6 +1891,7 @@ export default new Vuex.Store({
         setProgress: (state, progress) => state.progress = progress,
         setProgressMaxValue: (state, progressMaxValue) => state.progressMaxValue = progressMaxValue,
         setCurrentBackground: (state, selectedBackground) => state.selectedBackground = selectedBackground,
+        addToQueue: (state, name) => state.queue.push({name}),
     },
     getters: {
         getCheckingMode: state => state.checkingMode,
@@ -2020,6 +2033,7 @@ export default new Vuex.Store({
                 return storage.id === storageId ? storage : false;
             });
             console.log(storage, storageId);
+            commit('addToQueue', `Moving ${getters['getCurrentObject'].name} to the  ${storage.name}`);
             dispatch('pushInfo', {type: 'success', message: `${getters['getCurrentObject'].name} has been moved to ${storage.name}`});
         }
     },
