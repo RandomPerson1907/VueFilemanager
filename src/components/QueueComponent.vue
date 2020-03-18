@@ -12,7 +12,7 @@
                 >
                     <div class="queue__item__name">{{ queueItem.name }}</div>
                     <div class="queue__item__cancel">x</div>
-                    <div class="queue__item__progress"></div>
+                    <div class="queue__item__progress" :style="{ width : `${queueItem}%` }"></div>
                 </div>
             </div>
         </div>
